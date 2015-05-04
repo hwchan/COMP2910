@@ -23,7 +23,7 @@ $(document).ready(function(){
     [0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0 ],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0 ],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0 ]
 	];
 	
 	//sets cell width
@@ -58,6 +58,10 @@ $(document).ready(function(){
 		}
 		//paint GUI
 		paintGUI();
+		//paint students
+		//for(var i = 0; i < students.length; ++y) {
+		//	drawStudent(i);
+		//}
 	}
 	
 	function paintGUI() {
