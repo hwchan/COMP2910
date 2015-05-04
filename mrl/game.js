@@ -45,6 +45,8 @@ $(document).ready(function(){
 
 	//sets cell width
 	var cw = w/(tiles[0].length+2);
+	//sets cell width/2 for drawing circles
+	var rd = cw/2;
 	
 	//sets up sign images
 	var upImg = new Image();
@@ -123,7 +125,7 @@ $(document).ready(function(){
 
 	function drawStudent(i) {
 		ctx.beginPath();
-		ctx.arc(students[i][0]*cw+cw/2, students[i][1]*cw+cw/2, cw/2, 0, Math.PI*2, true); 
+		ctx.arc(students[i][0]*cw+rd, students[i][1]*cw+rd, rd, 0, Math.PI*2, true); 
 		ctx.closePath();
 		ctx.fillStyle = "dimgray";
 		ctx.fill();
