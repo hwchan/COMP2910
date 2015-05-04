@@ -8,6 +8,10 @@ $(document).ready(function(){
 	//game variables
 	var score = 0;
 	var time = 0;
+
+	//temp variables
+	var xNext;
+	var yNext;
 	
 	//sets map array
 	//1: north
@@ -16,20 +20,28 @@ $(document).ready(function(){
 	//4: west
     var tiles = [
     [2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 4 ],
+    [1, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0 ],
     [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 0, 3, 0 ],
-    [0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 3, 0, 0 ],
+    [0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 0 ],
     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0 ]
 	];
 	
-	//sets student
-	var xStudent = 0;
-	var yStudent = 0;
-	var dStudent = 2;
+	//sets student array
+	//[x,y,d]
+	var students = [
+    [0, 0, 2 ],
+    [6, 4, 4 ],
+    [0, 3, 2 ],
+    [8, 5, 2 ],
+    [4, 1, 2 ],
+    [8, 8, 4 ]
+	];
+
+
 
 	//sets cell width
 	var cw = w/(tiles[0].length+2);
@@ -50,7 +62,7 @@ $(document).ready(function(){
 	function init() {	
 		//repaints every 60ms
 		if(typeof game_loop != "undefined") clearInterval(game_loop);
-		game_loop = setInterval(paint, 200);
+		game_loop = setInterval(paint, 100);
 	}
 			
 	//paint function
@@ -64,10 +76,9 @@ $(document).ready(function(){
 		//paint GUI
 		paintGUI();
 		//paint students
-		drawStudent(yStudent,xStudent);
-		//for(var i = 0; i < students.length; ++i) {
-		//	drawStudent(Students[i].yStudent,Students[i].xStudent);
-		//}
+		for(var i = 0; i < students.length; ++i) {
+			drawStudent(i);
+		}
 	}
 	
 	function paintGUI() {
@@ -110,32 +121,34 @@ $(document).ready(function(){
 		ctx.strokeRect(x*cw, y*cw, cw, cw);
 	}
 
-	function drawStudent(y, x) {
-	ctx.beginPath();
-	ctx.arc(x*cw+cw/2, y*cw+cw/2, cw/2, 0, Math.PI*2, true); 
-	ctx.closePath();
-	ctx.fillStyle = "dimgray";
-	ctx.fill();
-		if (tiles[y][x] != 0) {
-			dStudent = tiles[y][x];
+	function drawStudent(i) {
+		ctx.beginPath();
+		ctx.arc(students[i][0]*cw+cw/2, students[i][1]*cw+cw/2, cw/2, 0, Math.PI*2, true); 
+		ctx.closePath();
+		ctx.fillStyle = "dimgray";
+		ctx.fill();
+		yNext = students[i][1];
+		xNext = students[i][0];
+		if (tiles[students[i][1]][students[i][0]] != 0) {
+			students[i][2] = tiles[students[i][1]][students[i][0]];
 		}
-		switch (dStudent) {
+		switch (students[i][2]) {
 			case 1:
-			yStudent--;
+			yNext--;
 			break;
 			case 2:
-			xStudent++;
+			xNext++;
 			break;
 			case 3:
-			yStudent++;
+			yNext++;
 			break;
 			case 4:
-			xStudent--;
+			xNext--;
 			break;
 		}
-		if (tiles[yStudent][xStudent] == 5) {
-			xStudent = x;
-			yStudent = y;
+		if (tiles[yNext][xNext] != 5) {
+			students[i][0] = xNext;
+			students[i][1] = yNext; 
 		}
 	}
 	
