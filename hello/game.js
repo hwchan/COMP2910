@@ -61,20 +61,15 @@ $(document).ready(function(){
 	
 	//starts draw loop
 //	init();
-    var gamestate = false;
-   
-        document.getElementById("start").addEventListener("MSPointerUp", startGame, true);
+   	document.getElementById("start").addEventListener("click", init);
 
-	function init() {	
-		//repaints every 60ms
-		game_loop = setInterval(paint, 100);  
-        
+	function init() {
+		//hides start button
+		$("#start").hide();
+		//starts paint loop
+		game_loop = setInterval(paint, 100); 
 	}
     
-    function startGame(event) {
-        
-        init();
-    }
 			
 	//paint function
 	function paint() {
