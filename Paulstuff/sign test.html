@@ -4,9 +4,12 @@
 
 <!-- Lets make a simple snake game -->
 <canvas id="canvas" width="450" height="450"></canvas>
-
+<div id="content" width = "270" height="270">
+<img
+</div>
 <!-- Jquery -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 <script>
 $(document).ready(function(){
@@ -27,7 +30,14 @@ $(document).ready(function(){
 	
 	//Lets create the snake now
 	var snake_array; //an array of cells to make up the snake
-	
+	var upImg = new Image();
+	upImg.src = "images/up.png";
+	var rightImg = new Image();
+	rightImg.src = "images/right.png";
+	var downImg = new Image();
+	downImg.src = "images/down.png";
+	var leftImg = new Image();
+	leftImg.src = "images/left.png";
 	function init()
 	{
 		d = "right"; //default direction
@@ -192,8 +202,7 @@ $(document).ready(function(){
 	//Lets first create a generic function to paint cells
 	function paint_cell(x, y)
 	{
-		ctx.fillStyle = "blue";
-		ctx.fillRect(x*cw, y*cw, cw, cw);
+			ctx.drawImage(rightImg, x*cw, y*cw);
 		ctx.strokeStyle = "white";
 		ctx.strokeRect(x*cw, y*cw, cw, cw);
 	}
@@ -242,13 +251,8 @@ $(document).ready(function(){
 		//The snake is now keyboard controllable
 	})
 	
-	
-	
-	
-	
-	
-	
 })
 </script>
+
 </body>
 </html>
