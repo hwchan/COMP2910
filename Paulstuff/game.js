@@ -12,7 +12,9 @@ $(document).ready(function(){
 	//temp variables
 	var xNext;
 	var yNext;
-	
+    var highlight;
+	var highlightColor;
+    
 	//sets map array
 	//1: north
 	//2: east
@@ -76,6 +78,11 @@ $(document).ready(function(){
 				drawTile(y,x);
 			}
 		}
+        //paint highlight
+        if (highlight)
+        {
+        drawHighlight();
+        }
 		//paint GUI
 		paintGUI();
 		//paint students
@@ -159,13 +166,21 @@ $(document).ready(function(){
 			students[i][1] = yNext; 
 		}
 	}
+    
+	function drawHighlight() {
+        ctx.fillStyle = highlightColor;
+        ctx.fillRect(overX*cw, overY*cw, cw, cw);
+	}
+    
 	var tempX;
 	var tempY;
-	$( "#canvas" )
+	
+    $( "#canvas" )
 	.mousedown(function(e) {
 	tempX=e.pageX
 	tempY=e.pageY
-  })
+})
+    
 	.mouseup(function(e2){
 	var tempTileX = Math.floor(e2.pageX/(cw+1));
 	var tempTileY = Math.floor(e2.pageY/(cw+1));
@@ -181,11 +196,16 @@ $(document).ready(function(){
 		}
 	}
 	})
-	.mouseover(function(e3){
-	overX = Math.floor(e3.pageX/(cw+1));
-	overY = Math.floor(e3.pageY/(cw+1));
-		if(tiles[overX][overY]!=5){
-			tiles[overX][overY] = 6;
-		}
+    
+	.mousemove(function(e3){
+        if (highlight) {
+            overX = Math.floor(e3.pageX/(cw+1));
+            overY = Math.floor(e3.pageY/(cw+1));
+            if (tiles[overY][overX] == 5) {
+                highlightColor = "rgba(255, 0, 0, .5)";
+            } else {
+                highlightColor = "rgba(255, 255, 0, .5)"
+            }
+        }
 	})
 })
