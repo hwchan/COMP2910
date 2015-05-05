@@ -14,6 +14,13 @@ $(document).ready(function(){
 	var yNext;
     var highlight;
 	var highlightColor;
+	var overX;
+	var overY;
+	var tempTileX;
+	var tempTileY;
+	var tempX;
+	var tempY;
+	var GUIx;
     
 	//sets map array
 	//1: north
@@ -90,7 +97,6 @@ $(document).ready(function(){
 			drawStudent(i);
 		}
 	}
-	var GUIx;
 	
 	function paintGUI() {
 		ctx.fillStyle = "dimgray";
@@ -125,10 +131,6 @@ $(document).ready(function(){
 			break;
 			case 5:
 			ctx.fillStyle = "black";
-			ctx.fillRect(x*cw, y*cw, cw, cw);
-			break;
-			case 6:
-			ctx.fillStyle = "yellow";
 			ctx.fillRect(x*cw, y*cw, cw, cw);
 			break;
 		}	
@@ -171,9 +173,6 @@ $(document).ready(function(){
         ctx.fillStyle = highlightColor;
         ctx.fillRect(overX*cw, overY*cw, cw, cw);
 	}
-    
-	var tempX;
-	var tempY;
 	
     $( "#canvas" )
 	.mousedown(function(e) {
@@ -188,8 +187,8 @@ $(document).ready(function(){
 })
     
 	.mouseup(function(e2){
-	var tempTileX = Math.floor(e2.pageX/(cw+1));
-	var tempTileY = Math.floor(e2.pageY/(cw+1));
+	tempTileX = Math.floor(e2.pageX/(cw+1));
+	tempTileY = Math.floor(e2.pageY/(cw+1));
 	if(tiles[tempTileY][tempTileX]!=5){
 		if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=55 && tempY<=55+cw){
 			tiles[tempTileY][tempTileX]=1;
