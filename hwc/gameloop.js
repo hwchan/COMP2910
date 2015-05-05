@@ -25,6 +25,10 @@ function paint() {
             drawTile(y,x);
         }
     }
+	//paint highlight
+    if (highlight){
+        drawHighlight();
+    }
     //paints GUI
     paintGUI();
     //paints students
