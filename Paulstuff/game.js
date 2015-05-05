@@ -180,6 +180,9 @@ $(document).ready(function(){
 	tempX=e.pageX
 	tempY=e.pageY
 	highlight = true;
+	if( tiles[Math.floor(tempY/(cw+1))][Math.floor(tempX/(cw+1))] != 0){
+		tiles[Math.floor(tempY/(cw+1))][Math.floor(tempX/(cw+1))] = 0;
+	}
 })
     
 	.mouseup(function(e2){
