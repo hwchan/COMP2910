@@ -179,6 +179,7 @@ $(document).ready(function(){
 	.mousedown(function(e) {
 	tempX=e.pageX
 	tempY=e.pageY
+	highlight = true;
 })
     
 	.mouseup(function(e2){
@@ -195,6 +196,7 @@ $(document).ready(function(){
 			tiles[tempTileY][tempTileX]=4;
 		}
 	}
+		highlight = false;
 	})
     
 	.mousemove(function(e3){
