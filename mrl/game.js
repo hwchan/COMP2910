@@ -163,17 +163,17 @@ $(document).ready(function(){
 	tempY=e.pageY
   })
 	.mouseup(function(e2){
-	e2.pageX;
-	e2.pageY;
-	if(tiles[Math.floor(e2.pageY/(cw+1))][Math.floor(e2.pageX/(cw+1))]!=5){
+	var tempTileX = Math.floor(e2.pageX/(cw+1));
+	var tempTileY = Math.floor(e2.pageY/(cw+1));
+	if(tiles[tempTileY][tempTileX]!=5){
 		if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=55 && tempY<=55+cw){
-			tiles[Math.floor(e2.pageY/(cw+1))][Math.floor(e2.pageX/(cw+1))]=1;
+			tiles[tempTileY][tempTileX]=1;
 		} else if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=105 && tempY<=105+cw){
-			tiles[Math.floor(e2.pageY/(cw+1))][Math.floor(e2.pageX/(cw+1))]=2;
+			tiles[tempTileY][tempTileX]=2;
 		} else if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=155 && tempY<=155+cw){
-			tiles[Math.floor(e2.pageY/(cw+1))][Math.floor(e2.pageX/(cw+1))]=3;
+			tiles[tempTileY][tempTileX]=3;
 		} else if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=205 && tempY<=205+cw){
-			tiles[Math.floor(e2.pageY/(cw+1))][Math.floor(e2.pageX/(cw+1))]=4;
+			tiles[tempTileY][tempTileX]=4;
 		}
 	}
 	})
