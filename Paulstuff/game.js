@@ -120,6 +120,10 @@ $(document).ready(function(){
 			ctx.fillStyle = "black";
 			ctx.fillRect(x*cw, y*cw, cw, cw);
 			break;
+			case 6:
+			ctx.fillStyle = "yellow";
+			ctx.fillRect(x*cw, y*cw, cw, cw);
+			break;
 		}	
 		ctx.strokeStyle = "lightgray";
 		ctx.strokeRect(x*cw, y*cw, cw, cw);
@@ -163,18 +167,25 @@ $(document).ready(function(){
 	tempY=e.pageY
   })
 	.mouseup(function(e2){
-	var posX = e2.pageX/(cw+1);
-	var posY = e2.pageY/(cw+1);
-	if(tiles[Math.floor(posY)][Math.floor(posX)]!=5){
+	var tempTileX = Math.floor(e2.pageX/(cw+1));
+	var tempTileY = Math.floor(e2.pageY/(cw+1));
+	if(tiles[tempTileY][tempTileX]!=5){
 		if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=55 && tempY<=55+cw){
-			tiles[Math.floor(posY)][Math.floor(posX)]=1;
+			tiles[tempTileY][tempTileX]=1;
 		} else if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=105 && tempY<=105+cw){
-			tiles[Math.floor(posY)][Math.floor(posX)]=2;
+			tiles[tempTileY][tempTileX]=2;
 		} else if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=155 && tempY<=155+cw){
-			tiles[Math.floor(posY)][Math.floor(posX)]=3;
+			tiles[tempTileY][tempTileX]=3;
 		} else if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=205 && tempY<=205+cw){
-			tiles[Math.floor(posY)][Math.floor(posX)]=4;
+			tiles[tempTileY][tempTileX]=4;
 		}
 	}
+	})
+	.mouseover(function(e3){
+	overX = Math.floor(e3.pageX/(cw+1));
+	overY = Math.floor(e3.pageY/(cw+1));
+		if(tiles[overX][overY]!=5){
+			tiles[overX][overY] = 6;
+		}
 	})
 })
