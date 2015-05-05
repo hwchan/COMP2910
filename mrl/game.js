@@ -18,6 +18,7 @@ $(document).ready(function(){
 	//2: east
 	//3: south
 	//4: west
+	//5: building
     var tiles = [
     [2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0 ],
     [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 4 ],
@@ -154,4 +155,12 @@ $(document).ready(function(){
 		}
 	}
 	
+	$( "#canvas" )
+	.mousedown(function(e) {
+	tempX = e.pageX;
+	tempY = e.pageY;
+	if(tiles[Math.floor(tempY/(cw+1))][Math.floor(tempX/(cw+1))]!=5){
+	tiles[Math.floor(tempY/(cw+1))][Math.floor(tempX/(cw+1))]=3;
+	}
+  })
 })
