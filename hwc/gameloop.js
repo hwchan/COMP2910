@@ -1,33 +1,34 @@
 
-	//starts draw loop
+	//starts game loop and repaint function
 	init();
+    paint();
 
 	function init() {	
-		//repaints every 60ms
-		if(typeof game_loop != "undefined") clearInterval(game_loop);
+		//updates game logic every 100ms
 		game_loop = setInterval(step, 100);
-        draw_loop = setInterval(paint, 16);
+        
 	}
 	
-	//paint function
+	//update game logic
 	function step() {
-		paintGUI();
-		//paint students
+		//updates student positions
 		for(var i = 0; i < students.length; ++i) {
             stepStudent(i);
 		}
 	}
-
+    
+    //draws current state
 	function paint() {
-		//Loops through and paints map
+        requestAnimationFrame(paint);
+		//paints map
 		for(var y = 0; y < tiles[0].length; ++y) {
 			for(var x = 0; x < tiles.length; ++x) {
 				drawTile(y,x);
 			}
 		}
-		//paint GUI
+		//paints GUI
 		paintGUI();
-		//paint students
+		//paints students
 		for(var i = 0; i < students.length; ++i) {
 			drawStudent(i);
 		}
