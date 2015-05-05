@@ -41,8 +41,10 @@
 			xNext--;
 			break;
 		}
-		if (tiles[yNext][xNext] != 5) {
-			students[i][0] = xNext;
-			students[i][1] = yNext; 
-		}
+        if (xNext >= 0 && yNext >= 0 && yNext < tiles.length && xNext < tiles[0].length) {
+            if (tiles[yNext][xNext] != 5) {
+                students[i][0] = xNext;
+                students[i][1] = yNext; 
+            }
+        }
 	}
