@@ -83,10 +83,11 @@ $(document).ready(function(){
 			drawStudent(i);
 		}
 	}
+	var GUIx;
 	
 	function paintGUI() {
 		ctx.fillStyle = "dimgray";
-		var GUIx = cw*tiles[0].length;
+		GUIx = cw*tiles[0].length;
 		ctx.fillRect(GUIx, 0, cw*2, h);
 		ctx.fillStyle = "white";
 		ctx.fillText("Time: " + time, GUIx+5, 15);
@@ -154,13 +155,26 @@ $(document).ready(function(){
 			students[i][1] = yNext; 
 		}
 	}
-	
+	var tempX;
+	var tempY;
 	$( "#canvas" )
 	.mousedown(function(e) {
-	tempX = e.pageX;
-	tempY = e.pageY;
-	if(tiles[Math.floor(tempY/(cw+1))][Math.floor(tempX/(cw+1))]!=5){
-	tiles[Math.floor(tempY/(cw+1))][Math.floor(tempX/(cw+1))]=3;
-	}
+	tempX=e.pageX
+	tempY=e.pageY
   })
+	.mouseup(function(e2){
+	e2.pageX;
+	e2.pageY;
+	if(tiles[Math.floor(e2.pageY/(cw+1))][Math.floor(e2.pageX/(cw+1))]!=5){
+		if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=55 && tempY<=55+cw){
+			tiles[Math.floor(e2.pageY/(cw+1))][Math.floor(e2.pageX/(cw+1))]=1;
+		} else if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=105 && tempY<=105+cw){
+			tiles[Math.floor(e2.pageY/(cw+1))][Math.floor(e2.pageX/(cw+1))]=2;
+		} else if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=155 && tempY<=155+cw){
+			tiles[Math.floor(e2.pageY/(cw+1))][Math.floor(e2.pageX/(cw+1))]=3;
+		} else if(tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=205 && tempY<=205+cw){
+			tiles[Math.floor(e2.pageY/(cw+1))][Math.floor(e2.pageX/(cw+1))]=4;
+		}
+	}
+	})
 })
