@@ -182,7 +182,7 @@ $(document).ready(function(){
 	if((tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=55 && tempY<=55+cw) || (tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=105 && tempY<=105+cw) || (tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=155 && tempY<=155+cw)  || (tempX>=GUIx+15 && tempX <= GUIx+15+cw && tempY>=205 && tempY<=205+cw)){
 	highlight = true;
 	}
-	if( tiles[Math.floor(tempY/(cw+1))][Math.floor(tempX/(cw+1))] != 0){
+	if( tiles[Math.floor(tempY/(cw+1))][Math.floor(tempX/(cw+1))] != 0 && tiles[Math.floor(tempY/(cw+1))][Math.floor(tempX/(cw+1))] != 5 ){
 		tiles[Math.floor(tempY/(cw+1))][Math.floor(tempX/(cw+1))] = 0;
 	}
 })
