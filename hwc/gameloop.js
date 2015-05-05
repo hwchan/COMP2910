@@ -5,10 +5,19 @@
 	function init() {	
 		//repaints every 60ms
 		if(typeof game_loop != "undefined") clearInterval(game_loop);
-		game_loop = setInterval(paint, 100);
+		game_loop = setInterval(step, 100);
+        draw_loop = setInterval(paint, 16);
 	}
 	
 	//paint function
+	function step() {
+		paintGUI();
+		//paint students
+		for(var i = 0; i < students.length; ++i) {
+            stepStudent(i);
+		}
+	}
+
 	function paint() {
 		//Loops through and paints map
 		for(var y = 0; y < tiles[0].length; ++y) {
@@ -23,3 +32,4 @@
 			drawStudent(i);
 		}
 	}
+

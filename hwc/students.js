@@ -19,6 +19,9 @@
 		ctx.closePath();
 		ctx.fillStyle = "dimgray";
 		ctx.fill();
+	}
+
+	function stepStudent(i) {
 		yNext = students[i][1];
 		xNext = students[i][0];
 		if (tiles[students[i][1]][students[i][0]] != 0) {
