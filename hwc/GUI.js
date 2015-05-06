@@ -1,7 +1,10 @@
 //sets up sign images for GUI
 var signWidth = 32;
 var signHeight = 32;
+var menuButtonWidth = 16;
+var menuButtonHeight = 16;
 
+//sets up sign images
 var northGUIImg = new Image();
 northGUIImg.src = "images/up.png";
 var eastGUIImg = new Image();
@@ -11,7 +14,7 @@ southGUIImg.src = "images/down.png";
 var westGUIImg = new Image();
 westGUIImg.src = "images/left.png";
 
-//sets up GUI vars
+//sets up GUI images
 var muteBtn = new Image();
 muteBtn.src = "images/sound.png";
 var pauseBtn = new Image();
@@ -19,19 +22,24 @@ pauseBtn.src = "images/pause.png";
 //x-coordinate of the GUI area
 var GUIx = cw * tiles[0].length;
 
-//set buttons
-var NORTH_BTN = {img : upImg, x : GUIx + 15, y : 70, width : signWidth, height : signHeight};
-var EAST_BTN = {img : rightImg, x : GUIx + 15, y : 120, width : signWidth, height : signHeight};
-var SOUTH_BTN = {img : downImg, x : GUIx + 15, y : 170, width : signWidth, height : signHeight};
-var WEST_BTN = {img : leftImg, x : GUIx + 15, y : 220, width : signWidth, height : signHeight};
+//set sign buttons
+var NORTH_BTN = {img:upImg, x:GUIx+15, y:70, width:signWidth, height:signHeight};
+var EAST_BTN = {img:rightImg, x:GUIx+15, y:120, width:signWidth, height:signHeight};
+var SOUTH_BTN = {img:downImg, x:GUIx+15, y:170, width:signWidth, height:signHeight};
+var WEST_BTN = {img:leftImg, x:GUIx+15, y:220, width:signWidth, height:signHeight};
 var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
+
+//set menu buttons
+var MUTE_BTN = {img:muteBtn, x:GUIx+11, y:5, width:menuButtonWidth, height:menuButtonHeight};
+var PAUSE_BTN = {img:pauseBtn, x:GUIx+35, y:5, width:menuButtonWidth, height:menuButtonHeight};
+
 
 function paintGUI() {
     ctx.fillStyle = "dimgray";
     ctx.fillRect(GUIx, 0, cw * 2, h);
     //draw pause & mute
-    ctx.drawImage(pauseBtn, GUIx + 35, 5);
-    ctx.drawImage(muteBtn, GUIx + 11, 5);
+    ctx.drawImage(PAUSE_BTN.img, PAUSE_BTN.x, PAUSE_BTN.y);
+    ctx.drawImage(MUTE_BTN.img, MUTE_BTN.x, MUTE_BTN.y);
     //draw text
     ctx.fillStyle = "white";
     //time and score are now rounded to closest whole integer
