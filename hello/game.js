@@ -12,6 +12,9 @@ $(document).ready(function(){
 	//temp variables
 	var xNext;
 	var yNext;
+    
+    var hello = new Audio('h.mp3');
+    hello.loop = true;
 	
 	//sets map array
 	//1: north
@@ -20,27 +23,22 @@ $(document).ready(function(){
 	//4: west
 	//5: building
     var tiles = [
-    [2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 4 ],
-    [1, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 0, 3, 0 ],
-    [0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 3, 0, 0 ],
-    [0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 0 ],
-    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0 ]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
 	];
 	
 	//sets student array
 	//[x,y,d]
-	var students = [
-    [0, 0, 2 ],
-    [6, 4, 4 ],
-    [0, 3, 2 ],
-    [8, 5, 2 ],
-    [4, 1, 2 ],
-    [8, 8, 4 ]
-	];
+//	var students = [
+//    [1, 1, 2 ]
+//	];
 
 
 
@@ -58,17 +56,27 @@ $(document).ready(function(){
 	downImg.src = "images/down.png";
 	var leftImg = new Image();
 	leftImg.src = "images/left.png";
+    
+    var start = new Image();
+    start.src = "images/start.png";
 	
 	//starts draw loop
 //	init();
-   	document.getElementById("start").addEventListener("click", init);
+   	document.getElementById("_start").addEventListener("click", init);
+    
 
 	function init() {
 		//hides start button
-		$("#start").hide();
+        $("#_title").hide();
+		$("#_start").hide();
 		//starts paint loop
-		game_loop = setInterval(paint, 100); 
+        startGame();
 	}
+    
+    function startGame() {
+        hello.play();
+        game_loop = setInterval(paint, 100);
+    }
     
 			
 	//paint function
@@ -86,20 +94,40 @@ $(document).ready(function(){
 			drawStudent(i);
 		}
 	}
-	var GUIx;
+	var GUIx = cw*tiles[0].length;
+    
+    var muteBtn = new Image();
+	muteBtn.src = "images/sound.png";
+	var pauseBtn = new Image();
+	pauseBtn.src = "images/pause.png";
 	
 	function paintGUI() {
 		ctx.fillStyle = "dimgray";
-		GUIx = cw*tiles[0].length;
 		ctx.fillRect(GUIx, 0, cw*2, h);
+        
+        ctx.drawImage(pauseBtn, GUIx+35, 5);
+		ctx.drawImage(muteBtn, GUIx+11, 5);
+        
 		ctx.fillStyle = "white";
-		ctx.fillText("Time: " + time, GUIx+5, 15);
-		ctx.fillText("Score: " + score, GUIx+5, 30);
-		ctx.drawImage(upImg, GUIx+15, 55);
-		ctx.drawImage(rightImg, GUIx+15, 105);
-		ctx.drawImage(downImg, GUIx+15, 155);
-		ctx.drawImage(leftImg, GUIx+15, 205);
+		ctx.fillText("Time: " + time, GUIx+5, 45);
+		ctx.fillText("Score: " + score, GUIx+5, 35);
+		//draw signs
+		ctx.drawImage(upImg, GUIx+15, 70);
+		ctx.drawImage(rightImg, GUIx+15, 120);
+		ctx.drawImage(downImg, GUIx+15, 170);
+		ctx.drawImage(leftImg, GUIx+15, 220);
 	}
+    
+    var xx;
+    var yy;
+    
+    $("#canvas").mousedown(function(event) {
+	xx=event.pageX
+	yy=event.pageY    
+    if (xx >= GUIx+11 && xx <= GUIx+11+cw && yy >= 5 && yy <= 5+cw) {
+        hello.pause();
+    }
+    })
 			
 	function drawTile(x, y) {
 		switch (tiles[y][x]) {
