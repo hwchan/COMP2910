@@ -13,8 +13,6 @@ var downImg = new Image();
 downImg.src = "images/down.png";
 var leftImg = new Image();
 leftImg.src = "images/left.png";
-var down2Img= new Image();
-down2Img.src = "images/down2.png"
 
 //sets map array
 //1: north

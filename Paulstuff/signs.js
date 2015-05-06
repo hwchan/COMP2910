@@ -17,16 +17,24 @@ function drawHighlight() {
 			ctx.fillRect(overX * cw, overY * cw, cw, cw);
         } else if(clickX - 8 >= SIGN_BTNS[0].x && clickX - 8 <= SIGN_BTNS[0].x + SIGN_BTNS[0].width 
         && clickY - 8 >= SIGN_BTNS[0].y && clickY - 8 <= SIGN_BTNS[0].y + SIGN_BTNS[0].height) {
+			ctx.globalAlpha = 0.5;
 			ctx.drawImage(upImg, overX * cw, overY * cw);
+			ctx.globalAlpha = 1.0;
         }  else if(clickX - 8 >= SIGN_BTNS[1].x && clickX - 8 <= SIGN_BTNS[1].x + SIGN_BTNS[1].width 
         && clickY - 8 >= SIGN_BTNS[1].y && clickY - 8 <= SIGN_BTNS[1].y + SIGN_BTNS[1].height) {
+			ctx.globalAlpha = 0.5;
 			ctx.drawImage(rightImg, overX * cw, overY * cw);
+			ctx.globalAlpha = 1.0;
         } else if(clickX - 8 >= SIGN_BTNS[2].x && clickX - 8 <= SIGN_BTNS[2].x + SIGN_BTNS[2].width 
         && clickY - 8 >= SIGN_BTNS[2].y && clickY - 8 <= SIGN_BTNS[2].y + SIGN_BTNS[2].height) {
-			ctx.drawImage(down2Img, overX * cw, overY * cw);
+			ctx.globalAlpha = 0.5;
+			ctx.drawImage(downImg, overX * cw, overY * cw);
+			ctx.globalAlpha = 1.0;
         } else if(clickX - 8 >= SIGN_BTNS[3].x && clickX - 8 <= SIGN_BTNS[3].x + SIGN_BTNS[3].width 
         && clickY - 8 >= SIGN_BTNS[3].y && clickY - 8 <= SIGN_BTNS[3].y + SIGN_BTNS[3].height) {
+			ctx.globalAlpha = 0.5;
 			ctx.drawImage(leftImg, overX * cw, overY * cw);
+			ctx.globalAlpha = 1.0;
         }
     }
 }
