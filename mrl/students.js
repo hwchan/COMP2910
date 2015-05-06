@@ -1,8 +1,8 @@
 
 //sets student array
-//[xCurrent,yCurrent,dCurrent,Goal]
 var students = [];
-students.push(new student(0, 0, 2, 0));
+students.push(new student(0, 1));
+students.push(new student(1, 0));
 
 //sets cell width/2 for drawing circles
 var rd = cw / 2;
@@ -11,12 +11,12 @@ var rd = cw / 2;
 var xNew;
 var yNew;
 
-//constructs a student object
-function student(x, y, direction, goal) {
-    this.x = x;
-    this.y = y;
-    this.direction = direction;
-    this.goal = goal;
+//constructs a student object based on two indexes in the doorsz
+function student(spawn, despawn) {
+    this.x = doors[spawn].x;
+    this.y = doors[spawn].y;
+    this.direction = doors[spawn].direction;
+    this.goal = despawn;
 }
 
 //draws the student at index i
@@ -26,7 +26,7 @@ function drawStudent(i) {
     ctx.closePath();
     ctx.fillStyle = "dimgray";
     ctx.fill();
-    ctx.strokeStyle = doors[students[i].goal][2];
+    ctx.strokeStyle = doors[students[i].goal].color;
     ctx.stroke();
 }
 
@@ -61,7 +61,7 @@ function stepStudent(i) {
         }
     }
     //if new position is the same as goal deletes the student and adds the current time to the score
-    if (xNew == doors[students[i].goal][0] && yNew == doors[students[i].goal][1]) {
+    if (xNew == doors[students[i].goal].x && yNew == doors[students[i].goal].y) {
         students.splice(i, 1);
         score += time;
     }

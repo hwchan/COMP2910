@@ -33,15 +33,22 @@ var tiles = [
 ];
 
 //possible spawn and exit coordinates, and associated color
-//[xDoor,yDoor,color]
+//[xDoor,yDoor,color,direction]
 var doors = [
-    [0, 8, "red"],
-    [12, 0, "green"]
 ];
-
+doors.push(new door(0, 8, "red", 2));
+doors.push(new door(12, 0, "green", 4));
 
 //sets cell width based on size of map and resolution
 var cw = h / (tiles.length);
+
+//constructs a student object
+function door(x, y, color, direction) {
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.direction = direction;
+}
 
 function drawTile(x, y) {
     switch (tiles[y][x]) {
@@ -71,6 +78,6 @@ function drawTile(x, y) {
 }
 
 function drawDoor(i) {
-    ctx.strokeStyle = doors[i][2];
-    ctx.strokeRect(doors[i][0] * cw, doors[i][1] * cw, cw, cw);
+    ctx.strokeStyle = doors[i].color;
+    ctx.strokeRect(doors[i].x * cw, doors[i].y * cw, cw, cw);
 }
