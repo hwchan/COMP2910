@@ -1,23 +1,28 @@
+//game variables
+var score = 0;
+var time = 100;
+
 //starts game loop and repaint function
-init();
 paint();
+game_loop = setInterval(tick, 100);
 
-function init() {	
-    //updates game logic every 100ms
-    game_loop = setInterval(step, 100);
-
-}
-
-//update game logic
-function step() {
+//updates game logic
+function tick() {
     //updates student positions
-    for(var i = 0; i < students.length; ++i) {
+    for (var i = 0; i < students.length; ++i) {
         stepStudent(i);
+    }
+    //decrements the time
+    time -= .1;
+    //if all the students have reached their goals player wins
+    if (students.length == 0) {
+        //win action
     }
 }
 
-//draws current state
+//draws frame
 function paint() {
+    //runs paint every display refresh
     requestAnimationFrame(paint);
     //paints map
     for(var y = 0; y < tiles[0].length; ++y) {
@@ -25,8 +30,12 @@ function paint() {
             drawTile(y,x);
         }
     }
-	//paint highlight
-    if (highlight){
+    //paints doors
+    for(var i = 0; i < doors.length; ++i) {
+        drawDoor(i);
+    }
+	//paints highlight if true
+    if (highlight) {
         drawHighlight();
     }
     //paints GUI
