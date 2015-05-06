@@ -12,13 +12,21 @@ function drawHighlight() {
     ctx.fillRect(overX * cw, overY * cw, cw, cw);
 }
 
+//get the mouse position relative to the canvas element
+function getMousePos(e) {
+	var rect = canvas.getBoundingClientRect();
+	return {
+		x: e.clientX - rect.left,
+		y: e.clientY - rect.top
+	};
+}
+
 //checks if mouse is inside any of the four sign buttons when clicked,
 //if yes sets highlight to true and saves which sign was pressed
 $("#canvas").mousedown(function (e) {
-    //-8 offset is to compensate the game board being 8px away from the screen edge
     for (var i = 0; i < 4; i++){
-        if(e.pageX - 8 >= SIGN_BTNS[i].x && e.pageX - 8 <= SIGN_BTNS[i].x + SIGN_BTNS[i].width 
-        && e.pageY - 8 >= SIGN_BTNS[i].y && e.pageY - 8 <= SIGN_BTNS[i].y + SIGN_BTNS[i].height){
+        if(getMousePos(e).x >= SIGN_BTNS[i].x && getMousePos(e).x <= SIGN_BTNS[i].x + SIGN_BTNS[i].width 
+        && getMousePos(e).y >= SIGN_BTNS[i].y && getMousePos(e).y <= SIGN_BTNS[i].y + SIGN_BTNS[i].height){
             highlight = true;
             signPressed = i + 1;
         }
