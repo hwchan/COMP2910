@@ -1,6 +1,5 @@
 <html>
-    <!--body onload="hello.play()"-->
-	<body>
+    <body onload="hello.play()">
         <!-- Lets make a simple snake game -->
         <canvas id="canvas" width="450" height="270"></canvas>
 		
@@ -13,6 +12,10 @@
 		<script src="signs.js" type="text/javascript"></script>
 		<script src="gameloop.js" type="text/javascript"></script>
         <script src="screen.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var hello = new Audio('Electrodoodle.mp3');
+			hello.loop = true;
+		</script>
 		
     </body>
 </html>
