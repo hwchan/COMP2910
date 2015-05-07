@@ -34,7 +34,7 @@ var WEST_BTN = {img:leftImg, x:GUIx+15, y:220, width:signWidth, height:signHeigh
 var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 
 //set menu buttons
-var MUTE_BTN = {img:noSoundImg, x:GUIx+11, y:5, width:menuButtonWidth, height:menuButtonHeight};
+var MUTE_BTN = {img:soundImg, x:GUIx+11, y:5, width:menuButtonWidth, height:menuButtonHeight};
 var PAUSE_BTN = {img:unPauseImg, x:GUIx+35, y:5, width:menuButtonWidth, height:menuButtonHeight};
 
 //set music and sound vars

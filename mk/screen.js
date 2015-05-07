@@ -21,6 +21,7 @@ function startGame() {
                       
 function playGame() {
     menuMusic.pause();
+    music.play();
     paint();
     game_loop = setInterval(tick, 100);
 }   
