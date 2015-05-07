@@ -35,7 +35,7 @@ var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 
 //set menu buttons
 var MUTE_BTN = {img:soundImg, x:GUIx+11, y:5, width:menuButtonWidth, height:menuButtonHeight};
-var PAUSE_BTN = {img:unPauseImg, x:GUIx+35, y:5, width:menuButtonWidth, height:menuButtonHeight};
+var PAUSE_BTN = {img:pauseImg, x:GUIx+35, y:5, width:menuButtonWidth, height:menuButtonHeight};
 
 //set music and sound vars
 var music = new Audio('music/gameplay.mp3');
@@ -55,10 +55,12 @@ $("#canvas").mousedown(function (e) {
 	//handle pause/unpause
 	} else if(clickButton(e, PAUSE_BTN)) {
 		//TODO change control logic to check for pause state and not the GUI image
-		if(PAUSE_BTN.img == unPauseImg){
-			PAUSE_BTN.img = pauseImg;
-		} else {
+		if(PAUSE_BTN.img == pauseImg){
 			PAUSE_BTN.img = unPauseImg;
+			clearInterval(game_loop);
+		} else {
+			PAUSE_BTN.img = pauseImg;
+			game_loop = setInterval(tick, 100);
 		}
 	}
 })
