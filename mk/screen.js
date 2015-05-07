@@ -2,13 +2,13 @@ var menuImg = new Image();
 menuImg.src = "images/walk.jpg";
 var PLAY_BTN = {img:menuImg, x:50, y:162, width:205, height:68};
 
-
-//starts game loop and repaint function
-startGame();
+menuImg.onload = function(){
+    startGame();
+}
 
 $("#canvas").mousedown(function(e) {
     if(clickButton(e, PLAY_BTN)) {
-        playGame();
+        startGame();
     }
 })
 
