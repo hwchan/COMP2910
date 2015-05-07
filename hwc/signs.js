@@ -1,15 +1,22 @@
 //if highlight is active and what its current color is
 var highlight;
-var highlightColor;
-//which tile to set when one clicks
+//the sign selected/clicked/dragged
 var signPressed = 0;
 //which tile the mouse it currently over
 var overX;
 var overY;
 
 function drawHighlight() {
-    ctx.fillStyle = highlightColor;
-    ctx.fillRect(overX * cw, overY * cw, cw, cw);
+	if (highlight) {
+		if (tiles[overY][overX] == 5) {
+			ctx.fillStyle = "rgba(255, 0, 0, .5)";
+			ctx.fillRect(overX * cw, overY * cw, cw, cw);
+		} else {
+			ctx.globalAlpha = 0.5;
+			ctx.drawImage(SIGN_BTNS[signPressed].img, overX * cw, overY * cw);
+			ctx.globalAlpha = 1.0;
+		}
+	}
 }
 
 //checks if mouse is inside any of the four sign buttons when clicked,
@@ -18,7 +25,7 @@ $("#canvas").mousedown(function (e) {
     for (var i = 0; i < 4; i++){
         if(clickButton(e, SIGN_BTNS[i])){
             highlight = true;
-            signPressed = i + 1;
+            signPressed = i;
         }
     }
 })
@@ -30,7 +37,7 @@ $("#canvas").mousedown(function (e) {
 .mouseup(function(e2){
     if(tiles[overY][overX]!=5){
         //assign the selected sign to the tile at the cursor
-        tiles[overY][overX] = signPressed;
+        tiles[overY][overX] = signPressed + 1;
     }
     highlight = false;
     signPressed = 0;
@@ -40,13 +47,4 @@ $("#canvas").mousedown(function (e) {
     //calculates which tile mouse is currently over
     overX = Math.floor(getMousePos(e3).x / cw);
     overY = Math.floor(getMousePos(e3).y / cw);
-    //if highlight is true checks whether tile can be placed at current cursor location,
-    //and sets the highlight color to reflect this
-    if (highlight) {
-        if (tiles[overY][overX] == 5) {
-            highlightColor = "rgba(255, 0, 0, .5)";
-        } else {
-            highlightColor = "rgba(255, 255, 0, .5)"
-        }
-    }
 })
