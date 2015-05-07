@@ -57,8 +57,10 @@ $("#canvas").mousedown(function (e) {
 		//TODO change control logic to check for pause state and not the GUI image
 		if(PAUSE_BTN.img == unPauseImg){
 			PAUSE_BTN.img = pauseImg;
+			clearInterval(game_loop);
 		} else {
 			PAUSE_BTN.img = unPauseImg;
+			game_loop = setInterval(tick, 100);
 		}
 	}
 })

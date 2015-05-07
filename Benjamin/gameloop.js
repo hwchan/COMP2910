@@ -1,10 +1,27 @@
 //game variables
 var score = 0;
 var time = 100;
+var running = true;
 
 //starts game loop and repaint function
 paint();
 game_loop = setInterval(tick, 100);
+window.addEventListener('keydown',this.check,false);
+
+function check(e) {
+    var code = e.keyCode;
+    //Up arrow pressed
+    if (code == 80) {
+        clearInterval(game_loop);
+		running = false;
+	}
+	if (code == 82) {
+		if (running == false) {
+			game_loop = setInterval(tick, 100); 
+			running = true;
+		}
+	}
+}
 
 //updates game logic
 function tick() {

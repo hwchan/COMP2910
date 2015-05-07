@@ -62,12 +62,6 @@ $(document).ready(function(){
 	//starts draw loop
 	init();
 
-	function init() {	
-		//repaints every 60ms
-		if(typeof game_loop != "undefined") clearInterval(game_loop);
-		game_loop = setInterval(paint, 100);
-	}
-			
 	//paint function
 	function paint() {
 		//Loops through and paints map
