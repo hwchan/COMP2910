@@ -38,7 +38,7 @@ var MUTE_BTN = {img:noSoundImg, x:GUIx+11, y:5, width:menuButtonWidth, height:me
 var PAUSE_BTN = {img:unPauseImg, x:GUIx+35, y:5, width:menuButtonWidth, height:menuButtonHeight};
 
 //set music and sound vars
-var music = new Audio('h.mp3');
+var music = new Audio('music/gameplay.mp3');
 music.loop = true;
 
 //handle GUI interaction
