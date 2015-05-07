@@ -15,10 +15,14 @@ var westGUIImg = new Image();
 westGUIImg.src = "images/left.png";
 
 //sets up GUI images
-var muteBtn = new Image();
-muteBtn.src = "images/sound.png";
-var pauseBtn = new Image();
-pauseBtn.src = "images/pause.png";
+var soundImg = new Image();
+soundImg.src = "images/sound.png";
+var noSoundImg = new Image();
+noSoundImg.src = "images/nosound.png";
+var pauseImg = new Image();
+pauseImg.src = "images/pause.png";
+var unPauseImg = new Image();
+unPauseImg.src = "images/unpause.png";
 //x-coordinate of the GUI area
 var GUIx = cw * tiles[0].length;
 
@@ -30,9 +34,34 @@ var WEST_BTN = {img:leftImg, x:GUIx+15, y:220, width:signWidth, height:signHeigh
 var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 
 //set menu buttons
-var MUTE_BTN = {img:muteBtn, x:GUIx+11, y:5, width:menuButtonWidth, height:menuButtonHeight};
-var PAUSE_BTN = {img:pauseBtn, x:GUIx+35, y:5, width:menuButtonWidth, height:menuButtonHeight};
+var MUTE_BTN = {img:noSoundImg, x:GUIx+11, y:5, width:menuButtonWidth, height:menuButtonHeight};
+var PAUSE_BTN = {img:unPauseImg, x:GUIx+35, y:5, width:menuButtonWidth, height:menuButtonHeight};
 
+//set music and sound vars
+var music = new Audio('h.mp3');
+music.loop = true;
+
+//handle GUI interaction
+$("#canvas").mousedown(function (e) {
+	//handle mute/unmute
+    if(clickButton(e, MUTE_BTN)) {
+		if(!music.paused) {
+			MUTE_BTN.img = noSoundImg;
+			music.pause();
+		} else {
+			MUTE_BTN.img = soundImg;
+			music.play();
+		}
+	//handle pause/unpause
+	} else if(clickButton(e, PAUSE_BTN)) {
+		//TODO change control logic to check for pause state and not the GUI image
+		if(PAUSE_BTN.img == unPauseImg){
+			PAUSE_BTN.img = pauseImg;
+		} else {
+			PAUSE_BTN.img = unPauseImg;
+		}
+	}
+})
 
 function paintGUI() {
     ctx.fillStyle = "dimgray";
