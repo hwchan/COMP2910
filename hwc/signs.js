@@ -38,10 +38,8 @@ $("#canvas").mousedown(function (e) {
 
 .mousemove(function(e3){
     //calculates which tile mouse is currently over
-    //
-    //-8 offset is to compensate the game board being 8px away from the screen edge
-    overX = Math.floor((e3.pageX - 8) / cw);
-    overY = Math.floor((e3.pageY - 8) / cw);
+    overX = Math.floor(getMousePos(e3).x / cw);
+    overY = Math.floor(getMousePos(e3).y / cw);
     //if highlight is true checks whether tile can be placed at current cursor location,
     //and sets the highlight color to reflect this
     if (highlight) {
