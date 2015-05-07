@@ -28,6 +28,10 @@ $("#canvas").mousedown(function (e) {
             signPressed = i;
         }
     }
+	//delete sign if clicked
+	if(tiles[overY][overX] == 1 || tiles[overY][overX] == 2 || tiles[overY][overX] == 3 || tiles[overY][overX] == 4){
+		tiles[overY][overX] = 0;
+	}
 })
 
 //checks if a tile can be set at the current cursor position, 
@@ -35,7 +39,7 @@ $("#canvas").mousedown(function (e) {
 //
 //it then sets the tile stored to an empty space and removes highlight if any
 .mouseup(function(e2){
-    if(tiles[overY][overX]!=5){
+    if(tiles[overY][overX]!=5 && signPressed != 0){
         //assign the selected sign to the tile at the cursor
         tiles[overY][overX] = signPressed + 1;
     }
