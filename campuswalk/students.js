@@ -1,14 +1,8 @@
 
 //sets student array
-//[xCurrent,yCurrent,dCurrent,Goal]
-var students = [
-    [0, 0, 2, 0],
-    [6, 4, 4, 1],
-    [0, 3, 2, 0],
-    [8, 5, 2, 1],
-    [4, 1, 2, 0],
-    [8, 8, 4, 1]
-];
+var students = [];
+students.push(new student(0, 1));
+students.push(new student(1, 0));
 
 //sets cell width/2 for drawing circles
 var rd = cw / 2;
@@ -21,6 +15,14 @@ var yNew;
 var student0Img = new Image();
 student0Img.src = "images/students/student0.png";
 
+//constructs a student object based on two indexes in the doorsz
+function student(spawn, despawn) {
+    this.x = doors[spawn].x;
+    this.y = doors[spawn].y;
+    this.direction = doors[spawn].direction;
+    this.goal = despawn;
+}
+
 //draws the student at index i
 function drawStudent(i) {
 //    ctx.beginPath();
@@ -32,19 +34,19 @@ function drawStudent(i) {
 //    ctx.stroke();
 	
 	//holy crap arrays as objects are hard to understand
-	ctx.drawImage(student0Img, students[i][0]*cw, students[i][1]*cw);
+	ctx.drawImage(student0Img, students[i].x*cw, students[i].y*cw);
 }
 
 //updates game logic of student at index i
 function stepStudent(i) {
     //changes student direction if their current tile is not empty
-    if (tiles[students[i][1]][students[i][0]] !== 0) {
-        students[i][2] = tiles[students[i][1]][students[i][0]];
+    if (gameboard[students[i].y][students[i].x].contents !== 0) {
+        students[i].direction = gameboard[students[i].y][students[i].x].contents;
     }
     //computes a new position based on their direction and position
-    yNew = students[i][1];
-    xNew = students[i][0];
-    switch (students[i][2]) {
+    yNew = students[i].y;
+    xNew = students[i].x;
+    switch (students[i].direction) {
     case 1:
         yNew -= 1;
         break;
@@ -59,14 +61,14 @@ function stepStudent(i) {
         break;
     }
     //sets the students position to the updated position if not blocked or leaving grid
-    if (xNew >= 0 && yNew >= 0 && yNew < tiles.length && xNew < tiles[0].length) {
-        if (tiles[yNew][xNew] !== 5) {
-            students[i][0] = xNew;
-            students[i][1] = yNew;
+    if (xNew >= 0 && yNew >= 0 && yNew < gameboard.length && xNew < gameboard[0].length) {
+        if (gameboard[yNew][xNew].contents !== 5) {
+            students[i].x = xNew;
+            students[i].y = yNew;
         }
     }
     //if new position is the same as goal deletes the student and adds the current time to the score
-    if (xNew == doors[students[i][3]][0] && yNew == doors[students[i][3]][1]) {
+    if (xNew == doors[students[i].goal].x && yNew == doors[students[i].goal].y) {
         students.splice(i, 1);
         score += time;
     }

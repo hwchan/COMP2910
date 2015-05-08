@@ -28,8 +28,8 @@ function paint() {
     //runs paint every display refresh
     requestAnimationFrame(paint);
     //paints map
-    for(var y = 0; y < tiles[0].length; ++y) {
-        for(var x = 0; x < tiles.length; ++x) {
+    for(var y = 0; y < gameboard[0].length; ++y) {
+        for(var x = 0; x < gameboard.length; ++x) {
             drawTile(y,x);
         }
     }

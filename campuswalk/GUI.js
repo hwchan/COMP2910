@@ -24,7 +24,7 @@ pauseImg.src = "images/pause.png";
 var unPauseImg = new Image();
 unPauseImg.src = "images/unpause.png";
 //x-coordinate of the GUI area
-var GUIx = cw * tiles[0].length;
+var GUIx = cw * gameboard[0].length;
 
 //set sign buttons
 var NORTH_BTN = {img:upImg, x:GUIx+15, y:70, width:signWidth, height:signHeight};
