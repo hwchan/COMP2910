@@ -20,6 +20,9 @@ function startGame() {
 }
                       
 function playGame() {
+    //delete PLAY_BTN (hacky fix)
+    PLAY_BTN.width = 0;
+    
     menuMusic.pause();
     music.play();
     paint();

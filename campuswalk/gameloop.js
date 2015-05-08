@@ -2,9 +2,12 @@
 var score = 0;
 var time = 100;
 
+
 //starts game loop and repaint function
-paint();
-game_loop = setInterval(tick, 100);
+
+//paint();
+//game_loop = setInterval(tick, 100);
+
 
 //updates game logic
 function tick() {
