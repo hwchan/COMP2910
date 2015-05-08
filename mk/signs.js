@@ -5,6 +5,8 @@ var signPressed = 0;
 //which tile the mouse it currently over
 var overX;
 var overY;
+var signplaceSound = new Audio('music/signplace.mp3');
+var signselectSound = new Audio('music/signselect.mp3');
 
 function drawHighlight() {
 	if (highlight) {
@@ -27,6 +29,7 @@ $("#canvas").mousedown(function (e) {
         if(clickButton(e, SIGN_BTNS[i])){
             highlight = true;
             signPressed = i+1;
+			signselectSound.play();
         }
     }
 	//delete sign if clicked
@@ -44,6 +47,7 @@ $("#canvas").mousedown(function (e) {
     if(tiles[overY][overX]!=5 && signPressed != 0){
         //assign the selected sign to the tile at the cursor
         tiles[overY][overX] = signPressed;
+		signplaceSound.play();
     }
     highlight = false;
     signPressed = 0;
