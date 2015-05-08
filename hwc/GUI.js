@@ -24,7 +24,7 @@ pauseImg.src = "images/pause.png";
 var unPauseImg = new Image();
 unPauseImg.src = "images/unpause.png";
 //x-coordinate of the GUI area
-var GUIx = cw * tiles[0].length;
+var GUIx = cw * gameboard[0].length;
 
 //set sign buttons
 var NORTH_BTN = {img:upImg, x:GUIx+15, y:70, width:signWidth, height:signHeight};
@@ -34,11 +34,11 @@ var WEST_BTN = {img:leftImg, x:GUIx+15, y:220, width:signWidth, height:signHeigh
 var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 
 //set menu buttons
-var MUTE_BTN = {img:noSoundImg, x:GUIx+11, y:5, width:menuButtonWidth, height:menuButtonHeight};
-var PAUSE_BTN = {img:unPauseImg, x:GUIx+35, y:5, width:menuButtonWidth, height:menuButtonHeight};
+var MUTE_BTN = {img:soundImg, x:GUIx+11, y:5, width:menuButtonWidth, height:menuButtonHeight};
+var PAUSE_BTN = {img:pauseImg, x:GUIx+35, y:5, width:menuButtonWidth, height:menuButtonHeight};
 
 //set music and sound vars
-var music = new Audio('h.mp3');
+var music = new Audio('music/gameplay.mp3');
 music.loop = true;
 
 //handle GUI interaction
@@ -55,11 +55,11 @@ $("#canvas").mousedown(function (e) {
 	//handle pause/unpause
 	} else if(clickButton(e, PAUSE_BTN)) {
 		//TODO change control logic to check for pause state and not the GUI image
-		if(PAUSE_BTN.img == unPauseImg){
-			PAUSE_BTN.img = pauseImg;
+		if(PAUSE_BTN.img == pauseImg){
+			PAUSE_BTN.img = unPauseImg;
 			clearInterval(game_loop);
 		} else {
-			PAUSE_BTN.img = unPauseImg;
+			PAUSE_BTN.img = pauseImg;
 			game_loop = setInterval(tick, 100);
 		}
 	}
