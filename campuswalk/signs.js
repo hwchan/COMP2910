@@ -5,6 +5,7 @@ var signPressed = 0;
 //which tile the mouse it currently over
 var overX;
 var overY;
+var signplaceSound = new Audio('music/signplace.mp3');
 
 function drawHighlight() {
     if (overX < gameboard[0].length) {
@@ -46,6 +47,7 @@ $("#canvas").mousedown(function (e) {
     if(gameboard[overY][overX].contents!=5 && signPressed != 0){
         //assign the selected sign to the tile at the cursor
         gameboard[overY][overX].contents = signPressed;
+        signplaceSound.play();
     }
     highlight = false;
     signPressed = 0;

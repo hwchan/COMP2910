@@ -6,7 +6,6 @@ var signPressed = 0;
 var overX;
 var overY;
 var signplaceSound = new Audio('music/signplace.mp3');
-var signselectSound = new Audio('music/signselect.mp3');
 
 function drawHighlight() {
 	if (highlight) {
@@ -29,7 +28,6 @@ $("#canvas").mousedown(function (e) {
         if(clickButton(e, SIGN_BTNS[i])){
             highlight = true;
             signPressed = i+1;
-			signselectSound.play();
         }
     }
 	//delete sign if clicked
