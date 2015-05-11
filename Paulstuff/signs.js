@@ -35,6 +35,7 @@ box1.addEventListener('touchstart', function(e){
         if((e.changedTouches[0].pageX >= SIGN_BTNS[i].x && e.changedTouches[0].pageX <= (SIGN_BTNS[i].x+cw)) && (e.changedTouches[0].pageY >= SIGN_BTNS[i].y && e.changedTouches[0].pageY <= (SIGN_BTNS[i].y+cw))) {
             highlight = true;
             signPressed = i+1;
+				e.preventDefault();
         }
     }
 	overX = Math.floor(e.changedTouches[0].pageX / cw);
@@ -43,7 +44,6 @@ box1.addEventListener('touchstart', function(e){
 	if(gameboard[overY][overX].contents == 1 || gameboard[overY][overX].contents == 2 || gameboard[overY][overX].contents == 3 || gameboard[overY][overX].contents == 4){
 		gameboard[overY][overX].contents = 0;
 	}
-	e.preventDefault();
 }, false)
 
 //checks if a tile can be set at the current cursor position, 
@@ -57,15 +57,15 @@ box1.addEventListener('touchend', function(e2){
         //assign the selected sign to the tile at the cursor
         gameboard[overY3][overX3].contents = signPressed;
         signplaceSound.play();
+		e2.preventDefault();
+		e3.preventDefault();
     }
     highlight = false;
     signPressed = 0;
-	e2.preventDefault();
 }, false)
 
 box1.addEventListener('touchmove', function(e3){
     //calculates which tile mouse is currently over
     overX3 = Math.floor(e3.changedTouches[0].pageX / cw);
     overY3 = Math.floor(e3.changedTouches[0].pageY / cw);
-	e3.preventDefault();
 }, false)
