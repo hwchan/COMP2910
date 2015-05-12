@@ -42,9 +42,10 @@ var music = new Audio('music/gameplay.mp3');
 music.loop = true;
 
 //handle GUI interaction
-$("#canvas").mousedown(function (e) {
+var box1 = document.getElementById('canvas')
+box1.addEventListener('touchstart', function(e5){
 	//handle mute/unmute
-    if(clickButton(e, MUTE_BTN)) {
+    if((e5.changedTouches[0].pageX>=(GUIx+19) && e5.changedTouches[0].pageX<=(GUIx+19+cw/2)) && (e5.changedTouches[0].pageY>=13 && e5.changedTouches[0].pageY<=(13+cw/2))) {
 		if(!music.paused) {
 			MUTE_BTN.img = noSoundImg;
 			music.pause();
@@ -53,7 +54,7 @@ $("#canvas").mousedown(function (e) {
 			music.play();
 		}
 	//handle pause/unpause
-	} else if(clickButton(e, PAUSE_BTN)) {
+	} else if((e5.changedTouches[0].pageX>=(GUIx+43) && e5.changedTouches[0].pageX<=(GUIx+43+cw/2)) && (e5.changedTouches[0].pageY>=13 && e5.changedTouches[0].pageY<=(13+cw/2))) {
 		//TODO change control logic to check for pause state and not the GUI image
 		if(PAUSE_BTN.img == pauseImg){
 			PAUSE_BTN.img = unPauseImg;

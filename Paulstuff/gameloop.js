@@ -22,10 +22,6 @@ function tick() {
         //win action
     }
 }
-        function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-        }
 		
 //draws frame
 function paint() {

@@ -19,7 +19,7 @@ function drawHighlight() {
                 ctx.fillRect(overX * cw, overY * cw, cw, cw);
             } else {
                 ctx.globalAlpha = 0.5;
-                ctx.drawImage(SIGN_BTNS[signPressed-1].img, overX3 * cw, overY3 * cw);
+                ctx.drawImage(SIGN_BTNS[signPressed-1].img, (overX3 * cw)+cw, overY3 * cw);
                 ctx.globalAlpha = 1.0;
             }
         }
@@ -53,12 +53,11 @@ box1.addEventListener('touchstart', function(e){
 box1.addEventListener('touchend', function(e2){
 	    overX2 = Math.floor(e2.changedTouches[0].pageX / cw);
 		overY2 = Math.floor(e2.changedTouches[0].pageY / cw);
-    if(gameboard[overY3][overX3].contents!=5 && signPressed != 0){
+    if(gameboard[overY3][overX3+1].contents!=5 && signPressed != 0){
         //assign the selected sign to the tile at the cursor
-        gameboard[overY3][overX3].contents = signPressed;
+        gameboard[overY3][overX3+1].contents = signPressed;
         signplaceSound.play();
 		e2.preventDefault();
-		e3.preventDefault();
     }
     highlight = false;
     signPressed = 0;
@@ -68,4 +67,5 @@ box1.addEventListener('touchmove', function(e3){
     //calculates which tile mouse is currently over
     overX3 = Math.floor(e3.changedTouches[0].pageX / cw);
     overY3 = Math.floor(e3.changedTouches[0].pageY / cw);
+			e3.preventDefault();
 }, false)
