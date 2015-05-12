@@ -17,15 +17,23 @@ var rd = cw / 2;
 var xNew;
 var yNew;
 
+//student image vars
+var student0Img = new Image();
+student0Img.src = "images/students/student0.png";
+var despawnSound = new Audio('music/despawn.mp3');
+
 //draws the student at index i
 function drawStudent(i) {
-    ctx.beginPath();
-    ctx.arc(students[i][0] * cw + rd, students[i][1] * cw + rd, rd, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ctx.fillStyle = "dimgray";
-    ctx.fill();
-    ctx.strokeStyle = doors[students[i][3]][2];
-    ctx.stroke();
+//    ctx.beginPath();
+//    ctx.arc(students[i][0] * cw + rd, students[i][1] * cw + rd, rd, 0, Math.PI * 2, true);
+//    ctx.closePath();
+//    ctx.fillStyle = "dimgray";
+//    ctx.fill();
+//    ctx.strokeStyle = doors[students[i][3]][2];
+//    ctx.stroke();
+	
+	//holy crap arrays as objects are hard to understand
+	ctx.drawImage(student0Img, students[i][0]*cw, students[i][1]*cw);
 }
 
 //updates game logic of student at index i
@@ -59,8 +67,10 @@ function stepStudent(i) {
         }
     }
     //if new position is the same as goal deletes the student and adds the current time to the score
+	//plays the despawn sound
     if (xNew == doors[students[i][3]][0] && yNew == doors[students[i][3]][1]) {
         students.splice(i, 1);
+		despawnSound.play();
         score += time;
     }
 }
