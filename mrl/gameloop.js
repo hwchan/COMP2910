@@ -3,8 +3,10 @@ var score = 0;
 var time = 100;
 
 //starts game loop and repaint function
-paint();
-game_loop = setInterval(tick, 100);
+
+//paint();
+//game_loop = setInterval(tick, 100);
+
 
 //updates game logic
 function tick() {
@@ -12,6 +14,8 @@ function tick() {
     for (var i = 0; i < students.length; ++i) {
         stepStudent(i);
     }
+    //spawns a student each tick
+    spawnStudents();
     //decrements the time
     time -= .1;
     //if all the students have reached their goals player wins
@@ -25,8 +29,8 @@ function paint() {
     //runs paint every display refresh
     requestAnimationFrame(paint);
     //paints map
-    for(var y = 0; y < tiles[0].length; ++y) {
-        for(var x = 0; x < tiles.length; ++x) {
+    for(var y = 0; y < gameboard[0].length; ++y) {
+        for(var x = 0; x < gameboard.length; ++x) {
             drawTile(y,x);
         }
     }
