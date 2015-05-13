@@ -1,28 +1,42 @@
 //if highlight is active and what its current color is
 var highlight;
-var highlightColor;
-//which tile to set when one clicks
+//the sign selected/clicked/dragged
 var signPressed = 0;
 //which tile the mouse it currently over
 var overX;
 var overY;
+var signplaceSound = new Audio('music/signplace.mp3');
 
 function drawHighlight() {
-    ctx.fillStyle = highlightColor;
-    ctx.fillRect(overX * cw, overY * cw, cw, cw);
+    if (overX < gameboard[0].length) {
+        if (highlight) {
+            if (gameboard[overY][overX].contents == 5) {
+                ctx.fillStyle = "rgba(255, 0, 0, .5)";
+                ctx.fillRect(overX * cw, overY * cw, cw, cw);
+            } else {
+                ctx.globalAlpha = 0.5;
+                ctx.drawImage(SIGN_BTNS[signPressed-1].img, overX * cw, overY * cw);
+                ctx.globalAlpha = 1.0;
+            }
+        }
+    }
 }
 
 //checks if mouse is inside any of the four sign buttons when clicked,
 //if yes sets highlight to true and saves which sign was pressed
 $("#canvas").mousedown(function (e) {
-    //-8 offset is to compensate the game board being 8px away from the screen edge
+
     for (var i = 0; i < 4; i++){
-        if(e.pageX - 8 >= SIGN_BTNS[i].x && e.pageX - 8 <= SIGN_BTNS[i].x + SIGN_BTNS[i].width 
-        && e.pageY - 8 >= SIGN_BTNS[i].y && e.pageY - 8 <= SIGN_BTNS[i].y + SIGN_BTNS[i].height){
+        if(clickButton(e, SIGN_BTNS[i])){
             highlight = true;
-            signPressed = i + 1;
+            signPressed = i+1;
         }
     }
+	//delete sign if clicked
+	if(gameboard[overY][overX].contents == 1 || gameboard[overY][overX].contents == 2 || gameboard[overY][overX].contents == 3 || gameboard[overY][overX].contents == 4){
+		gameboard[overY][overX].contents = 0;
+	}
+	
 })
 
 //checks if a tile can be set at the current cursor position, 
@@ -30,9 +44,10 @@ $("#canvas").mousedown(function (e) {
 //
 //it then sets the tile stored to an empty space and removes highlight if any
 .mouseup(function(e2){
-    if(tiles[overY][overX]!=5){
+    if(gameboard[overY][overX].contents!=5 && signPressed != 0){
         //assign the selected sign to the tile at the cursor
-        tiles[overY][overX] = signPressed;
+        gameboard[overY][overX].contents = signPressed;
+        signplaceSound.play();
     }
     highlight = false;
     signPressed = 0;
@@ -40,17 +55,6 @@ $("#canvas").mousedown(function (e) {
 
 .mousemove(function(e3){
     //calculates which tile mouse is currently over
-    //
-    //-8 offset is to compensate the game board being 8px away from the screen edge
-    overX = Math.floor((e3.pageX - 8) / cw);
-    overY = Math.floor((e3.pageY - 8) / cw);
-    //if highlight is true checks whether tile can be placed at current cursor location,
-    //and sets the highlight color to reflect this
-    if (highlight) {
-        if (tiles[overY][overX] == 5) {
-            highlightColor = "rgba(255, 0, 0, .5)";
-        } else {
-            highlightColor = "rgba(255, 255, 0, .5)"
-        }
-    }
+    overX = Math.floor(getMousePos(e3).x / cw);
+    overY = Math.floor(getMousePos(e3).y / cw);
 })

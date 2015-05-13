@@ -14,7 +14,7 @@ downImg.src = "images/down.png";
 var leftImg = new Image();
 leftImg.src = "images/left.png";
 
-//sets map array
+//sets tile constructor array
 //1: north
 //2: east
 //3: south
@@ -32,19 +32,41 @@ var tiles = [
     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0 ]
 ];
 
-//possible spawn and exit coordinates, and associated color
-//[xDoor,yDoor,color]
-var doors = [
-    [0, 8, "red"],
-    [12, 0, "green"]
-];
+//constructs a tile object
+function tile(contents) {
+    this.contents = contents;
+    this.students = [];
+    this.img = null;
+}
 
+//sets gameboard array
+var gameboard = [];
+for (var y = 0; y < tiles.length; y++){
+    gameboard[y] = [];
+    for (var x = 0; x < tiles[0].length; x++){
+        gameboard[y][x] = new tile(tiles[y][x]);    
+    }
+}
+
+//possible spawn and exit coordinates, and associated color
+//[xDoor,yDoor,color,direction]
+var doors = [];
+doors.push(new door(0, 8, "rgb(155, 102, 102)", 2));
+doors.push(new door(7, 0, "green", 4));
+
+//constructs a door object
+function door(x, y, color, direction) {
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.direction = direction;
+}
 
 //sets cell width based on size of map and resolution
-var cw = h / (tiles.length);
+var cw = h / (gameboard.length);
 
 function drawTile(x, y) {
-    switch (tiles[y][x]) {
+    switch (gameboard[y][x].contents) {
     case 0:
         ctx.fillStyle = "whitesmoke";
         ctx.fillRect(x * cw, y * cw, cw, cw);
@@ -71,6 +93,6 @@ function drawTile(x, y) {
 }
 
 function drawDoor(i) {
-    ctx.strokeStyle = doors[i][2];
-    ctx.strokeRect(doors[i][0] * cw, doors[i][1] * cw, cw, cw);
+    ctx.strokeStyle = doors[i].color;
+    ctx.strokeRect(doors[i].x * cw, doors[i].y * cw, cw, cw);
 }
