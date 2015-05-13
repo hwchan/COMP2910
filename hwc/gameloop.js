@@ -47,4 +47,14 @@ function paint() {
     for(var i = 0; i < students.length; ++i) {
         drawStudent(i);
     }
+	
+	
+	//TODO: TESTING ONLY
+	//var student0Img = new Image();
+	//student0Img.src = "images/students/student0.png";
+	//var spriteObj = {img:student0Img, width:16, height:16};
+	
+	//animateSprite(spriteObj, 10, 2, 2);
+	
+	
 }

@@ -14,6 +14,7 @@ var yNew;
 //student image vars
 var student0Img = new Image();
 student0Img.src = "images/students/student0.png";
+var student0 = {img:student0Img, width:16, height:16};
 
 //constructs a student object based on two indexes in the doorsz
 function student(spawn, despawn) {
@@ -25,7 +26,8 @@ function student(spawn, despawn) {
 
 //draws the student at index i
 function drawStudent(i) {
-	ctx.drawImage(student0Img, students[i].x*cw, students[i].y*cw);
+	//ctx.drawImage(student0Img, students[i].x*cw, students[i].y*cw);
+	animateSprite(student0, 10, 2, 2, students[i].x*cw, students[i].y*cw);
 }
 
 //updates game logic of student at index i
