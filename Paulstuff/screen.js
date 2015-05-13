@@ -8,8 +8,8 @@ menuImg.onload = function(){
     startGame();
 }
 
-box1.addEventListener('touchstart', function(e4){
-    if((e4.changedTouches[0].pageX >= 50 && e4.changedTouches[0].pageX <= 255) && (e4.changedTouches[0].pageY >= 162 && e4.changedTouches[0].pageY <= 230)) {
+$("#canvas").on("vmousedown", function(e4){
+    if((e4.pageX >= 50 && e4.pageX <= 255) && (e4.pageY >= 162 && e4.pageY <= 230)) {
         playGame();
     }
 })

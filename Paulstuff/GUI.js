@@ -43,9 +43,9 @@ music.loop = true;
 
 //handle GUI interaction
 var box1 = document.getElementById('canvas')
-box1.addEventListener('touchstart', function(e5){
+$("#canvas").on('vmousedown', function(e5){
 	//handle mute/unmute
-    if((e5.changedTouches[0].pageX>=(GUIx+19) && e5.changedTouches[0].pageX<=(GUIx+19+cw/2)) && (e5.changedTouches[0].pageY>=13 && e5.changedTouches[0].pageY<=(13+cw/2))) {
+    if((e5.pageX>=(GUIx+19) && e5.pageX<=(GUIx+19+cw/2)) && (e5.pageY>=13 && e5.pageY<=(13+cw/2))) {
 		if(!music.paused) {
 			MUTE_BTN.img = noSoundImg;
 			music.pause();
@@ -54,7 +54,7 @@ box1.addEventListener('touchstart', function(e5){
 			music.play();
 		}
 	//handle pause/unpause
-	} else if((e5.changedTouches[0].pageX>=(GUIx+43) && e5.changedTouches[0].pageX<=(GUIx+43+cw/2)) && (e5.changedTouches[0].pageY>=13 && e5.changedTouches[0].pageY<=(13+cw/2))) {
+	} else if((e5.pageX>=(GUIx+43) && e5.pageX<=(GUIx+43+cw/2)) && (e5.pageY>=13 && e5.pageY<=(13+cw/2))) {
 		//TODO change control logic to check for pause state and not the GUI image
 		if(PAUSE_BTN.img == pauseImg){
 			PAUSE_BTN.img = unPauseImg;
