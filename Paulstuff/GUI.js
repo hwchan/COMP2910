@@ -36,12 +36,12 @@ var SOUTH_BTN = {img:downImg, x:GUIx+cw/2, y: sBTNy, width: cw, height: cw};
 var WEST_BTN = {img:leftImg, x:GUIx+cw/2, y: wBTNy, width: cw, height: cw};
 var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 
-var menuBTNy = (1/54)*h;
+var BTNy = (1/54)*h;
 var muteBTNx = GUIx+cw/3.75;
 var pauseBTNx = GUIx+1.25*cw;
 //set menu buttons
-var MUTE_BTN = {img:soundImg, x: muteBTNx, y:menuBTNy, width:menuButtonWidth, height:menuButtonHeight};
-var PAUSE_BTN = {img:pauseImg, x: pauseBTNx, y:menuBTNy, width:menuButtonWidth, height:menuButtonHeight};
+var MUTE_BTN = {img:soundImg, x: muteBTNx, y:BTNy, width:menuButtonWidth, height:menuButtonHeight};
+var PAUSE_BTN = {img:pauseImg, x: pauseBTNx, y:BTNy, width:menuButtonWidth, height:menuButtonHeight};
 
 //set music and sound vars
 var music = new Audio('music/strobe.mp3');
@@ -51,7 +51,7 @@ music.loop = true;
 var box1 = document.getElementById('canvas')
 $("#canvas").on('vmousedown', function(e5){
 	//handle mute/unmute
-    if((e5.pageX>=(GUIx+19) && e5.pageX<=(GUIx+19+cw/2)) && (e5.pageY>=13 && e5.pageY<=(13+cw/2))) {
+    if((e5.pageX>=(muteBTNx) && e5.pageX<=(muteBTNx+cw/2)) && (e5.pageY>=BTNy && e5.pageY<=(BTNy+cw/2))) {
 		if(!music.paused) {
 			MUTE_BTN.img = noSoundImg;
 			music.pause();
@@ -60,7 +60,7 @@ $("#canvas").on('vmousedown', function(e5){
 			music.play();
 		}
 	//handle pause/unpause
-	} else if((e5.pageX>=(GUIx+43) && e5.pageX<=(GUIx+43+cw/2)) && (e5.pageY>=13 && e5.pageY<=(13+cw/2))) {
+	} else if((e5.pageX>=(pauseBTNx) && e5.pageX<=(pauseBTNx+cw/2)) && (e5.pageY>=BTNy && e5.pageY<=(BTNy+cw/2))) {
 		//TODO change control logic to check for pause state and not the GUI image
 		if(PAUSE_BTN.img == pauseImg){
 			PAUSE_BTN.img = unPauseImg;

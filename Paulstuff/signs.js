@@ -33,11 +33,11 @@ function drawHighlight() {
 var canvas = document.getElementById('canvas')
 if (window.navigator.msPointerEnabled) {
 canvas.addEventListener("MSPointerDown", function(e){
-	overX = Math.floor(e.pageX / cw);
-    overY = Math.floor(e.pageY / cw);
+	overX = Math.floor(e.screenX / cw);
+    overY = Math.floor(e.screenY / cw);
 	
     for (var i = 0; i < 4; i++){
-        if((e.pageX >= SIGN_BTNS[i].x && e.pageX <= (SIGN_BTNS[i].x+cw)) && (e.pageY >= SIGN_BTNS[i].y && e.pageY <= (SIGN_BTNS[i].y+cw))) {
+        if((e.screenX >= SIGN_BTNS[i].x && e.screenX <= (SIGN_BTNS[i].x+cw)) && (e.screenY >= SIGN_BTNS[i].y && e.screenY <= (SIGN_BTNS[i].y+cw))) {
             highlight = true;
             signPressed = i+1;
 				e.preventDefault();
@@ -54,8 +54,8 @@ canvas.addEventListener("MSPointerDown", function(e){
 //
 //it then sets the tile stored to an empty space and removes highlight if any
 canvas.addEventListener("MSPointerUp", function(e2){
-	    overX2 = Math.floor(e2.pageX / cw);
-		overY2 = Math.floor(e2.pageY / cw);
+	    overX2 = Math.floor(e2.screenX / cw);
+		overY2 = Math.floor(e2.screenY / cw);
     if(gameboard[overY3-1][overX3-1].contents!=5 && signPressed != 0){
         //assign the selected sign to the tile at the cursor
         gameboard[overY3-1][overX3-1].contents = signPressed;
@@ -68,18 +68,18 @@ canvas.addEventListener("MSPointerUp", function(e2){
 
 canvas.addEventListener("MSPointerMove", function(e3){
     //calculates which tile mouse is currently over
-    overX3 = Math.floor(e3.pageX / cw);
-    overY3 = Math.floor(e3.pageY / cw);
+    overX3 = Math.floor(e3.screenX / cw);
+    overY3 = Math.floor(e3.screenY / cw);
 			e3.preventDefault();
 },false)
 } else{
 	//code for chrome+Firefox
 $("#canvas").on("vmousedown", function(e){
-	overX = Math.floor(e.pageX / cw);
-    overY = Math.floor(e.pageY / cw);
+	overX = Math.floor(e.screenX / cw);
+    overY = Math.floor(e.screenY / cw);
 	
     for (var i = 0; i < 4; i++){
-        if((e.pageX >= SIGN_BTNS[i].x && e.pageX <= (SIGN_BTNS[i].x+cw)) && (e.pageY >= SIGN_BTNS[i].y && e.pageY <= (SIGN_BTNS[i].y+cw))) {
+        if((e.screenX >= SIGN_BTNS[i].x && e.screenX <= (SIGN_BTNS[i].x+cw)) && (e.screenY >= SIGN_BTNS[i].y && e.screenY <= (SIGN_BTNS[i].y+cw))) {
             highlight = true;
             signPressed = i+1;
 				e.preventDefault();
@@ -96,8 +96,8 @@ $("#canvas").on("vmousedown", function(e){
 //
 //it then sets the tile stored to an empty space and removes highlight if any
 $("#canvas").on("vmouseup", function(e2){
-	    overX2 = Math.floor(e2.pageX / cw);
-		overY2 = Math.floor(e2.pageY / cw);
+	    overX2 = Math.floor(e2.screenX / cw);
+		overY2 = Math.floor(e2.screenY / cw);
     if(gameboard[overY3-1][overX3-1].contents!=5 && signPressed != 0){
         //assign the selected sign to the tile at the cursor
         gameboard[overY3-1][overX3-1].contents = signPressed;
@@ -110,8 +110,8 @@ $("#canvas").on("vmouseup", function(e2){
 
 $("#canvas").on("vmousemove", function(e3){
     //calculates which tile mouse is currently over
-    overX3 = Math.floor(e3.pageX / cw);
-    overY3 = Math.floor(e3.pageY / cw);
+    overX3 = Math.floor(e3.screenX / cw);
+    overY3 = Math.floor(e3.screenY / cw);
 			e3.preventDefault();
 })
 };
