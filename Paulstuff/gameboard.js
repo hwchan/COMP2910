@@ -53,6 +53,8 @@ for (var y = 0; y < tiles.length; y++){
 var doors = [];
 doors.push(new door(0, 8, "red", 2));
 doors.push(new door(12, 0, "green", 4));
+doors.push(new door(12, 8, "blue", 1));
+doors.push(new door(5, 5, "yellow", 3));
 
 //constructs a door object
 function door(x, y, color, direction) {
@@ -61,9 +63,6 @@ function door(x, y, color, direction) {
     this.color = color;
     this.direction = direction;
 }
-
-//sets cell width based on size of map and resolution
-var cw = h / (gameboard.length);
 
 function drawTile(x, y) {
     switch (gameboard[y][x].contents) {
@@ -88,6 +87,7 @@ function drawTile(x, y) {
         ctx.fillRect(x * cw, y * cw, cw, cw);
         break;
     }
+	ctx.lineWidth = cw / 32;
     ctx.strokeStyle = "lightgray";
     ctx.strokeRect(x * cw, y * cw, cw, cw);
 }

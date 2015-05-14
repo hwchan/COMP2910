@@ -2,7 +2,6 @@
 var score = 0;
 var time = 100;
 
-
 //starts game loop and repaint function
 
 //paint();
@@ -15,6 +14,8 @@ function tick() {
     for (var i = 0; i < students.length; ++i) {
         stepStudent(i);
     }
+	//spawns a student each tick
+    spawnStudents();
     //decrements the time
     time -= .1;
     //if all the students have reached their goals player wins
