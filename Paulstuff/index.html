@@ -14,6 +14,12 @@
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 </style>
+<script>
+// suppress out of bounds errors
+function silentErrorHandler() {return true;}
+window.onerror=silentErrorHandler;
+
+</script>
 </head>
     <body>
         <!-- Lets make a simple snake game -->

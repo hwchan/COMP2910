@@ -7,7 +7,6 @@ var buttonPosY = (162/270)*h;
 var buttonSizeX = (205/480)*w;
 var buttonSizeY = (68/270)*h;
 var PLAY_BTN = {img:menuImg, x: buttonPosX, y: buttonPosY, width: buttonSizeX, height: buttonSizeY};
-
 menuImg.onload = function(){
     startGame();
 }
