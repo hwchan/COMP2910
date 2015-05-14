@@ -30,10 +30,10 @@ var eBTNy = (12/27)*h;
 var sBTNy = (17/27)*h;
 var wBTNy = (22/27)*h;
 //set sign buttons
-var NORTH_BTN = {img:upImg, x:GUIx+cw/2, y: nBTNy, width:signWidth, height:signHeight};
-var EAST_BTN = {img:rightImg, x:GUIx+cw/2, y: eBTNy, width:signWidth, height:signHeight};
-var SOUTH_BTN = {img:downImg, x:GUIx+cw/2, y: sBTNy, width:signWidth, height:signHeight};
-var WEST_BTN = {img:leftImg, x:GUIx+cw/2, y: wBTNy, width:signWidth, height:signHeight};
+var NORTH_BTN = {img:upImg, x:GUIx+cw/2, y: nBTNy, width: cw, height: cw};
+var EAST_BTN = {img:rightImg, x:GUIx+cw/2, y: eBTNy, width: cw, height: cw};
+var SOUTH_BTN = {img:downImg, x:GUIx+cw/2, y: sBTNy, width: cw, height: cw};
+var WEST_BTN = {img:leftImg, x:GUIx+cw/2, y: wBTNy, width: cw, height: cw};
 var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 
 var menuBTNy = (1/54)*h;
@@ -76,16 +76,16 @@ function paintGUI() {
     ctx.fillStyle = "dimgray";
     ctx.fillRect(GUIx, 0, cw * 2, h);
     //draw pause & mute
-    ctx.drawImage(PAUSE_BTN.img, PAUSE_BTN.x, PAUSE_BTN.y);
-    ctx.drawImage(MUTE_BTN.img, MUTE_BTN.x, MUTE_BTN.y);
+    ctx.drawImage(PAUSE_BTN.img, PAUSE_BTN.x, PAUSE_BTN.y, cw/2, cw/2);
+    ctx.drawImage(MUTE_BTN.img, MUTE_BTN.x, MUTE_BTN.y, cw/2, cw/2);
     //draw text
     ctx.fillStyle = "white";
     //time and score are now rounded to closest whole integer
     ctx.fillText("Time: " + Math.round(time), GUIx + 5, 1.5*cw);
     ctx.fillText("Score: " + Math.round(score), GUIx + 5, 1.125*cw);
     //draw signs
-    ctx.drawImage(NORTH_BTN.img, NORTH_BTN.x, NORTH_BTN.y);
-    ctx.drawImage(EAST_BTN.img, EAST_BTN.x, EAST_BTN.y);
-    ctx.drawImage(SOUTH_BTN.img, SOUTH_BTN.x, SOUTH_BTN.y);
-    ctx.drawImage(WEST_BTN.img, WEST_BTN.x, WEST_BTN.y);
+    ctx.drawImage(NORTH_BTN.img, NORTH_BTN.x, NORTH_BTN.y, cw, cw);
+    ctx.drawImage(EAST_BTN.img, EAST_BTN.x, EAST_BTN.y, cw, cw);
+    ctx.drawImage(SOUTH_BTN.img, SOUTH_BTN.x, SOUTH_BTN.y, cw, cw);
+    ctx.drawImage(WEST_BTN.img, WEST_BTN.x, WEST_BTN.y, cw, cw);
 }

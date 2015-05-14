@@ -19,7 +19,7 @@ function drawHighlight() {
                 ctx.fillRect((overX3 * cw)-cw, (overY3 * cw)-cw, cw, cw);
             } else {
                 ctx.globalAlpha = 0.5;
-                ctx.drawImage(SIGN_BTNS[signPressed-1].img, (overX3 * cw)-cw, (overY3 * cw)-cw);
+                ctx.drawImage(SIGN_BTNS[signPressed-1].img, (overX3 * cw)-cw, (overY3 * cw)-cw, cw, cw);
                 ctx.globalAlpha = 1.0;
             }
         }

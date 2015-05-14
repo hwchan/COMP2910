@@ -34,7 +34,7 @@ function drawStudent(i) {
 //    ctx.stroke();
 	
 	//holy crap arrays as objects are hard to understand
-	ctx.drawImage(student0Img, students[i].x*cw, students[i].y*cw);
+	ctx.drawImage(student0Img, students[i].x*cw, students[i].y*cw, cw, cw);
 }
 
 //updates game logic of student at index i
