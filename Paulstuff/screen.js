@@ -2,20 +2,24 @@ var menuImg = new Image();
 menuImg.src = "images/walk.jpg";
 var menuMusic = new Audio('music/menu.mp3');
 menuMusic.loop = true;
-var PLAY_BTN = {img:menuImg, x:50, y:162, width:205, height:68};
+var buttonPosX = (5/48)*w;
+var buttonPosY = (162/270)*h;
+var buttonSizeX = (205/480)*w;
+var buttonSizeY = (68/270)*h;
+var PLAY_BTN = {img:menuImg, x: buttonPosX, y: buttonPosY, width: buttonSizeX, height: buttonSizeY};
 
 menuImg.onload = function(){
     startGame();
 }
 
 $("#canvas").on("vmousedown", function(e4){
-    if((e4.pageX >= 50 && e4.pageX <= 255) && (e4.pageY >= 162 && e4.pageY <= 230)) {
+    if((e4.pageX >= buttonPosX && e4.pageX <= buttonPosX+buttonSizeX) && (e4.pageY >= buttonPosY && e4.pageY <= buttonPosY+buttonSizeY)) {
         playGame();
     }
 })
 
 function startGame() {
-    ctx.drawImage(menuImg, 0, 0);
+        ctx.drawImage(menuImg, 0, 0, w, h);
     menuMusic.play();
 }
                       

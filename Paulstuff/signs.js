@@ -12,7 +12,7 @@ var overY3;
 var signplaceSound = new Audio('music/signplace.mp3');
 
 function drawHighlight() {
-    if (overX3 < gameboard[0].length) {
+    if (overX3 < gameboard[0].length+2)/*+2 to fix edge of play area glitch*/ {
         if (highlight) {
             if (gameboard[overY3-1][overX3-1].contents == 5) {
                 ctx.fillStyle = "rgba(255, 0, 0, .5)";
@@ -28,11 +28,14 @@ function drawHighlight() {
 
 //checks if mouse is inside any of the four sign buttons when clicked,
 //if yes sets highlight to true and saves which sign was pressed
-var box1 = document.getElementById('canvas')
-if (window.navigator.msPointerEnabled) {
-	alert("yes");
-box1.addEventListener("MSPointerDown", function(e){
 
+//code for IE
+var canvas = document.getElementById('canvas')
+if (window.navigator.msPointerEnabled) {
+canvas.addEventListener("MSPointerDown", function(e){
+	overX = Math.floor(e.pageX / cw);
+    overY = Math.floor(e.pageY / cw);
+	
     for (var i = 0; i < 4; i++){
         if((e.pageX >= SIGN_BTNS[i].x && e.pageX <= (SIGN_BTNS[i].x+cw)) && (e.pageY >= SIGN_BTNS[i].y && e.pageY <= (SIGN_BTNS[i].y+cw))) {
             highlight = true;
@@ -40,8 +43,6 @@ box1.addEventListener("MSPointerDown", function(e){
 				e.preventDefault();
         }
     }
-	overX = Math.floor(e.pageX / cw);
-    overY = Math.floor(e.pageY / cw);
 	//delete sign if clicked
 	if(gameboard[overY][overX].contents == 1 || gameboard[overY][overX].contents == 2 || gameboard[overY][overX].contents == 3 || gameboard[overY][overX].contents == 4){
 		gameboard[overY][overX].contents = 0;
@@ -52,7 +53,7 @@ box1.addEventListener("MSPointerDown", function(e){
 //if it can be placed it places the tile stored
 //
 //it then sets the tile stored to an empty space and removes highlight if any
-box1.addEventListener("MSPointerUp", function(e2){
+canvas.addEventListener("MSPointerUp", function(e2){
 	    overX2 = Math.floor(e2.pageX / cw);
 		overY2 = Math.floor(e2.pageY / cw);
     if(gameboard[overY3-1][overX3-1].contents!=5 && signPressed != 0){
@@ -65,16 +66,18 @@ box1.addEventListener("MSPointerUp", function(e2){
     signPressed = 0;
 },false)
 
-box1.addEventListener("MSPointerMove", function(e3){
+canvas.addEventListener("MSPointerMove", function(e3){
     //calculates which tile mouse is currently over
     overX3 = Math.floor(e3.pageX / cw);
     overY3 = Math.floor(e3.pageY / cw);
 			e3.preventDefault();
 },false)
 } else{
-		alert("no");
+	//code for chrome+Firefox
 $("#canvas").on("vmousedown", function(e){
-
+	overX = Math.floor(e.pageX / cw);
+    overY = Math.floor(e.pageY / cw);
+	
     for (var i = 0; i < 4; i++){
         if((e.pageX >= SIGN_BTNS[i].x && e.pageX <= (SIGN_BTNS[i].x+cw)) && (e.pageY >= SIGN_BTNS[i].y && e.pageY <= (SIGN_BTNS[i].y+cw))) {
             highlight = true;
@@ -82,8 +85,6 @@ $("#canvas").on("vmousedown", function(e){
 				e.preventDefault();
         }
     }
-	overX = Math.floor(e.pageX / cw);
-    overY = Math.floor(e.pageY / cw);
 	//delete sign if clicked
 	if(gameboard[overY][overX].contents == 1 || gameboard[overY][overX].contents == 2 || gameboard[overY][overX].contents == 3 || gameboard[overY][overX].contents == 4){
 		gameboard[overY][overX].contents = 0;

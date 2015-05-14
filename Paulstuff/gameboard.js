@@ -26,7 +26,7 @@ var tiles = [
     [1, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 0, 3, 0, 0],
     [0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 3, 0, 0, 0],
+    [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 3, 0, 0, 5],
     [0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 0, 0],
     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0, 0]
@@ -72,16 +72,16 @@ function drawTile(x, y) {
         ctx.fillRect(x * cw, y * cw, cw, cw);
         break;
     case 1:
-        ctx.drawImage(upImg, x * cw, y * cw);
+        ctx.drawImage(upImg, x * cw, y * cw, cw, cw);
         break;
     case 2:
-        ctx.drawImage(rightImg, x * cw, y * cw);
+        ctx.drawImage(rightImg, x * cw, y * cw, cw, cw);
         break;
     case 3:
-        ctx.drawImage(downImg, x * cw, y * cw);
+        ctx.drawImage(downImg, x * cw, y * cw, cw, cw);
         break;
     case 4:
-        ctx.drawImage(leftImg, x * cw, y * cw);
+        ctx.drawImage(leftImg, x * cw, y * cw, cw, cw);
         break;
     case 5:
         ctx.fillStyle = "black";

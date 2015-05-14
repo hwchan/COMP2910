@@ -25,20 +25,26 @@ var unPauseImg = new Image();
 unPauseImg.src = "images/unpause.png";
 //x-coordinate of the GUI area
 var GUIx = cw * gameboard[0].length;
-
+var nBTNy = (7/27)*h;
+var eBTNy = (12/27)*h;
+var sBTNy = (17/27)*h;
+var wBTNy = (22/27)*h;
 //set sign buttons
-var NORTH_BTN = {img:upImg, x:GUIx+15, y:70, width:signWidth, height:signHeight};
-var EAST_BTN = {img:rightImg, x:GUIx+15, y:120, width:signWidth, height:signHeight};
-var SOUTH_BTN = {img:downImg, x:GUIx+15, y:170, width:signWidth, height:signHeight};
-var WEST_BTN = {img:leftImg, x:GUIx+15, y:220, width:signWidth, height:signHeight};
+var NORTH_BTN = {img:upImg, x:GUIx+cw/2, y: nBTNy, width:signWidth, height:signHeight};
+var EAST_BTN = {img:rightImg, x:GUIx+cw/2, y: eBTNy, width:signWidth, height:signHeight};
+var SOUTH_BTN = {img:downImg, x:GUIx+cw/2, y: sBTNy, width:signWidth, height:signHeight};
+var WEST_BTN = {img:leftImg, x:GUIx+cw/2, y: wBTNy, width:signWidth, height:signHeight};
 var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 
+var menuBTNy = (1/54)*h;
+var muteBTNx = GUIx+cw/3.75;
+var pauseBTNx = GUIx+1.25*cw;
 //set menu buttons
-var MUTE_BTN = {img:soundImg, x:GUIx+11, y:5, width:menuButtonWidth, height:menuButtonHeight};
-var PAUSE_BTN = {img:pauseImg, x:GUIx+35, y:5, width:menuButtonWidth, height:menuButtonHeight};
+var MUTE_BTN = {img:soundImg, x: muteBTNx, y:menuBTNy, width:menuButtonWidth, height:menuButtonHeight};
+var PAUSE_BTN = {img:pauseImg, x: pauseBTNx, y:menuBTNy, width:menuButtonWidth, height:menuButtonHeight};
 
 //set music and sound vars
-var music = new Audio('music/gameplay.mp3');
+var music = new Audio('music/strobe.mp3');
 music.loop = true;
 
 //handle GUI interaction
@@ -75,8 +81,8 @@ function paintGUI() {
     //draw text
     ctx.fillStyle = "white";
     //time and score are now rounded to closest whole integer
-    ctx.fillText("Time: " + Math.round(time), GUIx + 5, 45);
-    ctx.fillText("Score: " + Math.round(score), GUIx + 5, 35);
+    ctx.fillText("Time: " + Math.round(time), GUIx + 5, 1.5*cw);
+    ctx.fillText("Score: " + Math.round(score), GUIx + 5, 1.125*cw);
     //draw signs
     ctx.drawImage(NORTH_BTN.img, NORTH_BTN.x, NORTH_BTN.y);
     ctx.drawImage(EAST_BTN.img, EAST_BTN.x, EAST_BTN.y);
