@@ -1,8 +1,6 @@
 //prepares the canvas
 var canvas = $("#canvas")[0];
 var ctx = canvas.getContext("2d");
-var w = $("#canvas").width();
-var h = $("#canvas").height();
 
 //sets up sign images
 var upImg = new Image();

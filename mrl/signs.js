@@ -8,7 +8,7 @@ var overY;
 var signplaceSound = new Audio('music/signplace.mp3');
 
 function drawHighlight() {
-    if (overX < gameboard[0].length) {
+    if (overX != null && overY != null) {
         if (highlight) {
             if (gameboard[overY][overX].contents == 5) {
                 ctx.fillStyle = "rgba(255, 0, 0, .5)";
@@ -25,7 +25,6 @@ function drawHighlight() {
 //checks if mouse is inside any of the four sign buttons when clicked,
 //if yes sets highlight to true and saves which sign was pressed
 $("#canvas").mousedown(function (e) {
-
     for (var i = 0; i < 4; i++){
         if(clickButton(e, SIGN_BTNS[i])){
             highlight = true;
@@ -33,10 +32,11 @@ $("#canvas").mousedown(function (e) {
         }
     }
 	//delete sign if clicked
-	if(gameboard[overY][overX].contents == 1 || gameboard[overY][overX].contents == 2 || gameboard[overY][overX].contents == 3 || gameboard[overY][overX].contents == 4){
-		gameboard[overY][overX].contents = 0;
-	}
-	
+    if (overX != null && overY != null) {
+        if(gameboard[overY][overX].contents != 5){
+            gameboard[overY][overX].contents = 0;
+        }
+    }
 })
 
 //checks if a tile can be set at the current cursor position, 
@@ -44,10 +44,12 @@ $("#canvas").mousedown(function (e) {
 //
 //it then sets the tile stored to an empty space and removes highlight if any
 .mouseup(function(e2){
-    if(gameboard[overY][overX].contents!=5 && signPressed != 0){
-        //assign the selected sign to the tile at the cursor
-        gameboard[overY][overX].contents = signPressed;
-        signplaceSound.play();
+    if (overX != null && overY != null) {
+        if(gameboard[overY][overX].contents !=5 && signPressed != 0){
+            //assign the selected sign to the tile at the cursor
+            gameboard[overY][overX].contents = signPressed;
+            signplaceSound.play();
+        }
     }
     highlight = false;
     signPressed = 0;
@@ -57,4 +59,8 @@ $("#canvas").mousedown(function (e) {
     //calculates which tile mouse is currently over
     overX = Math.floor(getMousePos(e3).x / cw);
     overY = Math.floor(getMousePos(e3).y / cw);
+    if (overX > gameboard[0].length - 1)
+        overX = null;
+    if (overY > gameboard.length - 1)
+        overY = null;
 })

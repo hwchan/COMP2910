@@ -1,6 +1,6 @@
 //game variables
-var score = 0;
-var time = 100;
+var score;
+var time;
 
 //starts game loop and repaint function
 
