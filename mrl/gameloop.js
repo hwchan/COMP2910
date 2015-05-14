@@ -2,12 +2,6 @@
 var score;
 var time;
 
-//starts game loop and repaint function
-
-//paint();
-//game_loop = setInterval(tick, 100);
-
-
 //updates game logic
 function tick() {
     //updates student positions
@@ -21,12 +15,12 @@ function tick() {
         //win action
     }
     //if time = 0 game failure state
-    if (time == 0) {
+    if (time <= 0) {
         //failure action
         clearInterval(game_loop);
     } else {
         //decrements the time
-        time -= 1;
+        time -= .1;
     }
 }
 
