@@ -15,7 +15,7 @@ function drawHighlight() {
                 ctx.fillRect(overX * cw, overY * cw, cw, cw);
             } else {
                 ctx.globalAlpha = 0.5;
-                ctx.drawImage(SIGN_BTNS[signPressed-1].img, overX * cw, overY * cw);
+                ctx.drawImage(SIGN_BTNS[signPressed-1].img, overX * cw, overY * cw, cw, cw);
                 ctx.globalAlpha = 1.0;
             }
         }

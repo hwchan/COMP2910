@@ -2,9 +2,11 @@ var menuImg = new Image();
 menuImg.src = "images/walk.jpg";
 var menuMusic = new Audio('music/menu.mp3');
 menuMusic.loop = true;
-var PLAY_BTN = {img:menuImg, x:50, y:162, width:205, height:68};
+var PLAY_BTN = {img:menuImg, x:0, y:0, width:cw*16, height:cw*9};
 
 menuImg.onload = function(){
+    ctx.canvas.width  = window.innerWidth;
+    ctx.canvas.height = window.innerHeight;
     startGame();
 }
 
@@ -15,7 +17,7 @@ $("#canvas").mousedown(function(e) {
 })
 
 function startGame() {
-    ctx.drawImage(menuImg, 0, 0);
+    ctx.drawImage(menuImg, 0, 0, cw*16, cw*9);
     menuMusic.play();
 }
                       

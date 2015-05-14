@@ -21,15 +21,15 @@ leftImg.src = "images/left.png";
 //4: west
 //5: building
 var tiles = [
-    [2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 4 ],
-    [1, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 0, 3, 0 ],
-    [0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 3, 0, 0 ],
-    [0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 0 ],
-    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0 ]
+    [2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 4, 0 ],
+    [1, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 0, 3, 0, 0 ],
+    [0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 5, 5, 5, 0, 2, 0, 3, 0, 0, 0 ],
+    [0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 0, 0 ],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0, 0 ]
 ];
 
 //constructs a tile object
@@ -64,9 +64,6 @@ function door(x, y, color, direction) {
     this.direction = direction;
 }
 
-//sets cell width based on size of map and resolution
-var cw = h / (gameboard.length);
-
 function drawTile(x, y) {
     switch (gameboard[y][x].contents) {
     case 0:
@@ -74,22 +71,23 @@ function drawTile(x, y) {
         ctx.fillRect(x * cw, y * cw, cw, cw);
         break;
     case 1:
-        ctx.drawImage(upImg, x * cw, y * cw);
+        ctx.drawImage(upImg, x * cw, y * cw, cw, cw);
         break;
     case 2:
-        ctx.drawImage(rightImg, x * cw, y * cw);
+        ctx.drawImage(rightImg, x * cw, y * cw, cw, cw);
         break;
     case 3:
-        ctx.drawImage(downImg, x * cw, y * cw);
+        ctx.drawImage(downImg, x * cw, y * cw, cw, cw);
         break;
     case 4:
-        ctx.drawImage(leftImg, x * cw, y * cw);
+        ctx.drawImage(leftImg, x * cw, y * cw, cw, cw);
         break;
     case 5:
         ctx.fillStyle = "black";
         ctx.fillRect(x * cw, y * cw, cw, cw);
         break;
     }
+    ctx.lineWidth = cw / 32;
     ctx.strokeStyle = "lightgray";
     ctx.strokeRect(x * cw, y * cw, cw, cw);
 }
