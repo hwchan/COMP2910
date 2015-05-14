@@ -27,7 +27,7 @@ function student(spawn, despawn) {
 //draws the student at index i
 function drawStudent(i) {
 	//ctx.drawImage(student0Img, students[i].x*cw, students[i].y*cw);
-	animateSprite(student0, 10, 2, 2, students[i].x*cw, students[i].y*cw);
+	animateSprite(student0, 30, 2, students[i].direction-1, students[i].x*cw, students[i].y*cw);
 }
 
 //updates game logic of student at index i
@@ -40,15 +40,19 @@ function stepStudent(i) {
     yNew = students[i].y;
     xNew = students[i].x;
     switch (students[i].direction) {
+	//north
     case 1:
         yNew -= 1;
         break;
+	//east
     case 2:
         xNew += 1;
         break;
+	//south
     case 3:
         yNew += 1;
         break;
+	//west
     case 4:
         xNew -= 1;
         break;
