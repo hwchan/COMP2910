@@ -16,11 +16,17 @@ function tick() {
     }
     //spawns a student each tick
     spawnStudents();
-    //decrements the time
-    time -= .1;
     //if all the students have reached their goals player wins
     if (students.length == 0) {
         //win action
+    }
+    //if time = 0 game failure state
+    if (time == 0) {
+        //failure action
+        clearInterval(game_loop);
+    } else {
+        //decrements the time
+        time -= 1;
     }
 }
 

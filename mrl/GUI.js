@@ -3,6 +3,7 @@ var signWidth = cw;
 var signHeight = cw;
 var menuButtonWidth = cw*.5;
 var menuButtonHeight = cw*.5;
+var guiFont = "normal " + cw/4 + "pt Calibri"
 
 //sets up sign images
 var northGUIImg = new Image();
@@ -67,15 +68,16 @@ $("#canvas").mousedown(function (e) {
 
 function paintGUI() {
     ctx.fillStyle = "dimgray";
-    ctx.fillRect(GUIx, 0, cw * 2, cw * 9);
+    ctx.fillRect(GUIx, 0, cw * 2, h);
     //draw pause & mute
     ctx.drawImage(PAUSE_BTN.img, PAUSE_BTN.x, PAUSE_BTN.y, menuButtonWidth, menuButtonHeight);
     ctx.drawImage(MUTE_BTN.img, MUTE_BTN.x, MUTE_BTN.y, menuButtonWidth, menuButtonHeight);
     //draw text
     ctx.fillStyle = "white";
     //time and score are now rounded to closest whole integer
-    ctx.fillText("Time: " + Math.round(time), GUIx + 5, cw*1.5);
-    ctx.fillText("Score: " + Math.round(score), GUIx + 5, cw);
+    ctx.font = guiFont;
+    ctx.fillText("Time: " + Math.round(time), GUIx + cw * .25, cw*1.75);
+    ctx.fillText("Score: " + Math.round(score), GUIx + cw * .25, cw*1.25);
     //draw signs
     ctx.drawImage(NORTH_BTN.img, NORTH_BTN.x, NORTH_BTN.y, signWidth, signHeight);
     ctx.drawImage(EAST_BTN.img, EAST_BTN.x, EAST_BTN.y, signWidth, signHeight);
