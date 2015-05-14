@@ -1,13 +1,6 @@
 //game variables
-var score = 0;
-var time = 100;
-
-
-//starts game loop and repaint function
-
-//paint();
-//game_loop = setInterval(tick, 100);
-
+var score;
+var time;
 
 //updates game logic
 function tick() {
@@ -15,11 +8,19 @@ function tick() {
     for (var i = 0; i < students.length; ++i) {
         stepStudent(i);
     }
-    //decrements the time
-    time -= .1;
+    //spawns a student each tick
+    spawnStudents();
     //if all the students have reached their goals player wins
     if (students.length == 0) {
         //win action
+    }
+    //if time = 0 game failure state
+    if (time <= 0) {
+        //failure action
+        clearInterval(game_loop);
+    } else {
+        //decrements the time
+        time -= .1;
     }
 }
 
