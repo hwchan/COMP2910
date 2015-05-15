@@ -2,6 +2,18 @@
 var score;
 var time;
 
+//starts the game: gameboard, gameloop, etc.
+function playGame(){
+	//sets a student to spawn every 10 ticks 10 times
+    setSpawn(10, 10);
+    //sets student period to be 1 to 5 ticks
+    setSpeedVariance(5, 5);
+    score = 0;
+    time = 100;
+    game_loop = setInterval(tick, 100);
+    paint();
+}
+
 //updates game logic
 function tick() {
     //updates student positions

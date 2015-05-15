@@ -13,6 +13,7 @@ function student(spawn, despawn) {
     this.goal = despawn;
     this.period = Math.floor(Math.random() * speedRand) + speedConst;
     this.nextStep = this.period;
+	this.currentFrame = 0;
 }
 
 //variable portion of student period
@@ -66,7 +67,7 @@ var student0 = {img:student0Img, width:16, height:16};
 //draws the student at index i
 function drawStudent(i) {
 	//ctx.drawImage(student0Img, students[i].x*cw, students[i].y*cw, cw, cw);
-	animateSprite(student0, 30, 2, students[i].direction-1, students[i].x*cw, students[i].y*cw);
+	animateSprite(students[i], student0, 30, 2, students[i].direction-1, students[i].x*cw, students[i].y*cw);
 }
 
 
