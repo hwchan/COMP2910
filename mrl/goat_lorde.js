@@ -7,5 +7,5 @@ var cw = window.innerWidth / 16;
 var w = cw*16;
 var h = cw*9;
 
-var tickPeriod = 50;
+var tickPeriod = 100;
 var animConst = cw/(60*(tickPeriod/1000));

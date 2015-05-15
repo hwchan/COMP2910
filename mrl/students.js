@@ -83,6 +83,9 @@ function drawStudent(i) {
             students[i].animX -= animConst/students[i].period;
             break;
         }
+    } else {
+        students[i].animX = students[i].x * cw;
+        students[i].animY = students[i].y * cw;
     }
 }
 
@@ -131,8 +134,12 @@ function stepStudent(i) {
                 students[i].x = xNew;
                 students[i].y = yNew;
                 students[i].blocked = false;
+            } else {
+                student[i].blocked = true;
             }
-        }     
+        } else {
+            student[i].blocked = true;
+        }
     }
     //if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
     if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
