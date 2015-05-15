@@ -62,7 +62,7 @@ function setSpawn(num, con) {
 //student image vars
 var student0Img = new Image();
 student0Img.src = "images/students/student0.png";
-var student0 = {img:student0Img, width:16, height:16};
+var student0 = {img:student0Img, width:32, height:32};
 
 //draws the student at index i
 function drawStudent(i) {
@@ -81,10 +81,10 @@ var yNew;
 
 //updates game logic of student at index i
 function stepStudent(i) {
-    //changes student direction if their current tile is not empty
+    /*//changes student direction if their current tile is not empty
     if (gameboard[students[i].y][students[i].x].contents !== 0 && gameboard[students[i].y][students[i].x].contents !== 5) {
         students[i].direction = gameboard[students[i].y][students[i].x].contents;
-    }
+    }*/
     //sets new position to current positon
     yNew = students[i].y;
     xNew = students[i].x;
@@ -113,6 +113,10 @@ function stepStudent(i) {
                 students[i].y = yNew;
             }
         }
+    }
+	//changes student direction if their current tile is not empty
+    if (gameboard[students[i].y][students[i].x].contents !== 0 && gameboard[students[i].y][students[i].x].contents !== 5) {
+        students[i].direction = gameboard[students[i].y][students[i].x].contents;
     }
     //if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
     if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {

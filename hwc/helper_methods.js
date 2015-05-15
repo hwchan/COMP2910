@@ -1,7 +1,7 @@
 /**
 	Returns the mouse/touch position.
 		e: mouse event
-		return: an object with x and y properties (i.e. getMousePos.x returns x)
+		return: an gameObject with x and y properties (i.e. getMousePos.x returns x)
 **/
 function getMousePos(e) {
 	var rect = canvas.getBoundingClientRect();
@@ -12,9 +12,9 @@ function getMousePos(e) {
 }
 
 /**
-	Helper method for clicking/tapping button objects.
+	Helper method for clicking/tapping button gameObjects.
 		e: mouse event
-		button: button object i.e. {img, x, y, width, height}
+		button: button gameObject i.e. {img, x, y, width, height}
 		return: true if the button was clicked/tapped
 **/
 function clickButton(e, button){
@@ -30,7 +30,7 @@ function clickButton(e, button){
 
 /**
 	Animates from column-0 to column-len on a row.  
-		object: the object getting animated (it needs to have a currentFrame var)
+		gameObject: the gameObject getting animated (it needs to have a currentFrame var)
 		sprite: the full sprite sheet with each row as a different animation
 		fps: ticks until next sprite (for now)
 		len: number of sprites per animation
@@ -38,18 +38,49 @@ function clickButton(e, button){
 		destX: the x coordinate to draw to
 		destY: the y coordinate to draw to
 **/
-function animateSprite(object, sprite, fps, len, row, destX, destY) {
+function animateSprite(gameObject, sprite, fps, len, row, destX, destY) {
+
+	ctx.fillStyle = "yellow";
+    ctx.fillRect(destX, destY, cw, cw);
+
 	//the x coordinate of the source sprite
 	//e.g. moves between x=0, x=16 every 10 seconds
 	//for fps=10, width=16, len=2
-	var srcX = sprite.width*((Math.floor(object.currentFrame/fps))%len);
+	var srcX = sprite.width*((Math.floor(gameObject.currentFrame/fps))%len);
 	
 	//the y coordinate of the source sprite
 	var srcY = sprite.height*row;
 	
+	//get game object direction to animate in that direction
+	switch(gameObject.direction){
+		//dest - gameObject.currentFrame % frames per tick
+		//north
+		case 1:
+		destY = destY - (gameObject.currentFrame%60);
+		break;
+		
+		//east
+		case 2:
+		destX = destX + (gameObject.currentFrame%60);
+		break;
+		
+		//south
+		case 3:
+		destY = destY + (gameObject.currentFrame%60);
+		break;
+		
+		//west
+		case 4:
+		destX = destX - (gameObject.currentFrame%60);
+		break;
+		
+	}
+	
 	//draw it
-	ctx.drawImage(sprite.img, srcX, srcY, sprite.width, sprite.height, destX, destY, sprite.width, sprite.height);
+	ctx.drawImage(sprite.img, srcX, srcY, sprite.width, sprite.height, destX, destY, cw, cw);
 	
 	//increment counter to handle srcX (which sprite to render)
-	object.currentFrame++;
+	gameObject.currentFrame++;
+	
+	//console.log(gameObject.x + ":" + gameObject.y);
 }

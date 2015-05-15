@@ -1,12 +1,12 @@
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
 	//sets a student to spawn every 10 ticks 10 times
-    setSpawn(10, 10);
+    setSpawn(1, 10);
     //sets student period to be 1 to 5 ticks
-    setSpeedVariance(5, 5);
+    setSpeedVariance(1, 1);
     score = 0;
     time = 100;
-    game_loop = setInterval(tick, 100);
+    game_loop = setInterval(tick, 1000);
     paint();
 }
 
