@@ -1,7 +1,3 @@
-//game variables
-var score;
-var time;
-
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
 	//sets a student to spawn every 10 ticks 10 times

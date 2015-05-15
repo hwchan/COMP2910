@@ -1,11 +1,11 @@
-//sets up sign images for GUI
+//sets up GUI sign vars
 var signWidth = cw;
 var signHeight = cw;
 var menuButtonWidth = cw*.5;
 var menuButtonHeight = cw*.5;
 var guiFont = "normal " + cw/4 + "pt Calibri"
 
-//sets up sign images
+//sets up GUI sign images
 var northGUIImg = new Image();
 northGUIImg.src = "images/up.png";
 var eastGUIImg = new Image();
@@ -15,7 +15,7 @@ southGUIImg.src = "images/down.png";
 var westGUIImg = new Image();
 westGUIImg.src = "images/left.png";
 
-//sets up GUI images
+//sets up GUI options images
 var soundImg = new Image();
 soundImg.src = "images/sound.png";
 var noSoundImg = new Image();
@@ -24,6 +24,7 @@ var pauseImg = new Image();
 pauseImg.src = "images/pause.png";
 var unPauseImg = new Image();
 unPauseImg.src = "images/unpause.png";
+
 //x-coordinate of the GUI area
 var GUIx = cw * gameboard[0].length;
 
@@ -37,10 +38,6 @@ var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 //set menu buttons
 var MUTE_BTN = {img:soundImg, x:GUIx+cw*.25, y:cw*.25, width:menuButtonWidth, height:menuButtonHeight};
 var PAUSE_BTN = {img:pauseImg, x:GUIx+cw*1.25, y:cw*.25, width:menuButtonWidth, height:menuButtonHeight};
-
-//set music and sound vars
-var music = new Audio('music/gameplay.mp3');
-music.loop = true;
 
 //handle GUI interaction
 $("#canvas").mousedown(function (e) {

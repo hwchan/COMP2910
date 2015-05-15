@@ -5,7 +5,6 @@ var signPressed = 0;
 //which tile the mouse it currently over
 var overX;
 var overY;
-var signplaceSound = new Audio('music/signplace.mp3');
 
 function drawHighlight() {
 	//+2 to fix edge of play area glitch
@@ -101,8 +100,8 @@ function mouseMove(e) {
 	//calculates which tile mouse is currently over
     overX = Math.floor(getMousePos(e).x / cw);
     overY = Math.floor(getMousePos(e).y / cw);
-    /**if (overX > gameboard[0].length - 1)
+    /*if (overX > gameboard[0].length - 1)
         overX = null;
     if (overY > gameboard.length - 1)
-        overY = null;**/
+        overY = null;*/
 }
