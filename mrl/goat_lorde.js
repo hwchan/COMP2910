@@ -6,3 +6,6 @@ var cw = window.innerWidth / 16;
 //sets variables w and h multiple of cell width
 var w = cw*16;
 var h = cw*9;
+
+var tickPeriod = 50;
+var animConst = cw/(60*(tickPeriod/1000));

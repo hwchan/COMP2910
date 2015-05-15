@@ -39,6 +39,6 @@ function playGame() {
     setSpeedVariance(5, 1);
     score = 0;
     time = 100;
-    game_loop = setInterval(tick, 100);
+    game_loop = setInterval(tick, tickPeriod);
     paint();
 }   
