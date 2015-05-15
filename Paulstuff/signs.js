@@ -35,106 +35,109 @@ function drawHighlight() {
 //if yes sets highlight to true and saves which sign was pressed
 
 //code for IE
-var canvas = document.getElementById('canvas')
+var canvas = document.getElementById('canvas');
 if (window.navigator.msPointerEnabled) {
-canvas.addEventListener("MSPointerDown", function(e){
-	overX = Math.floor(e.clientX / cw);
-    overY = Math.floor(e.clientY / cw);
-	
-    for (var i = 0; i < 4; i++){
-        if((e.clientX >= SIGN_BTNS[i].x && e.clientX <= (SIGN_BTNS[i].x+cw)) && (e.clientY >= SIGN_BTNS[i].y && e.clientY <= (SIGN_BTNS[i].y+cw))) {
-            highlight = true;
-            signPressed = i+1;
-				e.preventDefault();
-        }
-    }
-	try {
-		//delete sign if clicked
-		if(gameboard[overY][overX].contents == 1 || gameboard[overY][overX].contents == 2 || gameboard[overY][overX].contents == 3 || gameboard[overY][overX].contents == 4){
-			gameboard[overY][overX].contents = 0;
-		}
-	}
-	catch(e) {
-		//suppress error	
-	}
-},false)
-
-//checks if a tile can be set at the current cursor position, 
-//if it can be placed it places the tile stored
-//
-//it then sets the tile stored to an empty space and removes highlight if any
-canvas.addEventListener("MSPointerUp", function(e2){
-	overX2 = Math.floor(e2.clientX / cw);
-	overY2 = Math.floor(e2.clientY / cw);
-    try {
-		if(gameboard[overY3-1][overX3-1].contents!=5 && signPressed != 0){
-			//assign the selected sign to the tile at the cursor
-			gameboard[overY3-1][overX3-1].contents = signPressed;
-			signplaceSound.play();
-			e2.preventDefault();
-		}
-	}
-	catch(e){
+	canvas.addEventListener("MSPointerDown", function(e){
+		overX = Math.floor(e.clientX / cw);
+		overY = Math.floor(e.clientY / cw);
 		
-	}
-    highlight = false;
-    signPressed = 0;
-},false)
-
-canvas.addEventListener("MSPointerMove", function(e3){
-    //calculates which tile mouse is currently over
-    overX3 = Math.floor(e3.clientX / cw);
-    overY3 = Math.floor(e3.clientY / cw);
-},false)
-} else {
-	//code for chrome+Firefox
-$("#canvas").on("vmousedown", function(e){
-	overX = Math.floor(e.clientX / cw);
-    overY = Math.floor(e.clientY / cw);
-	
-    for (var i = 0; i < 4; i++){
-        if((e.clientX >= SIGN_BTNS[i].x && e.clientX <= (SIGN_BTNS[i].x+cw)) && (e.clientY >= SIGN_BTNS[i].y && e.clientY <= (SIGN_BTNS[i].y+cw))) {
-            highlight = true;
-            signPressed = i+1;
-				e.preventDefault();
-        }
-    }
-	try {
-		//delete sign if clicked
-		if(gameboard[overY][overX].contents == 1 || gameboard[overY][overX].contents == 2 || gameboard[overY][overX].contents == 3 || gameboard[overY][overX].contents == 4){
-			gameboard[overY][overX].contents = 0;
+		for (var i = 0; i < 4; i++){
+			if((e.clientX >= SIGN_BTNS[i].x && e.clientX <= (SIGN_BTNS[i].x+cw)) && (e.clientY >= SIGN_BTNS[i].y && e.clientY <= (SIGN_BTNS[i].y+cw))) {
+				highlight = true;
+				signPressed = i+1;
+					e.preventDefault();
+			}
 		}
-	}
-	catch(e) {
-		//suppress error	
-	}
-})
-
-//checks if a tile can be set at the current cursor position, 
-//if it can be placed it places the tile stored
-//
-//it then sets the tile stored to an empty space and removes highlight if any
-$("#canvas").on("vmouseup", function(e2){
-	overX2 = Math.floor(e2.clientX / cw);
-	overY2 = Math.floor(e2.clientY / cw);
-	try {
-		if(gameboard[overY3-1][overX3-1].contents!=5 && signPressed != 0){
-			//assign the selected sign to the tile at the cursor
-			gameboard[overY3-1][overX3-1].contents = signPressed;
-			signplaceSound.play();
-			e2.preventDefault();
+		try {
+			//delete sign if clicked
+			if(gameboard[overY][overX].contents == 1 || gameboard[overY][overX].contents == 2 || gameboard[overY][overX].contents == 3 || gameboard[overY][overX].contents == 4){
+				gameboard[overY][overX].contents = 0;
+			}
 		}
-	}
-	catch(e){
-		//suppress error
-	}
-    highlight = false;
-    signPressed = 0;
-})
+		catch(e) {
+			//suppress error	
+		}
+	},false);
 
-$("#canvas").on("vmousemove", function(e3){
-    //calculates which tile mouse is currently over
-    overX3 = Math.floor(e3.clientX / cw);
-    overY3 = Math.floor(e3.clientY / cw);
-})
+	//checks if a tile can be set at the current cursor position, 
+	//if it can be placed it places the tile stored
+	//
+	//it then sets the tile stored to an empty space and removes highlight if any
+	canvas.addEventListener("MSPointerUp", function(e2){
+		overX2 = Math.floor(e2.clientX / cw);
+		overY2 = Math.floor(e2.clientY / cw);
+		try {
+			if(gameboard[overY3-1][overX3-1].contents!=5 && signPressed != 0){
+				//assign the selected sign to the tile at the cursor
+				gameboard[overY3-1][overX3-1].contents = signPressed;
+				signplaceSound.play();
+				e2.preventDefault();
+			}
+		}
+		catch(e){
+			
+		}
+		highlight = false;
+		signPressed = 0;
+	},false);
+
+	canvas.addEventListener("MSPointerMove", function(e3){
+		//calculates which tile mouse is currently over
+		overX3 = Math.floor(e3.clientX / cw);
+		overY3 = Math.floor(e3.clientY / cw);
+	},false);
+} 
+
+//code for chrome+Firefox
+else {
+	$("#canvas").on("vmousedown", function(e){
+		overX = Math.floor(e.clientX / cw);
+		overY = Math.floor(e.clientY / cw);
+		
+		for (var i = 0; i < 4; i++){
+			if((e.clientX >= SIGN_BTNS[i].x && e.clientX <= (SIGN_BTNS[i].x+cw)) && (e.clientY >= SIGN_BTNS[i].y && e.clientY <= (SIGN_BTNS[i].y+cw))) {
+				highlight = true;
+				signPressed = i+1;
+					e.preventDefault();
+			}
+		}
+		try {
+			//delete sign if clicked
+			if(gameboard[overY][overX].contents == 1 || gameboard[overY][overX].contents == 2 || gameboard[overY][overX].contents == 3 || gameboard[overY][overX].contents == 4){
+				gameboard[overY][overX].contents = 0;
+			}
+		}
+		catch(e) {
+			//suppress error	
+		}
+	});
+
+	//checks if a tile can be set at the current cursor position, 
+	//if it can be placed it places the tile stored
+	//
+	//it then sets the tile stored to an empty space and removes highlight if any
+	$("#canvas").on("vmouseup", function(e2){
+		overX2 = Math.floor(e2.clientX / cw);
+		overY2 = Math.floor(e2.clientY / cw);
+		try {
+			if(gameboard[overY3-1][overX3-1].contents!=5 && signPressed != 0){
+				//assign the selected sign to the tile at the cursor
+				gameboard[overY3-1][overX3-1].contents = signPressed;
+				signplaceSound.play();
+				e2.preventDefault();
+			}
+		}
+		catch(e){
+			//suppress error
+		}
+		highlight = false;
+		signPressed = 0;
+	});
+
+	$("#canvas").on("vmousemove", function(e3){
+		//calculates which tile mouse is currently over
+		overX3 = Math.floor(e3.clientX / cw);
+		overY3 = Math.floor(e3.clientY / cw);
+		console.log(overX3 + ":" + overY3);
+	});
 };

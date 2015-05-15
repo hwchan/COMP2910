@@ -4,7 +4,9 @@
         <canvas id="canvas" width="522" height="288"></canvas>
 		<!-- Jquery -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
-        <!-- Game code -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js" type="text/javascript"></script>
+		<!-- Game code -->
         <script src="setup.js" type="text/javascript"></script>
 		<script src="helper_methods.js" type="text/javascript"></script>
         <script src="gameboard.js" type="text/javascript"></script>
@@ -18,7 +20,11 @@
 </html>
 <!-- Removes 8px border -->
 <style>
-    body {
-    margin: 0;
-    }
+	html { 
+		-ms-touch-action: none; /* Direct all pointer events to JavaScript code. */
+	}
+	body {
+		margin: 0;
+		overflow:hidden;
+	}
 </style>
