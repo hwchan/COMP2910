@@ -54,6 +54,9 @@ if (window.navigator.msPointerEnabled) {
 
 //select the correct sign pressed or delete a sign
 function mouseDown(e) {
+	//calculates which tile mouse is currently over
+	overX = Math.floor(getMousePos(e).x / cw);
+    overY = Math.floor(getMousePos(e).y / cw);
 	//checks if mouse is inside any of the four sign buttons when clicked,
 	//if yes sets highlight to true and saves which sign was pressed
 	for (var i = 0; i < 4; i++){
