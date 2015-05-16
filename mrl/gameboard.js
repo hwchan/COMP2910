@@ -1,18 +1,5 @@
-//prepares the canvas
-var canvas = $("#canvas")[0];
-var ctx = canvas.getContext("2d");
-
-//sets up sign images
-var upImg = new Image();
-upImg.src = "images/up.png";
-var rightImg = new Image();
-rightImg.src = "images/right.png";
-var downImg = new Image();
-downImg.src = "images/down.png";
-var leftImg = new Image();
-leftImg.src = "images/left.png";
-
 //sets tile constructor array
+//0: empty
 //1: north
 //2: east
 //3: south

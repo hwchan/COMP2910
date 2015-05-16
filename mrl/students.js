@@ -13,6 +13,7 @@ function student(spawn, despawn) {
     this.goal = despawn;
     this.period = Math.floor(Math.random() * speedRand) + speedConst;
     this.nextStep = this.period;
+	this.currentFrame = 0;
     this.animX = this.x * cw;
     this.animY = this.y * cw;
     this.blocked = true;
@@ -64,6 +65,7 @@ function setSpawn(num, con) {
 //student image vars
 var student0Img = new Image();
 student0Img.src = "images/students/student0.png";
+var student0 = {img:student0Img, width:32, height:32};
 
 //draws the student at index i
 function drawStudent(i) {
@@ -86,7 +88,7 @@ function drawStudent(i) {
         students[i].animX = students[i].animX;
         students[i].animY = students[i].animY;
     }  
-    ctx.drawImage(student0Img, students[i].animX, students[i].animY, cw, cw);
+	animateSprite(students[i], student0, 30, 2, students[i].direction-1, students[i].animX, students[i].animY);
 }
 
 
