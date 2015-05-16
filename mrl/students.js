@@ -67,7 +67,6 @@ student0Img.src = "images/students/student0.png";
 
 //draws the student at index i
 function drawStudent(i) {
-	ctx.drawImage(student0Img, students[i].animX, students[i].animY, cw, cw);
     if (!students[i].blocked) {
         switch (students[i].direction) {
         case 1:
@@ -84,9 +83,10 @@ function drawStudent(i) {
             break;
         }
     } else {
-        students[i].animX = students[i].x * cw;
-        students[i].animY = students[i].y * cw;
-    }
+        students[i].animX = students[i].animX;
+        students[i].animY = students[i].animY;
+    }  
+    ctx.drawImage(student0Img, students[i].animX, students[i].animY, cw, cw);
 }
 
 
@@ -102,15 +102,19 @@ var yNew;
 function stepStudent(i) {
     //if student time until next step is 0 or < 0 takes a step 
     if (students[i].nextStep <= 0) {
-        //changes student direction if their current tile is not empty
-        if (gameboard[students[i].y][students[i].x].contents !== 0 && gameboard[students[i].y][students[i].x].contents !== 5) {
-            students[i].direction = gameboard[students[i].y][students[i].x].contents;
-            students[i].animX = students[i].x * cw;
-            students[i].animY = students[i].y * cw;   
-        }
+        //sets the time until next step to period
+        students[i].nextStep = students[i].period;
+        //sets animation position to current positon
+        students[i].animX = students[i].x * cw;
+        students[i].animY = students[i].y * cw;
         //sets new position to current positon
         yNew = students[i].y;
         xNew = students[i].x;
+        
+        //changes student direction if their current tile is not empty
+        if (gameboard[students[i].y][students[i].x].contents !== 0 && gameboard[students[i].y][students[i].x].contents !== 5) {
+            students[i].direction = gameboard[students[i].y][students[i].x].contents;
+        }
         //modifies new position based on direction
         switch (students[i].direction) {
         case 1:
@@ -126,20 +130,17 @@ function stepStudent(i) {
             xNew -= 1;
             break;
         }
+        
+        //sets student to blocked, unset if they are not blocked
         students[i].blocked = true;
-        students[i].nextStep = students[i].period;
         //sets the students position to the updated position if not blocked or leaving grid
         if (xNew >= 0 && yNew >= 0 && yNew < gameboard.length && xNew < gameboard[0].length) {
             if (gameboard[yNew][xNew].contents !== 5) {
                 students[i].x = xNew;
                 students[i].y = yNew;
                 students[i].blocked = false;
-            } else {
-                student[i].blocked = true;
             }
-        } else {
-            student[i].blocked = true;
-        }
+        }     
     }
     //if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
     if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
