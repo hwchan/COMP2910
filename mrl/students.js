@@ -69,7 +69,7 @@ var student0 = {img:student0Img, width:32, height:32};
 
 //draws the student at index i
 function drawStudent(i) {
-    if (!students[i].blocked) {
+    if (!students[i].blocked && !paused) {
         switch (students[i].direction) {
         case 1:
             students[i].animY -= animConst/students[i].period;

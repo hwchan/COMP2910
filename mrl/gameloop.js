@@ -42,7 +42,7 @@ function playGame(){
 		case 7:
 			time = 30;
 			setSpawn(5, 5);
-			setSpeedVariance(1, 1);
+			setSpeedVariance(20, 5);
 			break;
 	}
     score = 0;
@@ -68,10 +68,11 @@ function tick() {
     if (time <= 0) {
         //failure action
 		alert("You lose!");
+        paused = true;
         clearInterval(game_loop);
     } else {
         //decrements the time
-        time -= .1;
+        time -= tickPeriod/1000;
     }
 }
 

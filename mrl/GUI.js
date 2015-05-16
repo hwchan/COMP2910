@@ -56,7 +56,9 @@ $("#canvas").mousedown(function (e) {
 		if(PAUSE_BTN.img == pauseImg){
 			PAUSE_BTN.img = unPauseImg;
 			clearInterval(game_loop);
+            paused = true;
 		} else {
+            paused = false;
 			PAUSE_BTN.img = pauseImg;
 			game_loop = setInterval(tick, tickPeriod);
 		}

@@ -27,9 +27,10 @@ ctx.imageSmoothingEnabled= false;
 //game variables
 var score;
 var time;
+var paused = false;
 
 //time and animation constants
-var tickPeriod = 1000;
+var tickPeriod = 100;
 var animConst = cw/(60*(tickPeriod/1000));
 
 
