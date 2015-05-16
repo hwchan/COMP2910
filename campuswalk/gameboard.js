@@ -1,18 +1,5 @@
-//prepares the canvas
-var canvas = $("#canvas")[0];
-var ctx = canvas.getContext("2d");
-
-//sets up sign images
-var upImg = new Image();
-upImg.src = "images/up.png";
-var rightImg = new Image();
-rightImg.src = "images/right.png";
-var downImg = new Image();
-downImg.src = "images/down.png";
-var leftImg = new Image();
-leftImg.src = "images/left.png";
-
 //sets tile constructor array
+//0: empty
 //1: north
 //2: east
 //3: south
@@ -65,8 +52,7 @@ function door(x, y, color, direction) {
 function drawTile(x, y) {
     switch (gameboard[y][x].contents) {
     case 0:
-        ctx.fillStyle = "whitesmoke";
-        ctx.fillRect(x * cw, y * cw, cw, cw);
+        ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
         break;
     case 1:
         ctx.drawImage(upImg, x * cw, y * cw, cw, cw);
@@ -85,9 +71,6 @@ function drawTile(x, y) {
         ctx.fillRect(x * cw, y * cw, cw, cw);
         break;
     }
-    ctx.lineWidth = cw / 32;
-    ctx.strokeStyle = "lightgray";
-    ctx.strokeRect(x * cw, y * cw, cw, cw);
 }
 
 function drawDoor(i) {
