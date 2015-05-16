@@ -58,7 +58,7 @@ $("#canvas").mousedown(function (e) {
 			clearInterval(game_loop);
 		} else {
 			PAUSE_BTN.img = pauseImg;
-			game_loop = setInterval(tick, 100);
+			game_loop = setInterval(tick, tickPeriod);
 		}
 	}
 })

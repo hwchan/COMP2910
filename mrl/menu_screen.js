@@ -10,8 +10,6 @@ var buttonSizeY = (68/270)*h;
 var PLAY_BTN = {img:menuImg, x: buttonPosX, y: buttonPosY, width: buttonSizeX, height: buttonSizeY};
 
 menuImg.onload = function(){
-    ctx.canvas.width  = window.innerWidth;
-    ctx.canvas.height = window.innerHeight;
     ctx.drawImage(menuImg, 0, 0, w, h);
     menuMusic.play();
 }

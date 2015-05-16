@@ -39,10 +39,6 @@ function clickButton(e, button){
 		destY: the y coordinate to draw to
 **/
 function animateSprite(gameObject, sprite, fps, len, row, destX, destY) {
-
-	ctx.fillStyle = "yellow";
-    ctx.fillRect(gameObject.x*cw, gameObject.y*cw, cw, cw);
-
 	//the x coordinate of the source sprite
 	//e.g. moves between x=0, x=16 every 10 seconds
 	//for fps=10, width=16, len=2

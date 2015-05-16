@@ -52,8 +52,7 @@ function door(x, y, color, direction) {
 function drawTile(x, y) {
     switch (gameboard[y][x].contents) {
     case 0:
-        ctx.fillStyle = "whitesmoke";
-        ctx.fillRect(x * cw, y * cw, cw, cw);
+        ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
         break;
     case 1:
         ctx.drawImage(upImg, x * cw, y * cw, cw, cw);
@@ -72,9 +71,6 @@ function drawTile(x, y) {
         ctx.fillRect(x * cw, y * cw, cw, cw);
         break;
     }
-    ctx.lineWidth = cw / 32;
-    ctx.strokeStyle = "lightgray";
-    ctx.strokeRect(x * cw, y * cw, cw, cw);
 }
 
 function drawDoor(i) {
