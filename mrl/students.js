@@ -12,7 +12,7 @@ function student(spawn, despawn) {
     this.direction = doors[spawn].direction;
     this.goal = despawn;
     this.period = Math.floor(Math.random() * speedRand) + speedConst;
-    this.nextStep = this.period;
+    this.nextStep = 0;
 	this.currentFrame = 0;
     this.animX = this.x * cw;
     this.animY = this.y * cw;

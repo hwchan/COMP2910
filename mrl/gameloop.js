@@ -41,7 +41,7 @@ function playGame(){
 			break;
 		case 7:
 			time = 30;
-			setSpawn(5, 5);
+			setSpawn(10, 10);
 			setSpeedVariance(20, 5);
 			break;
 	}
