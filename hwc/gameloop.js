@@ -17,32 +17,32 @@ function playGame(){
 		case 2:
 			time = 60;
 			setSpawn(2, 10);
-			setSpeedVariance(2, 1);
+			setSpeedVariance(1, 1);
 			break;
 		case 3:
 			time = 60;
 			setSpawn(3, 10);
-			setSpeedVariance(2, 1);
+			setSpeedVariance(1, 1);
 			break;
 		case 4:
 			time = 50;
 			setSpawn(3, 10);
-			setSpeedVariance(2, 1);
+			setSpeedVariance(1, 1);
 			break;
 		case 5:
 			time = 50;
 			setSpawn(4, 5);
-			setSpeedVariance(3, 1);
+			setSpeedVariance(1, 1);
 			break;
 		case 6:
 			time = 30;
 			setSpawn(4, 5);
-			setSpeedVariance(3, 1);
+			setSpeedVariance(1, 1);
 			break;
 		case 7:
 			time = 30;
 			setSpawn(5, 5);
-			setSpeedVariance(3, 1);
+			setSpeedVariance(1, 1);
 			break;
 	}
     score = 0;

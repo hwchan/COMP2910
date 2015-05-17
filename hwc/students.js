@@ -21,7 +21,7 @@ var speedRand;
 //minimum portion of student period
 var speedConst;
 //ticks until next spawn
-var spawnIn = 10;
+var spawnIn = 1;
 
 //numer of students to spawn
 var spawnNum;
