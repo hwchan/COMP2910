@@ -51,8 +51,8 @@ downImg.src = "images/down.png";
 var leftImg = new Image();
 leftImg.src = "images/left.png";
 var emptyImg = new Image();
-emptyImg.src = "images/empty.png";
-
+emptyImg.src = "images/grass0.png";
+var SIGNS = [upImg, rightImg, downImg, leftImg];
 
 
 

@@ -19,7 +19,7 @@ function drawHighlight() {
 					ctx.fillRect((overX * cw), (overY * cw), cw, cw);
 				} else {
 					ctx.globalAlpha = 0.5;
-					ctx.drawImage(SIGN_BTNS[signPressed-1].img, (overX * cw), (overY * cw), cw, cw);
+					ctx.drawImage(SIGNS[signPressed-1], (overX * cw), (overY * cw), cw, cw);
 					ctx.globalAlpha = 1.0;
 				}
 			} catch(e) {
@@ -72,6 +72,8 @@ function mouseDown(e) {
 		for (var i = 0; i < 4; i++){
 			if(clickButton(e, SIGN_BTNS[i])){
 				highlight = true;
+				//show selected sign
+				toggleSelectedSign(i,true);
 				signPressed = i+1;
 				e.preventDefault();
 			}
@@ -97,6 +99,8 @@ function mouseDown(e) {
 			//suppress error: do nothing for out of bounds
 		}
 		highlight = false;
+		//show deselected sign
+		toggleSelectedSign(signPressed-1,false);
 		signPressed = 0;
 	}
 }

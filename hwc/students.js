@@ -66,7 +66,7 @@ function setSpawn(num, con) {
 //student image vars
 var student0Img = new Image();
 student0Img.src = "images/students/student0.png";
-var student0 = {img:student0Img, width:32, height:32};
+//var student0 = {img:student0Img, width:32, height:32};
 
 //draws the student at index i
 function drawStudent(i) {
@@ -93,7 +93,7 @@ function drawStudent(i) {
         students[i].animX = students[i].animX;
         students[i].animY = students[i].animY;
     }  
-	animateSprite(students[i], student0, 30, 2, students[i].direction-1, students[i].animX, students[i].animY);
+	animateSprite(students[i], student0Img, 30, 2, students[i].direction-1, 32, 32, students[i].animX, students[i].animY);
 }
 
 

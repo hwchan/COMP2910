@@ -1,5 +1,6 @@
 //This sets the difficulty
 var difficulty = 7;
+var maxTime;
 
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
@@ -12,7 +13,7 @@ function playGame(){
 		//case 0 for debugging
 		case 0:
 			time = 100;
-			setSpawn(1, 10);
+			setSpawn(0, 10);
 			setSpeedVariance(10, 10);
 			break;
 		case 1:
@@ -51,6 +52,7 @@ function playGame(){
 			setSpeedVariance(20, 5);
 			break;
 	}
+	maxTime = time;
     score = 0;
     game_loop = setInterval(tick, tickPeriod);
     paint();
@@ -67,7 +69,7 @@ function tick() {
     //spawns a student each tick
     spawnStudents();
     //if all the students have reached their goals player wins
-    if (students.length == 0 && Math.round(time) < time*.75 ) {
+    if (students.length == 0 && Math.round(time) < maxTime-6 ) {
         //win action
 		alert("You have defeated this level!");
 		clearInterval(game_loop);
