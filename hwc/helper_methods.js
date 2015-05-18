@@ -39,7 +39,6 @@ function clickButton(e, button){
 		destY: the y coordinate to draw to
 **/
 function animateSprite(gameObject, sprite, fps, len, row, destX, destY) {
-//console.log(gameObject, sprite, fps, len, row, destX, destY);
 	//the x coordinate of the source sprite
 	//e.g. moves between x=0, x=16 every 10 seconds
 	//for fps=10, width=16, len=2
@@ -54,6 +53,4 @@ function animateSprite(gameObject, sprite, fps, len, row, destX, destY) {
 	
 	//increment counter to handle srcX (which sprite to render)
 	gameObject.currentFrame++;
-	
-	//console.log(gameObject.x + ":" + gameObject.y);
 }

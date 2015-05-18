@@ -1,5 +1,5 @@
 //This sets the difficulty
-var difficulty = 1;
+var difficulty = 7;
 
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
@@ -9,10 +9,16 @@ function playGame(){
     //setSpeedVariance(1, 1);
 	
 	switch (difficulty) {
+		//case 0 for debugging
+		case 0:
+			time = 100;
+			setSpawn(1, 10);
+			setSpeedVariance(10, 10);
+			break;
 		case 1:
 			time = 100;
-			setSpawn(10, 10);
-			setSpeedVariance(10, 1);
+			setSpawn(1, 10);
+			setSpeedVariance(1, 1);
 			break;
 		case 2:
 			time = 60;
@@ -61,7 +67,7 @@ function tick() {
     //spawns a student each tick
     spawnStudents();
     //if all the students have reached their goals player wins
-    if (students.length == 0 && Math.round(time) < 20 ) {
+    if (students.length == 0 && Math.round(time) < time*.75 ) {
         //win action
 		alert("You have defeated this level!");
 		clearInterval(game_loop);
@@ -100,36 +106,9 @@ function paint() {
     paintGUI();
     //paints students
     for(var i = 0; i < students.length; ++i) {
-		
-		
-		
-		
-		
-	
-		
-		//TODO: BUG: MULTIPLE STUDENTS DESPANW
-		yNew = students[i].y;
-		xNew = students[i].x;
-		//if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
-		if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
-			console.log(i);
-			//students[i] = null;
-			students.splice(i, 1);
-			score += time;
-			//to account for change in index after splicing out student
-			//i--;
-		} else {
-			//students[i].nextStep--;
-		}
-		
-		
-		
-		
 		if(students[i] != null){
+			checkGoal(i);
 			drawStudent(i);
 		}
-		
-		
     }
-	
 }

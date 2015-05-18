@@ -36,10 +36,10 @@ for (var y = 0; y < tiles.length; y++){
 //possible spawn and exit coordinates, and associated color
 //[xDoor,yDoor,color,direction]
 var doors = [];
-doors.push(new door(0, 8, "red", 2));
-doors.push(new door(12, 0, "green", 4));
-doors.push(new door(12, 8, "blue", 1));
-doors.push(new door(5, 5, "yellow", 3));
+doors.push(new door(0, 8, "rgba(255,0,0,.5)", 2));
+doors.push(new door(12, 0, "rgba(0,255,0,.5)", 4));
+doors.push(new door(12, 8, "rgba(0,0,255,.5)", 1));
+doors.push(new door(5, 5, "rgba(255,255,0,.5)", 3));
 
 //constructs a door object
 function door(x, y, color, direction) {
@@ -75,5 +75,6 @@ function drawTile(x, y) {
 
 function drawDoor(i) {
     ctx.strokeStyle = doors[i].color;
+	ctx.lineWidth=5;
     ctx.strokeRect(doors[i].x * cw, doors[i].y * cw, cw, cw);
 }

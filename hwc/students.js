@@ -70,7 +70,8 @@ var student0 = {img:student0Img, width:32, height:32};
 
 //draws the student at index i
 function drawStudent(i) {
-	ctx.fillStyle = "rgba(0, 0, 255, .5)";
+	if(students[i] == null){return;}
+	ctx.fillStyle = doors[students[i].goal].color;
 	ctx.fillRect(students[i].x*cw, students[i].y*cw, cw, cw);
 	
     if (!students[i].blocked && !paused) {
@@ -148,7 +149,7 @@ function stepStudent(i) {
             }
         }     
     }
-	
+	//decrement counter for checking if it's time for the student's next step
 	students[i].nextStep--;
 }
 
@@ -158,8 +159,6 @@ function checkGoal(i){
 	xNew = students[i].x;
 	//if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
 	if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
-		console.log(i);
-		//students[i] = null;
 		students.splice(i, 1);
 		score += time;
 		//to account for change in index after splicing out student
