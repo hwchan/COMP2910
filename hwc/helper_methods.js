@@ -39,10 +39,7 @@ function clickButton(e, button){
 		destY: the y coordinate to draw to
 **/
 function animateSprite(gameObject, sprite, fps, len, row, destX, destY) {
-
-	ctx.fillStyle = "yellow";
-    ctx.fillRect(destX, destY, cw, cw);
-
+//console.log(gameObject, sprite, fps, len, row, destX, destY);
 	//the x coordinate of the source sprite
 	//e.g. moves between x=0, x=16 every 10 seconds
 	//for fps=10, width=16, len=2
@@ -51,30 +48,6 @@ function animateSprite(gameObject, sprite, fps, len, row, destX, destY) {
 	//the y coordinate of the source sprite
 	var srcY = sprite.height*row;
 	
-	//get game object direction to animate in that direction
-	switch(gameObject.direction){
-		//dest - gameObject.currentFrame % frames per tick
-		//north
-		case 1:
-		destY = destY - (gameObject.currentFrame%60);
-		break;
-		
-		//east
-		case 2:
-		destX = destX + (gameObject.currentFrame%60);
-		break;
-		
-		//south
-		case 3:
-		destY = destY + (gameObject.currentFrame%60);
-		break;
-		
-		//west
-		case 4:
-		destX = destX - (gameObject.currentFrame%60);
-		break;
-		
-	}
 	
 	//draw it
 	ctx.drawImage(sprite.img, srcX, srcY, sprite.width, sprite.height, destX, destY, cw, cw);

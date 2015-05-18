@@ -15,8 +15,12 @@ var h = cw*9;
 //prepares the canvas
 var canvas = $("#canvas")[0];
 var ctx = canvas.getContext("2d");
-
-
+ctx.canvas.width  = w;
+ctx.canvas.height = h;
+ ctx.mozImageSmoothingEnabled = false;
+ ctx.webkitImageSmoothingEnabled = false;
+ ctx.msImageSmoothingEnabled = false;
+ ctx.imageSmoothingEnabled = false;
 
 
 /*************************
@@ -26,7 +30,11 @@ var ctx = canvas.getContext("2d");
 //game variables
 var score;
 var time;
+var paused = false;
 
+//time and animation constants
+var tickPeriod = 100;
+var animConst = cw/(60*(tickPeriod/1000));
 
 
 /*************************
@@ -42,6 +50,8 @@ var downImg = new Image();
 downImg.src = "images/down.png";
 var leftImg = new Image();
 leftImg.src = "images/left.png";
+var emptyImg = new Image();
+emptyImg.src = "images/empty.png";
 
 
 

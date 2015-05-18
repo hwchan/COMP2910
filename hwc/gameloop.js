@@ -1,5 +1,5 @@
 //This sets the difficulty
-var difficulty = 7;
+var difficulty = 1;
 
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
@@ -11,42 +11,42 @@ function playGame(){
 	switch (difficulty) {
 		case 1:
 			time = 100;
-			setSpawn(1, 10);
-			setSpeedVariance(1, 1);
+			setSpawn(10, 10);
+			setSpeedVariance(10, 1);
 			break;
 		case 2:
 			time = 60;
 			setSpawn(2, 10);
-			setSpeedVariance(1, 1);
+			setSpeedVariance(2, 1);
 			break;
 		case 3:
 			time = 60;
 			setSpawn(3, 10);
-			setSpeedVariance(1, 1);
+			setSpeedVariance(2, 1);
 			break;
 		case 4:
 			time = 50;
 			setSpawn(3, 10);
-			setSpeedVariance(1, 1);
+			setSpeedVariance(2, 1);
 			break;
 		case 5:
 			time = 50;
 			setSpawn(4, 5);
-			setSpeedVariance(1, 1);
+			setSpeedVariance(3, 1);
 			break;
 		case 6:
 			time = 30;
 			setSpawn(4, 5);
-			setSpeedVariance(1, 1);
+			setSpeedVariance(3, 1);
 			break;
 		case 7:
 			time = 30;
-			setSpawn(5, 5);
-			setSpeedVariance(1, 1);
+			setSpawn(10, 10);
+			setSpeedVariance(20, 5);
 			break;
 	}
     score = 0;
-    game_loop = setInterval(tick, 1000);
+    game_loop = setInterval(tick, tickPeriod);
     paint();
 }
 
@@ -54,7 +54,9 @@ function playGame(){
 function tick() {
     //updates student positions
     for (var i = 0; i < students.length; ++i) {
-        stepStudent(i);
+		if(students[i] != null){
+			stepStudent(i);
+		}
     }
     //spawns a student each tick
     spawnStudents();
@@ -68,10 +70,11 @@ function tick() {
     if (time <= 0) {
         //failure action
 		alert("You lose!");
+        paused = true;
         clearInterval(game_loop);
     } else {
         //decrements the time
-        time -= .1;
+        time -= tickPeriod/1000;
     }
 }
 
@@ -97,6 +100,36 @@ function paint() {
     paintGUI();
     //paints students
     for(var i = 0; i < students.length; ++i) {
-        drawStudent(i);
+		
+		
+		
+		
+		
+	
+		
+		//TODO: BUG: MULTIPLE STUDENTS DESPANW
+		yNew = students[i].y;
+		xNew = students[i].x;
+		//if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
+		if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
+			console.log(i);
+			//students[i] = null;
+			students.splice(i, 1);
+			score += time;
+			//to account for change in index after splicing out student
+			//i--;
+		} else {
+			//students[i].nextStep--;
+		}
+		
+		
+		
+		
+		if(students[i] != null){
+			drawStudent(i);
+		}
+		
+		
     }
+	
 }
