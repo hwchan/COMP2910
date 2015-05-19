@@ -29,7 +29,6 @@ var DIFFICULTY4_BTN = {img:difficulty4Img, x:w/2+cw, y:h/2+cw/2, width:cw, heigh
 //Starts draw loop on page load
 onload = function(){
     paint();
-
 }
 
 
@@ -80,7 +79,6 @@ $("#canvas").mousedown(function(e) {
             currentScreen = "game";
             menuMusic.pause();
             music.play();
-            setGameboard();
             playGame();
         }
     }

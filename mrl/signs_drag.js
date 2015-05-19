@@ -5,18 +5,21 @@ var signPressed = 0;
 //which tile the mouse it currently over
 var overX;
 var overY;
+//offset for placing signs
+var signOffsetX = -1;
+var signOffsetY = -1;
 
 function drawHighlight() {
 	//+2 to fix edge of play area glitch
     if (overX < gameboard[0].length+2) {
         if (highlight) {
 			try {
-				if (gameboard[overY-1][overX-1].contents == 5) {
+				if (gameboard[overY][overX].contents == 5) {
 					ctx.fillStyle = "rgba(255, 0, 0, .5)";
-					ctx.fillRect((overX * cw)-cw, (overY * cw)-cw, cw, cw);
+					ctx.fillRect((overX * cw), (overY * cw), cw, cw);
 				} else {
 					ctx.globalAlpha = 0.5;
-					ctx.drawImage(SIGN_BTNS[signPressed-1].img, (overX * cw)-cw, (overY * cw)-cw, cw, cw);
+					ctx.drawImage(SIGNS[signPressed-1], (overX * cw), (overY * cw), cw, cw);
 					ctx.globalAlpha = 1.0;
 				}
 			} catch(e) {
@@ -55,9 +58,7 @@ if (window.navigator.msPointerEnabled) {
 //select the correct sign pressed or delete a sign
 function mouseDown(e) {
     if (currentScreen == "game") {
-        //calculates which tile mouse is currently over
-        overX = Math.floor(getMousePos(e).x / cw);
-        overY = Math.floor(getMousePos(e).y / cw);
+        getTileOnHover(e);
         //checks if mouse is inside any of the four sign buttons when clicked,
         //if yes sets highlight to true and saves which sign was pressed
         for (var i = 0; i < 4; i++){
@@ -69,8 +70,9 @@ function mouseDown(e) {
         }
         //delete sign if clicked
         try {
-            if(gameboard[overY][overX].contents == 1 || gameboard[overY][overX].contents == 2 || gameboard[overY][overX].contents == 3 || gameboard[overY][overX].contents == 4){
-                gameboard[overY][overX].contents = 0;
+            var contents = gameboard[overY-signOffsetY][overX-signOffsetX].contents;
+            if(contents == 1 || contents == 2 || contents == 3 || contents == 4){
+                gameboard[overY-signOffsetY][overX-signOffsetX].contents = 0;
             }
         } catch(e) {
             //suppress error: do nothing for out of bounds
@@ -87,9 +89,9 @@ function mouseUp(e) {
         //it then sets the tile stored to an empty space and removes highlight if any
         try {
             if (overX != null && overY != null) {
-                if(gameboard[overY-1][overX-1].contents !=5 && signPressed != 0){
+                if(gameboard[overY][overX].contents !=5 && signPressed != 0){
                     //assign the selected sign to the tile at the cursor
-                    gameboard[overY-1][overX-1].contents = signPressed;
+                    gameboard[overY][overX].contents = signPressed;
                     signplaceSound.play();
                     e.preventDefault();
                 }
@@ -105,12 +107,12 @@ function mouseUp(e) {
 //handle sign highlight
 function mouseMove(e) {
     if (currentScreen == "game") {
-        //calculates which tile mouse is currently over
-        overX = Math.floor(getMousePos(e).x / cw);
-        overY = Math.floor(getMousePos(e).y / cw);
-        /*if (overX > gameboard[0].length - 1)
-            overX = null;
-        if (overY > gameboard.length - 1)
-            overY = null;*/
+	   getTileOnHover(e);
     }
+}
+
+function getTileOnHover(e){
+	//calculates which tile mouse is currently over
+    overX = Math.floor(getMousePos(e).x / cw) + signOffsetX;
+    overY = Math.floor(getMousePos(e).y / cw) + signOffsetY;
 }

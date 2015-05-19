@@ -35,26 +35,26 @@ function clickButton(e, button){
 		fps: ticks until next sprite (for now)
 		len: number of sprites per animation
 		row: the row of the sprite sheet for the animation. starts at 0
+		width: sprite width
+		height: sprite height
 		destX: the x coordinate to draw to
 		destY: the y coordinate to draw to
 **/
-function animateSprite(gameObject, sprite, fps, len, row, destX, destY) {
+function animateSprite(gameObject, sprite, fps, len, row, width, height, destX, destY) {
 	//the x coordinate of the source sprite
 	//e.g. moves between x=0, x=16 every 10 seconds
 	//for fps=10, width=16, len=2
-	var srcX = sprite.width*((Math.floor(gameObject.currentFrame/fps))%len);
+	var srcX = width*((Math.floor(gameObject.currentFrame/fps))%len);
 	
 	//the y coordinate of the source sprite
-	var srcY = sprite.height*row;
+	var srcY = height*row;
 	
 	
 	//draw it
-	ctx.drawImage(sprite.img, srcX, srcY, sprite.width, sprite.height, destX, destY, cw, cw);
+	ctx.drawImage(sprite, srcX, srcY, width, height, destX, destY, cw, cw);
 	
 	//increment counter to handle srcX (which sprite to render)
 	gameObject.currentFrame++;
-	
-	//console.log(gameObject.x + ":" + gameObject.y);
 }
 
 function fillPattern(img, w, h) {
