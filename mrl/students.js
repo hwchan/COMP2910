@@ -149,33 +149,13 @@ function stepStudent(i) {
             }
         }     
     }
-	//decrement counter for checking if it's time for the student's next step
-	students[i].nextStep--;
-}
-
-//handle student getting to goal
-function checkGoal(i){
-	yNew = students[i].y;
-	xNew = students[i].x;
-    switch (students[i].direction) {
-        case 1:
-            yNew -= 1;
-            break;
-        case 2:
-            xNew += 1;
-            break;
-        case 3:
-            yNew += 1;
-            break;
-        case 4:
-            xNew -= 1;
-            break;
-    }   
-	//if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
-	if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
-		students.splice(i, 1);
-		score += time;
-		//to account for change in index after splicing out student
-		//i--;
-	}
+    //if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
+    if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
+        students.splice(i, 1);
+        score += time;
+        //to account for change in index after splicing out student
+        i--;
+    } else {
+        students[i].nextStep--;
+    }
 }
