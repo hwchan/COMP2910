@@ -1,10 +1,11 @@
-//sets up sign images for GUI
+//sets up GUI sign vars
 var signWidth = cw;
 var signHeight = cw;
-var menuButtonWidth = cw/2;
-var menuButtonHeight = cw/2;
+var menuButtonWidth = cw*.5;
+var menuButtonHeight = cw*.5;
+var guiFont = "normal " + cw/4 + "pt Calibri"
 
-//sets up sign images
+//sets up GUI sign images
 var northGUIImg = new Image();
 northGUIImg.src = "images/up.png";
 var eastGUIImg = new Image();
@@ -14,7 +15,7 @@ southGUIImg.src = "images/down.png";
 var westGUIImg = new Image();
 westGUIImg.src = "images/left.png";
 
-//sets up GUI images
+//sets up GUI options images
 var soundImg = new Image();
 soundImg.src = "images/sound.png";
 var noSoundImg = new Image();
@@ -23,6 +24,7 @@ var pauseImg = new Image();
 pauseImg.src = "images/pause.png";
 var unPauseImg = new Image();
 unPauseImg.src = "images/unpause.png";
+
 //x-coordinate of the GUI area
 var GUIx = cw * gameboard[0].length;
 
@@ -37,15 +39,11 @@ var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 var MUTE_BTN = {img:soundImg, x:GUIx+cw*.25, y:cw*.25, width:menuButtonWidth, height:menuButtonHeight};
 var PAUSE_BTN = {img:pauseImg, x:GUIx+cw*1.25, y:cw*.25, width:menuButtonWidth, height:menuButtonHeight};
 
-//set music and sound vars
-var music = new Audio('music/strobe.mp3');
-music.loop = true;
-
 //handle GUI interaction
-var box1 = document.getElementById('canvas')
-$("#canvas").on('vmousedown', function(e5){
+$("#canvas").mousedown(function (e) {
 	//handle mute/unmute
-    if((e5.pageX>=MUTE_BTN.x && e5.pageX<=(MUTE_BTN.x+cw/2)) && (e5.pageY>=MUTE_BTN.y && e5.pageY<=(MUTE_BTN.y+cw/2))) {
+    if(clickButton(e, MUTE_BTN)) {
+		playMusic.play();
 		if(!music.paused) {
 			MUTE_BTN.img = noSoundImg;
 			music.pause();
@@ -54,29 +52,33 @@ $("#canvas").on('vmousedown', function(e5){
 			music.play();
 		}
 	//handle pause/unpause
-	} else if((e5.pageX>=(PAUSE_BTN.x) && e5.pageX<=(PAUSE_BTN.x+cw/2)) && (e5.pageY>=PAUSE_BTN.y && e5.pageY<=(PAUSE_BTN.y+cw/2))) {
+	} else if(clickButton(e, PAUSE_BTN)) {
+		playMusic.play();
 		//TODO change control logic to check for pause state and not the GUI image
 		if(PAUSE_BTN.img == pauseImg){
 			PAUSE_BTN.img = unPauseImg;
 			clearInterval(game_loop);
+            paused = true;
 		} else {
+            paused = false;
 			PAUSE_BTN.img = pauseImg;
-			game_loop = setInterval(tick, 100);
+			game_loop = setInterval(tick, tickPeriod);
 		}
 	}
 })
 
 function paintGUI() {
     ctx.fillStyle = "dimgray";
-    ctx.fillRect(GUIx, 0, cw * 2, cw * 9);
+    ctx.fillRect(GUIx, 0, cw * 2, h);
     //draw pause & mute
     ctx.drawImage(PAUSE_BTN.img, PAUSE_BTN.x, PAUSE_BTN.y, menuButtonWidth, menuButtonHeight);
     ctx.drawImage(MUTE_BTN.img, MUTE_BTN.x, MUTE_BTN.y, menuButtonWidth, menuButtonHeight);
     //draw text
     ctx.fillStyle = "white";
     //time and score are now rounded to closest whole integer
-    ctx.fillText("Time: " + Math.round(time), GUIx + 5, cw*1.5);
-    ctx.fillText("Score: " + Math.round(score), GUIx + 5, cw);
+    ctx.font = guiFont;
+    ctx.fillText("Time: " + Math.round(time), GUIx + cw * .25, cw*1.75);
+    ctx.fillText("Score: " + Math.round(score), GUIx + cw * .25, cw*1.25);
     //draw signs
     ctx.drawImage(NORTH_BTN.img, NORTH_BTN.x, NORTH_BTN.y, signWidth, signHeight);
     ctx.drawImage(EAST_BTN.img, EAST_BTN.x, EAST_BTN.y, signWidth, signHeight);
