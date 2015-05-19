@@ -61,6 +61,7 @@ function tick() {
     //if all the students have reached their goals player wins
     if (students.length == 0 && Math.round(time) < 20 ) {
         //win action
+		music.pause();
 		alert("You have completed this level!");
 		winMusic.play();
 		clearInterval(game_loop);
