@@ -47,7 +47,6 @@ function playGame(){
 	}
     score = 0;
     game_loop = setInterval(tick, tickPeriod);
-    paint();
 }
 
 //updates game logic
@@ -77,9 +76,7 @@ function tick() {
 }
 
 //draws frame
-function paint() {
-    //runs paint every display refresh
-    requestAnimationFrame(paint);
+function drawGame() {
     //paints map
     for(var y = 0; y < gameboard[0].length; ++y) {
         for(var x = 0; x < gameboard.length; ++x) {

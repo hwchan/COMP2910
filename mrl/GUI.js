@@ -41,28 +41,30 @@ var PAUSE_BTN = {img:pauseImg, x:GUIx+cw*1.25, y:cw*.25, width:menuButtonWidth, 
 
 //handle GUI interaction
 $("#canvas").mousedown(function (e) {
-	//handle mute/unmute
-    if(clickButton(e, MUTE_BTN)) {
-		if(!music.paused) {
-			MUTE_BTN.img = noSoundImg;
-			music.pause();
-		} else {
-			MUTE_BTN.img = soundImg;
-			music.play();
-		}
-	//handle pause/unpause
-	} else if(clickButton(e, PAUSE_BTN)) {
-		//TODO change control logic to check for pause state and not the GUI image
-		if(PAUSE_BTN.img == pauseImg){
-			PAUSE_BTN.img = unPauseImg;
-			clearInterval(game_loop);
-            paused = true;
-		} else {
-            paused = false;
-			PAUSE_BTN.img = pauseImg;
-			game_loop = setInterval(tick, tickPeriod);
-		}
-	}
+    if (currentScreen == "game") {
+        //handle mute/unmute
+        if(clickButton(e, MUTE_BTN)) {
+            if(!music.paused) {
+                MUTE_BTN.img = noSoundImg;
+                music.pause();
+            } else {
+                MUTE_BTN.img = soundImg;
+                music.play();
+            }
+        //handle pause/unpause
+        } else if(clickButton(e, PAUSE_BTN)) {
+            //TODO change control logic to check for pause state and not the GUI image
+            if(PAUSE_BTN.img == pauseImg){
+                PAUSE_BTN.img = unPauseImg;
+                clearInterval(game_loop);
+                paused = true;
+            } else {
+                paused = false;
+                PAUSE_BTN.img = pauseImg;
+                game_loop = setInterval(tick, tickPeriod);
+            }
+        }
+    }
 })
 
 function paintGUI() {

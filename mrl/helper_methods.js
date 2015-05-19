@@ -68,3 +68,7 @@ function fillPattern(img, w, h) {
         h *= 2;
     }
 }
+
+function drawButton(button) {
+    ctx.drawImage(button.img, button.x, button.y, button.width, button.height);
+}
