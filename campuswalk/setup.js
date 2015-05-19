@@ -17,10 +17,9 @@ var canvas = $("#canvas")[0];
 var ctx = canvas.getContext("2d");
 ctx.canvas.width  = w;
 ctx.canvas.height = h;
- ctx.mozImageSmoothingEnabled = false;
- ctx.webkitImageSmoothingEnabled = false;
- ctx.msImageSmoothingEnabled = false;
- ctx.imageSmoothingEnabled = false;
+ctx.imageSmoothingEnabled = false;
+
+var currentScreen = "menu";
 
 
 /*************************
@@ -51,8 +50,8 @@ downImg.src = "images/down.png";
 var leftImg = new Image();
 leftImg.src = "images/left.png";
 var emptyImg = new Image();
-emptyImg.src = "images/empty.png";
-
+emptyImg.src = "images/grass0.png";
+var SIGNS = [upImg, rightImg, downImg, leftImg];
 
 
 
