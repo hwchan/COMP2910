@@ -76,7 +76,8 @@ function tick() {
 		alert("You have defeated this level!");
 		clearInterval(game_loop);
 		spawnIn = 0;
-		playGame(difficulty+1);
+        difficulty++;
+		playGame();
 	}
     //if time = 0 game failure state
     if (time <= 0) {

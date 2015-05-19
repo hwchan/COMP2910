@@ -37,9 +37,6 @@ for (var y = 0; y < tiles.length; y++){
 //[xDoor,yDoor,color,direction]
 var doors = [];
 doors.push(new door(0, 8, "rgba(255,0,0,.5)", 2));
-doors.push(new door(12, 0, "rgba(0,255,0,.5)", 4));
-doors.push(new door(12, 8, "rgba(0,0,255,.5)", 1));
-doors.push(new door(5, 5, "rgba(255,255,0,.5)", 3));
 
 //constructs a door object
 function door(x, y, color, direction) {
