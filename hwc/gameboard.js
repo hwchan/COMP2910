@@ -6,14 +6,14 @@
 //4: west
 //5: building
 var tiles = [
-    [0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5 ],
-    [0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5 ],
+    [0, 0, 5, 5, 0, 5, 0, 5, 5, 5, 5, 0, 5, 5 ],
+    [5, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
     [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-    [5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0 ],
-    [0, 0, 0, 5, 5, 0, 0, 5, 5, 5, 0, 0, 0, 0 ],
-    [5, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-    [0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 0 ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0 ],
+    [0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 5, 5, 0, 5, 5, 5, 0, 0, 0, 0, 0 ],
+    [5, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 0 ],
+    [0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 0 ],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
 ];
 
@@ -52,27 +52,27 @@ function door(x, y, color, direction) {
 function drawTile(x, y) {
     switch (gameboard[y][x].contents) {
 		case 0:
-			ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
+			//ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
 			break;
 		case 1:
-			ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
+			//ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
 			ctx.drawImage(upImg, x * cw, y * cw, cw, cw);
 			break;
 		case 2:
-			ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
+			//ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
 			ctx.drawImage(rightImg, x * cw, y * cw, cw, cw);
 			break;
 		case 3:
-			ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
+			//ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
 			ctx.drawImage(downImg, x * cw, y * cw, cw, cw);
 			break;
 		case 4:
-			ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
+			//ctx.drawImage(emptyImg, x * cw, y * cw, cw, cw);
 			ctx.drawImage(leftImg, x * cw, y * cw, cw, cw);
 			break;
 		case 5:
-			ctx.fillStyle = "black";
-			ctx.fillRect(x * cw, y * cw, cw, cw);
+			//ctx.fillStyle = "black";
+			//ctx.fillRect(x * cw, y * cw, cw, cw);
 			break;
     }
 }

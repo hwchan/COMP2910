@@ -89,10 +89,8 @@ function paintGUI() {
 
 function toggleSelectedSign(i, isOn){
 	if(isOn){
-	console.log(0);
 		SIGN_BTNS[i].selected = 1;
 	} else {
-	console.log(1);
 		SIGN_BTNS[i].selected = 0;
 	}
 }

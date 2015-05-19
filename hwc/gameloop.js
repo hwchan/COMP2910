@@ -1,5 +1,5 @@
 //This sets the difficulty
-var difficulty = 7;
+var difficulty = 0;
 var maxTime;
 
 //starts the game: gameboard, gameloop, etc.
@@ -13,7 +13,7 @@ function playGame(){
 		//case 0 for debugging
 		case 0:
 			time = 100;
-			setSpawn(0, 10);
+			setSpawn(10, 10);
 			setSpeedVariance(10, 10);
 			break;
 		case 1:
@@ -91,11 +91,48 @@ function paint() {
     //runs paint every display refresh
     requestAnimationFrame(paint);
     //paints map
-    for(var y = 0; y < gameboard[0].length; ++y) {
+    /*for(var y = 0; y < gameboard[0].length; ++y) {
         for(var x = 0; x < gameboard.length; ++x) {
             drawTile(y,x);
         }
+    }*/
+	
+	
+	
+	
+	
+	//paint map
+	var bgImg = new Image();
+	bgImg.src = "images/mockup.png";
+	ctx.drawImage(bgImg, 0, 0, w-2*cw, h);
+	//paint signs
+	for(var x = 0; x < gameboard[0].length; ++x) {
+        for(var y = 0; y < gameboard.length; ++y) {
+            switch (gameboard[y][x].contents) {
+				case 0:
+					break;
+				case 1:
+					ctx.drawImage(upImg, x * cw, y * cw, cw, cw);
+					break;
+				case 2:
+					ctx.drawImage(rightImg, x * cw, y * cw, cw, cw);
+					break;
+				case 3:
+					ctx.drawImage(downImg, x * cw, y * cw, cw, cw);
+					break;
+				case 4:
+					ctx.drawImage(leftImg, x * cw, y * cw, cw, cw);
+					break;
+				case 5:
+					break;
+			}
+        }
     }
+	
+	
+	
+	
+	
     //paints doors
     for(var i = 0; i < doors.length; ++i) {
         drawDoor(i);
