@@ -56,3 +56,15 @@ function animateSprite(gameObject, sprite, fps, len, row, destX, destY) {
 	
 	//console.log(gameObject.x + ":" + gameObject.y);
 }
+
+function fillPattern(img, w, h) {
+    ctx.drawImage(img, 0, 0, w, h);
+    while (w < canvas.width) {
+        ctx.drawImage(canvas, w, 0);
+        w *= 2;
+    }
+    while (h < canvas.height) {
+        ctx.drawImage(canvas, 0, h);
+        h *= 2;
+    }
+}
