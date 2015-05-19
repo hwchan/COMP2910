@@ -68,11 +68,16 @@ function tick() {
     //spawns a student each tick
     spawnStudents();
     //if all the students have reached their goals player wins
-    if (students.length == 0 && Math.round(time) < maxTime-6 ) {
+    if (students.length == 0 && difficulty ==  7) {
         //win action
+		alert("You have defeated this game!");
+		clearInterval(game_loop);
+    } else if (students.length == 0) {
 		alert("You have defeated this level!");
 		clearInterval(game_loop);
-    }
+		spawnIn = 0;
+		playGame(difficulty+1);
+	}
     //if time = 0 game failure state
     if (time <= 0) {
         //failure action
