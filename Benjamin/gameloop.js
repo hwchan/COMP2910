@@ -1,42 +1,56 @@
-//game variables
-var score = 0;
-var difficulty = 7;
+//This sets the difficulty
+var difficulty;
 
-var time;
+//starts the game: gameboard, gameloop, etc.
+function playGame(inputDifficulty){
+	//sets a student to spawn every 10 ticks 10 times
+    //setSpawn(1, 10);
+    //sets student period to be 1 to 5 ticks
+    //setSpeedVariance(1, 1);
 
-//time for each level scales with difficulty
-switch (difficulty) {
-    case 1:
-		time = 60;
-		break;
-    case 2:
-        time = 60;
-		break;
-    case 3:
-        time = 60;
-		break;
-    case 4:
-        time = 50;
-		break;
-    case 5:
-        time = 40;
-		break;
-    case 6:
-        time = 30;
-		break;
-    case 7:
-        time = 30;
-		break;
+	difficulty = inputDifficulty;
+	
+	switch (difficulty) {
+		case 1:
+			time = 100;
+			setSpawn(1, 10);
+			setSpeedVariance(1, 1);
+			break;
+		case 2:
+			time = 60;
+			setSpawn(2, 10);
+			setSpeedVariance(2, 1);
+			break;
+		case 3:
+			time = 60;
+			setSpawn(3, 10);
+			setSpeedVariance(2, 1);
+			break;
+		case 4:
+			time = 50;
+			setSpawn(3, 10);
+			setSpeedVariance(2, 1);
+			break;
+		case 5:
+			time = 50;
+			setSpawn(4, 5);
+			setSpeedVariance(3, 1);
+			break;
+		case 6:
+			time = 30;
+			setSpawn(4, 5);
+			setSpeedVariance(3, 1);
+			break;
+		case 7:
+			time = 30;
+			setSpawn(10, 10);
+			setSpeedVariance(20, 5);
+			break;
+	}
+    score = 0;
+    game_loop = setInterval(tick, tickPeriod);
+    paint();
 }
-
-
-
-
-//starts game loop and repaint function
-
-//paint();
-//game_loop = setInterval(tick, 100);
-
 
 //updates game logic
 function tick() {
@@ -44,116 +58,29 @@ function tick() {
     for (var i = 0; i < students.length; ++i) {
         stepStudent(i);
     }
-    //decrements the time
-    time -= .1;
-	
-	//This sets the difficulty levels
-	switch (difficulty) {
-		case 2:
-			if (Math.round(time*100) == 5500) {
-				doors.push(new door(Math.floor(Math.random() * 12), 1, "green", 4));
-				students.push(new student(2, 2));
-			}
-			break;
-		case 3:
-			switch (Math.round(time*100)) {
-				case 5500:
-					doors.push(new door(Math.floor(Math.random() * 12), 1, "green", 4));
-					students.push(new student(2, 2));
-					break;
-				case 5000:
-					doors.push(new door(Math.floor(Math.random() * 12), 2, "pink", 4));
-					students.push(new student(3, 3));
-					break;
-			}
-			break;
-		case 4:
-			switch (Math.round(time*100)) {
-				case 4500:
-					doors.push(new door(Math.floor(Math.random() * 12), 1, "green", 4));
-					students.push(new student(2, 2));
-					break;
-				case 4000:
-					doors.push(new door(Math.floor(Math.random() * 12), 2, "pink", 4));
-					students.push(new student(3, 3));
-					break;
-				case 3500:
-					doors.push(new door(Math.floor(Math.random() * 12), 3, "yellow", 4));
-					students.push(new student(4, 4));
-					break;
-				case 3000:
-					doors.push(new door(Math.floor(Math.random() * 12), 4, "yellow", 4));
-					students.push(new student(5, 5));
-					break;
-			}
-			break;
-		case 5:
-			switch (Math.round(time*100)) {
-				case 3500:
-					doors.push(new door(Math.floor(Math.random() * 12), 1, "green", 4));
-					students.push(new student(2, 2));
-					break;
-				case 3000:
-					doors.push(new door(Math.floor(Math.random() * 12), 2, "pink", 4));
-					students.push(new student(3, 3));
-					break;
-				case 2500:
-					doors.push(new door(Math.floor(Math.random() * 12), 3, "yellow", 4));
-					students.push(new student(4, 4));
-					break;
-				case 2000:
-					doors.push(new door(Math.floor(Math.random() * 12), 4, "yellow", 4));
-					students.push(new student(5, 5));
-					break;
-			}
-			break;
-		case 6:
-			switch (Math.round(time*100)) {
-				case 2500:
-					doors.push(new door(Math.floor(Math.random() * 12), 1, "green", 4));
-					students.push(new student(2, 2));
-					break;
-				case 2000:
-					doors.push(new door(Math.floor(Math.random() * 12), 2, "pink", 4));
-					students.push(new student(3, 3));
-					break;
-				case 1500:
-					doors.push(new door(Math.floor(Math.random() * 12), 3, "yellow", 4));
-					students.push(new student(4, 4));
-					break;
-			}
-			break;			
-		case 7:
-			switch (Math.round(time*100)) {
-				case 2500:
-					doors.push(new door(Math.floor(Math.random() * 12), 1, "green", 4));
-					students.push(new student(2, 2));
-					break;
-				case 2000:
-					doors.push(new door(Math.floor(Math.random() * 12), 2, "pink", 4));
-					students.push(new student(3, 3));
-					break;
-				case 1500:
-					doors.push(new door(Math.floor(Math.random() * 12), 3, "yellow", 4));
-					students.push(new student(4, 4));
-					break;
-				case 1000:
-					doors.push(new door(Math.floor(Math.random() * 12), 4, "yellow", 4));
-					students.push(new student(5, 5));
-					break;
-			}
-			break;
-	}
-
+    //spawns a student each tick
+    spawnStudents();
     //if all the students have reached their goals player wins
-    if (students.length == 0) {
-		alert("You have defeated this level!");
+    if (students.length == 0 && difficulty ==  7) {
         //win action
-    }
-	if (students.length != 0 && Math.round(time*100) == 0) {
+		alert("You have defeated this game!");
 		clearInterval(game_loop);
-		alert("You lose!");
+    } else if (students.length == 0) {
+		alert("You have defeated this level!");
+		clearInterval(game_loop);
+		spawnIn = 0;
+		playGame(difficulty+1);
 	}
+    //if time = 0 game failure state
+    if (time <= 0) {
+        //failure action
+		alert("You lose!");
+        paused = true;
+        clearInterval(game_loop);
+    } else {
+        //decrements the time
+        time -= tickPeriod/1000;
+    }
 }
 
 //draws frame
