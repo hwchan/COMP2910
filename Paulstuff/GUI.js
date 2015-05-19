@@ -68,7 +68,7 @@ $("#canvas").mousedown(function (e) {
 })
 
 function paintGUI() {
-    ctx.fillStyle = "dimgray";
+    ctx.fillStyle = "green";
     ctx.fillRect(GUIx, 0, cw * 2, h);
     //draw pause & mute
     ctx.drawImage(PAUSE_BTN.img, PAUSE_BTN.x, PAUSE_BTN.y, menuButtonWidth, menuButtonHeight);
