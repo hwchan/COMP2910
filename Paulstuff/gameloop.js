@@ -71,9 +71,11 @@ function tick() {
         //failure action
 		music.pause();
 		alert("You lose!");
+		acheiv1 = true;
 		loseMusic.play();
         paused = true;
         clearInterval(game_loop);
+		document.forms["achievements"].submit();
     } else {
         //decrements the time
         time -= tickPeriod/1000;
