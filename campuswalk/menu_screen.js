@@ -43,6 +43,9 @@ function paint() {
 			break;
         case "game":
 			drawGame();
+            if (paused) {
+            drawPaused();
+            }
 			break;
 	}
 }

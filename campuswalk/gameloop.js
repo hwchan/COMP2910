@@ -179,3 +179,15 @@ function drawGame() {
     }
     
 }
+
+//pause overlay
+function drawPaused() {
+    for(var y = 0; y < 5; ++y) {
+        for(var x = 0; x < 7; ++x) {
+            ctx.drawImage(backgroundImg, x * cw * 2, y * cw * 2, cw * 2, cw * 2);
+            ctx.fillStyle = "white";
+            ctx.font = 'italic ' + cw + 'pt Calibri';
+            ctx.fillText("Paused",  w/2-2*cw, h/2);
+        }
+    }
+}
