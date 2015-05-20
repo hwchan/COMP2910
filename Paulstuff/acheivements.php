@@ -6,17 +6,29 @@
 	$username = "a8448796_paullol";
 	$password = "paul123";
 	$dbname = "a8448796_paullol";
-	
+
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
 
 	//check connection
 	if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-} 
+	} 	
+	
 	//sets cookie
 	$cookie_name = "user";
 	setcookie($cookie_name);
+
+	//gives cookie a random value
+	if(!isset($_COOKIE[$cookie_name])) {
+	$cookie_value = rand(0, PHP_INT_MAX);
+	setcookie($cookie_name, $cookie_value);
+	echo "setting cookie";
+	echo "value is " . $cookie_name;
+	} else {
+    echo "Cookie '" . $cookie_name . "' is set!<br>";
+    echo "Value is: " . $_COOKIE[$cookie_name];
+	}
 		
 	//sets variables to form values true or false
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
