@@ -28,3 +28,7 @@ $("#canvas").mousedown(function(e) {
         playGame();
     }
 })
+
+var acheiv1 = false;
+var acheiv2 = false;
+var acheiv3 = false;

@@ -22,6 +22,16 @@
 			<script src="menu_screen.js" type="text/javascript"></script>
 			
 		<!--End of game code-->
+		<form name = "achievements" action = method = "POST">
+		<input type="text" name="achievement1" id ="ach1">
+		<input type="text" name="achievement2" id ="ach2">
+		<input type="text" name="achievement3" id ="ach3">
+		<script>
+		document.getElementById("ach1") = acheiv1;
+		document.getElementById("ach2") = acheiv2;
+		document.getElementById("ach3") = acheiv3;
+		</script>
+		</form>
     </body>
 </html>
 <!-- Removes 8px border -->
@@ -30,6 +40,6 @@
 		-ms-touch-action: none; /* Direct all pointer events to JavaScript code. */
 	}
 	body {
-        margin: 0px;
+        margin: 0px; /* removes margins at top and sides*/
 	}
 </style>
