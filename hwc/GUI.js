@@ -1,8 +1,8 @@
 //sets up GUI sign vars
 var signWidth = cw;
 var signHeight = cw;
-var menuButtonWidth = cw*.5;
-var menuButtonHeight = cw*.5;
+var menuButtonWidth = cw;
+var menuButtonHeight = cw;
 var guiFont = "normal " + cw/4 + "pt Calibri"
 
 //sets up GUI sign images
@@ -36,8 +36,8 @@ var WEST_BTN = {img:westGUIImg, x:GUIx+cw*.5, y:7.5*cw, width:signWidth, height:
 var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 
 //set menu buttons
-var MUTE_BTN = {img:soundImg, x:GUIx+cw*.25, y:cw*.25, width:menuButtonWidth, height:menuButtonHeight};
-var PAUSE_BTN = {img:pauseImg, x:GUIx+cw*1.25, y:cw*.25, width:menuButtonWidth, height:menuButtonHeight};
+var MUTE_BTN = {img:soundImg, x:GUIx+cw*0, y:cw*0, width:menuButtonWidth, height:menuButtonHeight};
+var PAUSE_BTN = {img:pauseImg, x:GUIx+cw*1, y:cw*0, width:menuButtonWidth, height:menuButtonHeight};
 
 //handle GUI interaction
 $("#canvas").mousedown(function (e) {
@@ -77,8 +77,9 @@ function paintGUI() {
     ctx.fillStyle = "white";
     //time and score are now rounded to closest whole integer
     ctx.font = guiFont;
-    ctx.fillText("Time: " + Math.round(time), GUIx + cw * .25, cw*1.75);
-    ctx.fillText("Score: " + Math.round(score), GUIx + cw * .25, cw*1.25);
+	ctx.fillText("Level: " + difficulty, GUIx + cw * .25, cw*1.5);
+    ctx.fillText("Score: " + Math.round(score), GUIx + cw * .25, cw*1.85);
+	ctx.fillText("Time: " + Math.round(time), GUIx + cw * .25, cw*2.2);
     //draw signs
     /*ctx.drawImage(NORTH_BTN.img, NORTH_BTN.x, NORTH_BTN.y, signWidth, signHeight);
     ctx.drawImage(EAST_BTN.img, EAST_BTN.x, EAST_BTN.y, signWidth, signHeight);
