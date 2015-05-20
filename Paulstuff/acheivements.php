@@ -23,11 +23,11 @@
     $achiev1 = $_POST["achievement1"];
     $achiev2 = $_POST["achievement2"];
 	$achiev3 = $_POST["achievement3"];
-	
+			
 		//sets achievements in table to complete if true
 		If ($achiev1 == 'true'){
-			$sql = "INSERT INTO achievements (Achievement1)
-			VALUES ('true')";
+			$sql = "INSERT INTO achievements (userID ,Achievement1)
+			VALUES ('$cookie_name', '$achiev1')";
 			if ($conn->query($sql) === TRUE) {
 				echo "New record created successfully";
 				} else {
