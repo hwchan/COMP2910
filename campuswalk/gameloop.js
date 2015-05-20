@@ -62,7 +62,6 @@ function playGame(){
 			break;
 	}
 	maxTime = time;
-    score = 0;
     game_loop = setInterval(tick, tickPeriod);
 }
 

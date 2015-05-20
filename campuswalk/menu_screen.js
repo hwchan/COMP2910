@@ -79,6 +79,7 @@ $("#canvas").mousedown(function(e) {
             currentScreen = "game";
             menuMusic.pause();
             music.play();
+            score = 0;
             playGame();
         }
     }
