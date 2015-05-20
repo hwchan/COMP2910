@@ -8,6 +8,8 @@ var lvl4 = new Image();
 var lvl5 = new Image();
 var lvl6 = new Image();
 var lvl7 = new Image();
+var pauseScreen = new Image();
+pauseScreen.src = "images/paused.png";
 lvl2.src = "images/lvl2.png";
 lvl3.src = "images/lvl3.png";
 lvl4.src = "images/lvl4.png";
@@ -182,4 +184,5 @@ function drawGame() {
 
 //pause overlay
 function drawPaused() {
+    ctx.drawImage(pauseScreen,0,0,cw*14,h);
 }
