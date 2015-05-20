@@ -1,6 +1,19 @@
 //This sets the difficulty
 var difficulty = 1;
 var maxTime;
+var overlay = false;
+var lvl2 = new Image();
+var lvl3 = new Image();
+var lvl4 = new Image();
+var lvl5 = new Image();
+var lvl6 = new Image();
+var lvl7 = new Image();
+lvl2.src = "images/lvl2.png";
+lvl3.src = "images/lvl3.png";
+lvl4.src = "images/lvl4.png";
+lvl5.src = "images/lvl5.png";
+lvl6.src = "images/lvl6.png";
+lvl7.src = "images/lvl7.png";
 
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
@@ -53,6 +66,20 @@ function playGame(){
     game_loop = setInterval(tick, tickPeriod);
 }
 
+// shows the overlay screen for 5 seconds then starts the next level
+function showOverlay() {
+    overlay = true;
+    clearInterval(game_loop);
+    setTimeout(nxtLevel, 5000);  // 5 seconds
+}
+
+function nxtLevel() {
+    spawnIn = 0;
+    difficulty++;
+	playGame();
+    overlay = false;
+}
+
 //updates game logic
 function tick() {
     //updates student positions
@@ -69,12 +96,10 @@ function tick() {
 		alert("You have defeated this game!");
 		clearInterval(game_loop);
     } else if (students.length == 0) {
-		alert("You have defeated this level!");
-		clearInterval(game_loop);
-		spawnIn = 0;
-        difficulty++;
-		playGame();
+		showOverlay();
 	}
+    
+    
     //if time = 0 game failure state
     if (time <= 0) {
         //failure action
@@ -130,4 +155,28 @@ function drawGame() {
     for(var i = 0; i < students.length; ++i) {
         drawStudent(i);
     }
+    
+    if (overlay) {
+        switch (difficulty) {
+            case 1:
+                ctx.drawImage(lvl2,0,0,w,h);
+                break;
+            case 2:
+                ctx.drawImage(lvl3, 0,0,w,h);
+                break;
+            case 3:
+                ctx.drawImage(lvl4,0,0,w,h);
+                break;
+            case 4:
+                ctx.drawImage(lvl5,0,0,w,h);
+                break;
+            case 5:
+                ctx.drawImage(lvl6,0,0,w,h);
+                break;
+            case 6:
+                ctx.drawImage(lvl7,0,0,w,h);
+                break;
+        }    
+    }
+    
 }
