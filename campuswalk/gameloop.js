@@ -159,22 +159,22 @@ function drawGame() {
     if (overlay) {
         switch (difficulty) {
             case 1:
-                ctx.drawImage(lvl2,0,0,w,h);
+                ctx.drawImage(lvl2,0,0,cw*14,h);
                 break;
             case 2:
-                ctx.drawImage(lvl3, 0,0,w,h);
+                ctx.drawImage(lvl3, 0,0,cw*14,h);
                 break;
             case 3:
-                ctx.drawImage(lvl4,0,0,w,h);
+                ctx.drawImage(lvl4,0,0,cw*14,h);
                 break;
             case 4:
-                ctx.drawImage(lvl5,0,0,w,h);
+                ctx.drawImage(lvl5,0,0,cw*14,h);
                 break;
             case 5:
-                ctx.drawImage(lvl6,0,0,w,h);
+                ctx.drawImage(lvl6,0,0,cw*14,h);
                 break;
             case 6:
-                ctx.drawImage(lvl7,0,0,w,h);
+                ctx.drawImage(lvl7,0,0,cw*14,h);
                 break;
         }    
     }
