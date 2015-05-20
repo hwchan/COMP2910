@@ -75,6 +75,9 @@ function tick() {
     if (time <= 0) {
         //failure action
 		acheiv1 = 'true';
+		document.getElementById("ach1").value = acheiv1;
+		document.getElementById("ach2").value = acheiv2;
+		document.getElementById("ach3").value = acheiv3;
 		music.pause();
 		alert("You lose!");
 		loseMusic.play();
