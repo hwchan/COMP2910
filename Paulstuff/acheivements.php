@@ -1,4 +1,6 @@
 <?php
+$cookie_value = 0;
+$cookie_name = null;
 	//connects to server
     $title = "Achievements";
     $active = "achievements";
@@ -14,22 +16,19 @@
 	if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 	} 	
-	
-	//sets cookie
-	$cookie_name = "user";
-	setcookie($cookie_name);
 
 	//gives cookie a random value
-	if(!isset($_COOKIE[$cookie_name])) {
+	if($_COOKIE == null) {
 	$cookie_value = rand(0, PHP_INT_MAX);
+	$cookie_name = "user";
 	setcookie($cookie_name, $cookie_value);
-	echo "setting cookie";
-	echo "value is " . $cookie_name;
+	echo "setting cookie <br>";
+	echo "value is " . $cookie_value;
 	} else {
-    echo "Cookie '" . $cookie_name . "' is set!<br>";
-    echo "Value is: " . $_COOKIE[$cookie_name];
+    echo "Cookie is set!<br>";
+    echo "value is " . $_COOKIE[$cookie_name];
 	}
-		
+
 	//sets variables to form values true or false
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $achiev1 = $_POST["achievement1"];
@@ -39,7 +38,7 @@
 		//sets achievements in table to complete if true
 		If ($achiev1 == 'true'){
 			$sql = "INSERT INTO achievements (userID ,Achievement1)
-			VALUES ('$cookie_name', '$achiev1')";
+			VALUES ('$cookie_value', '$achiev1')";
 			if ($conn->query($sql) === TRUE) {
 				echo "New record created successfully";
 				} else {
