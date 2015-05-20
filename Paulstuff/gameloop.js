@@ -50,6 +50,11 @@ function playGame(){
     paint();
 }
 
+//achievement variables
+var acheiv1;
+var acheiv2;
+var acheiv3;
+
 //updates game logic
 function tick() {
     //updates student positions
@@ -69,9 +74,9 @@ function tick() {
     //if time = 0 game failure state
     if (time <= 0) {
         //failure action
+		acheiv1 = 'true';
 		music.pause();
 		alert("You lose!");
-		acheiv1 = 'true';
 		loseMusic.play();
         paused = true;
         clearInterval(game_loop);

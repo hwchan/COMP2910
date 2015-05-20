@@ -33,6 +33,8 @@
 				} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
 			}
+		} else{
+			echo "not valid";
 		}
 		If ($achiev2 == true){
 			$sql = "INSERT INTO achievements (Achievement2)

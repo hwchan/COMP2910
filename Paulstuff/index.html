@@ -6,7 +6,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js" type="text/javascript"></script>
 		<!-- Game code -->
-		
+
 			<!-- Set up -->
 			<script src="setup.js" type="text/javascript"></script>
 			<script src="helper_methods.js" type="text/javascript"></script>
@@ -20,22 +20,18 @@
 			
 			<!-- Menu screen -->
 			<script src="menu_screen.js" type="text/javascript"></script>
-			
+							<!-- Form inputs -->
 		<!--End of game code-->
 		<form name = "achievements" action = "http://paullol.hostoi.com/campuswalk/acheivements.php" method = "POST">
 		<input type="text" name="achievement1" id ="ach1">
 		<input type="text" name="achievement2" id ="ach2">
 		<input type="text" name="achievement3" id ="ach3">
-		<script>
-		var temp1 = document.getElementById("ach1");
-		var temp2 = document.getElementById("ach2");
-		var temp3 = document.getElementById("ach3");
-		
-		acheiv1 = temp1;
-		acheiv2 = temp2;
-		acheiv3 = temp3;
-		</script>
 		</form>
+				<script>
+		document.getElementById("ach1").value = acheiv1;
+		document.getElementById("ach2").value = acheiv2;
+		document.getElementById("ach3").value = acheiv3;
+		</script>
     </body>
 </html>
 <!-- Removes 8px border -->
