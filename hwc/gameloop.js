@@ -1,5 +1,5 @@
 //This sets the difficulty
-var difficulty = 0;
+var difficulty = 1;
 var maxTime;
 
 //starts the game: gameboard, gameloop, etc.
@@ -55,7 +55,6 @@ function playGame(){
 	maxTime = time;
     score = 0;
     game_loop = setInterval(tick, tickPeriod);
-    paint();
 }
 
 //updates game logic
@@ -87,20 +86,7 @@ function tick() {
 }
 
 //draws frame
-function paint() {
-    //runs paint every display refresh
-    requestAnimationFrame(paint);
-    //paints map
-    /*for(var y = 0; y < gameboard[0].length; ++y) {
-        for(var x = 0; x < gameboard.length; ++x) {
-            drawTile(y,x);
-        }
-    }*/
-	
-	
-	
-	
-	
+function drawGame() {
 	//paint map
 	var bgImg = new Image();
 	bgImg.src = "images/mockup.png";
@@ -128,11 +114,6 @@ function paint() {
 			}
         }
     }
-	
-	
-	
-	
-	
     //paints doors
     for(var i = 0; i < doors.length; ++i) {
         drawDoor(i);
@@ -145,9 +126,6 @@ function paint() {
     paintGUI();
     //paints students
     for(var i = 0; i < students.length; ++i) {
-		if(students[i] != null){
-			checkGoal(i);
-			drawStudent(i);
-		}
+        drawStudent(i);
     }
 }

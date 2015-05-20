@@ -56,3 +56,19 @@ function animateSprite(gameObject, sprite, fps, len, row, width, height, destX, 
 	//increment counter to handle srcX (which sprite to render)
 	gameObject.currentFrame++;
 }
+
+function fillPattern(img, w, h) {
+    ctx.drawImage(img, 0, 0, w, h);
+    while (w < canvas.width) {
+        ctx.drawImage(canvas, w, 0);
+        w *= 2;
+    }
+    while (h < canvas.height) {
+        ctx.drawImage(canvas, 0, h);
+        h *= 2;
+    }
+}
+
+function drawButton(button) {
+    ctx.drawImage(button.img, button.x, button.y, button.width, button.height);
+}

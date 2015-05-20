@@ -24,7 +24,7 @@ var speedRand;
 //minimum portion of student period
 var speedConst;
 //ticks until next spawn
-var spawnIn = 0;
+var spawnIn = 10;
 
 //numer of students to spawn
 var spawnNum;
@@ -38,13 +38,13 @@ function spawnStudents() {
         //if # students to spawn > 0 spawn student and decrement students to spawn
         if (spawnNum > 0) {
             //creates a new students with a random spawn and despawn
-            //students.push(new student(0, 1));
-			students.push(new student(Math.floor(Math.random() * doors.length), Math.floor(Math.random() * doors.length)));
+            students.push(new student(Math.floor(Math.random() * doors.length), Math.floor(Math.random() * doors.length)));
             spawnNum--;
         }
     }
     spawnIn--;
 }
+
 
 //function to set mix and min periods for students
 function setSpeedVariance(max, min) {
@@ -111,6 +111,7 @@ function stepStudent(i) {
     if (students[i].nextStep <= 0) {
         //sets the time until next step to period
         students[i].nextStep = students[i].period;
+        students[i].nextStep--;
         //sets animation position to current positon
         students[i].animX = students[i].x * cw;
         students[i].animY = students[i].y * cw;
@@ -147,21 +148,14 @@ function stepStudent(i) {
                 students[i].y = yNew;
                 students[i].blocked = false;
             }
-        }     
+        }
+        //if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
+        if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
+            students.splice(i, 1);
+            score += time;
+            //to account for change in index after splicing out student
+        }
+    } else {
+        students[i].nextStep--;
     }
-	//decrement counter for checking if it's time for the student's next step
-	students[i].nextStep--;
-}
-
-//handle student getting to goal
-function checkGoal(i){
-	yNew = students[i].y;
-	xNew = students[i].x;
-	//if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
-	if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
-		students.splice(i, 1);
-		score += time;
-		//to account for change in index after splicing out student
-		//i--;
-	}
 }

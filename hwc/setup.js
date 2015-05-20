@@ -17,10 +17,9 @@ var canvas = $("#canvas")[0];
 var ctx = canvas.getContext("2d");
 ctx.canvas.width  = w;
 ctx.canvas.height = h;
- ctx.mozImageSmoothingEnabled = false;
- ctx.webkitImageSmoothingEnabled = false;
- ctx.msImageSmoothingEnabled = false;
- ctx.imageSmoothingEnabled = false;
+ctx.imageSmoothingEnabled = false;
+
+var currentScreen = "menu";
 
 
 /*************************
