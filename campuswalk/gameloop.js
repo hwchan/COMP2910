@@ -1,14 +1,10 @@
 //This sets the difficulty
-var difficulty = 0;
+var difficulty = 1;
 var maxTime;
 
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
-	//sets a student to spawn every 10 ticks 10 times
-    //setSpawn(1, 10);
-    //sets student period to be 1 to 5 ticks
-    //setSpeedVariance(1, 1);
-	
+    resetGameboard();
 	switch (difficulty) {
 		//case 0 for debugging
 		case 0:
@@ -19,37 +15,37 @@ function playGame(){
 		case 1:
 			time = 100;
 			setSpawn(1, 10);
-			setSpeedVariance(1, 1);
+			setSpeedVariance(10, 5);
 			break;
 		case 2:
 			time = 60;
 			setSpawn(2, 10);
-			setSpeedVariance(2, 1);
+			setSpeedVariance(10, 5);
 			break;
 		case 3:
 			time = 60;
 			setSpawn(3, 10);
-			setSpeedVariance(2, 1);
+			setSpeedVariance(10, 5);
 			break;
 		case 4:
 			time = 50;
 			setSpawn(3, 10);
-			setSpeedVariance(2, 1);
+			setSpeedVariance(10, 5);
 			break;
 		case 5:
 			time = 50;
-			setSpawn(4, 5);
-			setSpeedVariance(3, 1);
+			setSpawn(4, 10);
+			setSpeedVariance(10, 4);
 			break;
 		case 6:
 			time = 30;
-			setSpawn(4, 5);
-			setSpeedVariance(3, 1);
+			setSpawn(4, 10);
+			setSpeedVariance(10, 3);
 			break;
 		case 7:
 			time = 30;
 			setSpawn(10, 10);
-			setSpeedVariance(20, 5);
+			setSpeedVariance(10, 2);
 			break;
 	}
 	maxTime = time;
@@ -68,11 +64,17 @@ function tick() {
     //spawns a student each tick
     spawnStudents();
     //if all the students have reached their goals player wins
-    if (students.length == 0 && Math.round(time) < maxTime-6 ) {
+    if (students.length == 0 && difficulty ==  7) {
         //win action
+		alert("You have defeated this game!");
+		clearInterval(game_loop);
+    } else if (students.length == 0) {
 		alert("You have defeated this level!");
 		clearInterval(game_loop);
-    }
+		spawnIn = 0;
+        difficulty++;
+		playGame();
+	}
     //if time = 0 game failure state
     if (time <= 0) {
         //failure action

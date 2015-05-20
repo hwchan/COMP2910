@@ -26,10 +26,14 @@ function tile(contents) {
 
 //sets gameboard array
 var gameboard = [];
-for (var y = 0; y < tiles.length; y++){
-    gameboard[y] = [];
-    for (var x = 0; x < tiles[0].length; x++){
-        gameboard[y][x] = new tile(tiles[y][x]);    
+resetGameboard();
+
+function resetGameboard() {
+    for (var y = 0; y < tiles.length; y++){
+        gameboard[y] = [];
+        for (var x = 0; x < tiles[0].length; x++){
+            gameboard[y][x] = new tile(tiles[y][x]);    
+        }
     }
 }
 
