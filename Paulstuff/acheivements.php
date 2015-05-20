@@ -1,6 +1,5 @@
 <?php
-$cookie_value = 0;
-$cookie_name = null;
+$cookie_name = "user";
 	//connects to server
     $title = "Achievements";
     $active = "achievements";
@@ -20,13 +19,13 @@ $cookie_name = null;
 	//gives cookie a random value
 	if($_COOKIE == null) {
 	$cookie_value = rand(0, PHP_INT_MAX);
-	$cookie_name = "user";
 	setcookie($cookie_name, $cookie_value);
 	echo "setting cookie <br>";
-	echo "value is " . $cookie_value;
+    echo $cookie_value;
 	} else {
     echo "Cookie is set!<br>";
-    echo "value is " . $_COOKIE[$cookie_name];
+    echo $_COOKIE[$cookie_name];
+    $cookie_value = $_COOKIE[$cookie_name];
 	}
 
 	//sets variables to form values true or false
