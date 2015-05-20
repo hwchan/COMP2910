@@ -40,7 +40,7 @@ function playGame(){
 			setSpeedVariance(3, 1);
 			break;
 		case 7:
-			time = 30;
+			time = 1;
 			setSpawn(10, 10);
 			setSpeedVariance(20, 5);
 			break;
@@ -71,7 +71,7 @@ function tick() {
         //failure action
 		music.pause();
 		alert("You lose!");
-		acheiv1 = true;
+		acheiv1 = 'true';
 		loseMusic.play();
         paused = true;
         clearInterval(game_loop);

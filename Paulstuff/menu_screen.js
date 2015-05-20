@@ -29,6 +29,6 @@ $("#canvas").mousedown(function(e) {
     }
 })
 
-var acheiv1 = false;
-var acheiv2 = false;
-var acheiv3 = false;
+var acheiv1 = 'false';
+var acheiv2 = 'false';
+var acheiv3 = 'false';
