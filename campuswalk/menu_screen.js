@@ -8,23 +8,45 @@ backgroundImg.src = "images/background.png";
 //Defines the play button
 var playImg = new Image();
 playImg.src = "images/play.png";
-var PLAY_BTN = {img:playImg, x:w/2-cw*2, y:h/2-cw*1.5, width:cw*4, height:cw*1};
+var PLAY_BTN = {img:playImg, x:w/2-cw*2, y:h/2+cw/2, width:cw*4, height:cw*1};
+
+var lvlImg = new Image();
+lvlImg.src = "images/lvl.png";
+
+var titleImg = new Image();
+titleImg.src = "images/title.png";
+
+var difficultyY = h/2+cw*1.5;
 
 var difficulty1Img = new Image();
 difficulty1Img.src = "images/difficulty1.png";
-var DIFFICULTY1_BTN = {img:difficulty1Img, x:w/2-2*cw, y:h/2+cw/2, width:cw, height:cw};
+var DIFFICULTY1_BTN = {img:difficulty1Img, x:w/2-3*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
 
 var difficulty2Img = new Image();
 difficulty2Img.src = "images/difficulty2.png";
-var DIFFICULTY2_BTN = {img:difficulty2Img, x:w/2-cw, y:h/2+cw/2, width:cw, height:cw};
+var DIFFICULTY2_BTN = {img:difficulty2Img, x:w/2-2*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
 
 var difficulty3Img = new Image();
 difficulty3Img.src = "images/difficulty3.png";
-var DIFFICULTY3_BTN = {img:difficulty3Img, x:w/2, y:h/2+cw/2, width:cw, height:cw};
+var DIFFICULTY3_BTN = {img:difficulty3Img, x:w/2-1*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
 
 var difficulty4Img = new Image();
 difficulty4Img.src = "images/difficulty4.png";
-var DIFFICULTY4_BTN = {img:difficulty4Img, x:w/2+cw, y:h/2+cw/2, width:cw, height:cw};
+var DIFFICULTY4_BTN = {img:difficulty4Img, x:w/2+0*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
+
+var difficulty5Img = new Image();
+difficulty5Img.src = "images/difficulty5.png";
+var DIFFICULTY5_BTN = {img:difficulty5Img, x:w/2+1*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
+
+var difficulty6Img = new Image();
+difficulty6Img.src = "images/difficulty6.png";
+var DIFFICULTY6_BTN = {img:difficulty6Img, x:w/2+2*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
+
+var difficulty7Img = new Image();
+difficulty7Img.src = "images/difficulty7.png";
+var DIFFICULTY7_BTN = {img:difficulty7Img, x:w/2+3*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
+
+var DIFFICULTY_BTNS = [DIFFICULTY1_BTN, DIFFICULTY2_BTN, DIFFICULTY3_BTN, DIFFICULTY4_BTN, DIFFICULTY5_BTN, DIFFICULTY6_BTN, DIFFICULTY7_BTN]
 
 //Starts draw loop on page load
 onload = function(){
@@ -44,7 +66,7 @@ function paint() {
         case "game":
 			drawGame();
             if (paused) {
-            drawPaused();
+				drawPaused();
             }
 			break;
 	}
@@ -54,11 +76,25 @@ function paint() {
 function drawMenu(){
     drawBackground();
     drawButton(PLAY_BTN);
-    drawButton(DIFFICULTY1_BTN);
-    drawButton(DIFFICULTY2_BTN);
-    drawButton(DIFFICULTY3_BTN);
-    drawButton(DIFFICULTY4_BTN);
+    //drawButton(DIFFICULTY1_BTN);
+	//drawButton(DIFFICULTY2_BTN);
+    //drawButton(DIFFICULTY3_BTN);
+    //drawButton(DIFFICULTY4_BTN);
+	//console.log(difficulty);
+	ctx.drawImage(lvlImg, w/2-4*cw, difficultyY, cw, cw);
+	ctx.drawImage(titleImg, w/2-4*cw, cw, cw*8, cw*3);
+	paintDifficultyButton(difficulty-1)    
     menuMusic.play();
+}
+
+function paintDifficultyButton(index){
+	for(var i=0; i<DIFFICULTY_BTNS.length; i++){
+		if(index == i){
+			animateSprite(DIFFICULTY_BTNS[i], DIFFICULTY_BTNS[i].img, 10, 1, 1, 16, 16, DIFFICULTY_BTNS[i].x, DIFFICULTY_BTNS[i].y);
+		} else {
+			animateSprite(DIFFICULTY_BTNS[i], DIFFICULTY_BTNS[i].img, 10, 1, 0, 16, 16, DIFFICULTY_BTNS[i].x, DIFFICULTY_BTNS[i].y);
+		}
+	}
 }
 
 //button listeners for main menu
@@ -76,13 +112,22 @@ $("#canvas").mousedown(function(e) {
         if(clickButton(e, DIFFICULTY4_BTN)) {
             difficulty = 4;
         }
+		if(clickButton(e, DIFFICULTY5_BTN)) {
+            difficulty = 5;
+        }
+		if(clickButton(e, DIFFICULTY6_BTN)) {
+            difficulty = 6;
+        }
+		if(clickButton(e, DIFFICULTY7_BTN)) {
+            difficulty = 7;
+        }
         drawMenu();
         if(clickButton(e, PLAY_BTN)) {
             //tear down menu
             currentScreen = "game";
             menuMusic.pause();
             music.play();
-            score = 0;
+			score = 0;
             playGame();
         }
     }
