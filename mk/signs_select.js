@@ -54,7 +54,7 @@ if (window.navigator.msPointerEnabled) {
 
 //select the correct sign pressed or delete a sign
 function mouseDown(e) {
-    if (currentScreen == "game") {
+    if (currentScreen == "game" && !paused) {
         getTileOnHover(e);
 
         //delete sign if clicked
@@ -109,7 +109,7 @@ function mouseDown(e) {
 
 //handle sign highlight
 function mouseMove(e) {
-    if (currentScreen == "game") {
+    if (currentScreen == "game" && !paused) {
 	   getTileOnHover(e);
     }
 }

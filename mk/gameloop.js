@@ -1,19 +1,28 @@
 //This sets the difficulty
-var difficulty = 1;
+var difficulty = 7;
 var maxTime;
 var overlay = false;
+var lostGame = false;
 var lvl2 = new Image();
 var lvl3 = new Image();
 var lvl4 = new Image();
 var lvl5 = new Image();
 var lvl6 = new Image();
 var lvl7 = new Image();
+var pauseScreen = new Image();
+var lostImg = new Image();
+
+lostImg.src = "images/lose.png";
+pauseScreen.src = "images/paused.png";
 lvl2.src = "images/lvl2.png";
 lvl3.src = "images/lvl3.png";
 lvl4.src = "images/lvl4.png";
 lvl5.src = "images/lvl5.png";
 lvl6.src = "images/lvl6.png";
 lvl7.src = "images/lvl7.png";
+
+var RST_BTN = {img:lostImg, x:cw*4.5, y:cw*3.5, width:cw*5, height:cw*2};
+var MENU_BTN = {img:lostImg, x:cw*4.5, y:h-cw*3, width:cw*5, height:cw*2};
 
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
@@ -56,13 +65,12 @@ function playGame(){
 			setSpeedVariance(10, 3);
 			break;
 		case 7:
-			time = 30;
+			time = 2;
 			setSpawn(10, 10);
 			setSpeedVariance(10, 2);
 			break;
 	}
 	maxTime = time;
-    score = 0;
     game_loop = setInterval(tick, tickPeriod);
 }
 
@@ -79,6 +87,7 @@ function nxtLevel() {
 	playGame();
     overlay = false;
 }
+
 
 //updates game logic
 function tick() {
@@ -102,9 +111,7 @@ function tick() {
     
     //if time = 0 game failure state
     if (time <= 0) {
-        //failure action
-		alert("You lose!");
-        paused = true;
+        lostGame = true;
         clearInterval(game_loop);
     } else {
         //decrements the time
@@ -158,25 +165,52 @@ function drawGame() {
     
     if (overlay) {
         switch (difficulty) {
+            case 0:
+                ctx.drawImage(lvl1,0,0,cw*14,h);
+                break;
             case 1:
-                ctx.drawImage(lvl2,0,0,w,h);
+                ctx.drawImage(lvl2,0,0,cw*14,h);
                 break;
             case 2:
-                ctx.drawImage(lvl3, 0,0,w,h);
+                ctx.drawImage(lvl3, 0,0,cw*14,h);
                 break;
             case 3:
-                ctx.drawImage(lvl4,0,0,w,h);
+                ctx.drawImage(lvl4,0,0,cw*14,h);
                 break;
             case 4:
-                ctx.drawImage(lvl5,0,0,w,h);
+                ctx.drawImage(lvl5,0,0,cw*14,h);
                 break;
             case 5:
-                ctx.drawImage(lvl6,0,0,w,h);
+                ctx.drawImage(lvl6,0,0,cw*14,h);
                 break;
             case 6:
-                ctx.drawImage(lvl7,0,0,w,h);
+                ctx.drawImage(lvl7,0,0,cw*14,h);
                 break;
         }    
     }
     
 }
+
+//pause overlay
+function drawPaused() {
+    ctx.drawImage(pauseScreen,0,0,cw*14,h);
+}
+
+function drawLostGame() {
+    ctx.drawImage(lostImg,0,0,w,h);
+}
+
+$("#canvas").mousedown(function (e) {
+    if (currentScreen == "game" && lostGame == true) {
+        //handle mute/unmute
+        if(clickButton(e, MENU_BTN)) {
+            lostGame = false;
+            currentScreen = "menu";
+        //handle pause/unpause
+        } else if(clickButton(e, RST_BTN)) {
+            //TODO change control logic to check for pause state and not the GUI image
+            lostGame = false;
+            currentScreen = "game";
+        }
+    }
+})
