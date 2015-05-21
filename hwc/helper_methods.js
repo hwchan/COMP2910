@@ -57,6 +57,26 @@ function animateSprite(gameObject, sprite, fps, len, row, width, height, destX, 
 	gameObject.currentFrame++;
 }
 
+/**
+	animateSprite but with width and height scaling
+**/
+function animateSignButton(gameObject, sprite, fps, len, row, width, height, destX, destY, sizeX, sizeY) {
+	//the x coordinate of the source sprite
+	//e.g. moves between x=0, x=16 every 10 seconds
+	//for fps=10, width=16, len=2
+	var srcX = width*((Math.floor(gameObject.currentFrame/fps))%len);
+	
+	//the y coordinate of the source sprite
+	var srcY = height*row;
+	
+	
+	//draw it
+	ctx.drawImage(sprite, srcX, srcY, width, height, destX, destY, sizeX, sizeY);
+	
+	//increment counter to handle srcX (which sprite to render)
+	gameObject.currentFrame++;
+}
+
 function fillPattern(img, w, h) {
     ctx.drawImage(img, 0, 0, w, h);
     while (w < canvas.width) {

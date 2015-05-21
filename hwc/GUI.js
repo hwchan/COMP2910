@@ -1,6 +1,6 @@
 //sets up GUI sign vars
-var signWidth = cw;
-var signHeight = cw;
+var signWidth = cw*1.5;
+var signHeight = cw*1.5;
 var menuButtonWidth = cw;
 var menuButtonHeight = cw;
 var guiFont = "normal " + cw/4 + "pt Calibri"
@@ -29,10 +29,10 @@ unPauseImg.src = "images/unpause.png";
 var GUIx = cw * gameboard[0].length;
 
 //set sign buttons
-var NORTH_BTN = {img:northGUIImg, x:GUIx+cw*.5, y:3*cw, width:signWidth, height:signHeight, currentFrame:0, selected:0};
-var EAST_BTN = {img:eastGUIImg, x:GUIx+cw*.5, y:4.5*cw, width:signWidth, height:signHeight, currentFrame:0, selected:0};
-var SOUTH_BTN = {img:southGUIImg, x:GUIx+cw*.5, y:6*cw, width:signWidth, height:signHeight, currentFrame:0, selected:0};
-var WEST_BTN = {img:westGUIImg, x:GUIx+cw*.5, y:7.5*cw, width:signWidth, height:signHeight, currentFrame:0, selected:0};
+var NORTH_BTN = {img:northGUIImg, 	x:GUIx+cw*.25, y:2.75*cw, 	width:signWidth, height:signHeight, currentFrame:0, selected:0};
+var EAST_BTN = {img:eastGUIImg, 	x:GUIx+cw*.25, y:4.25*cw, width:signWidth, height:signHeight, currentFrame:0, selected:0};
+var SOUTH_BTN = {img:southGUIImg, 	x:GUIx+cw*.25, y:5.75*cw, 	width:signWidth, height:signHeight, currentFrame:0, selected:0};
+var WEST_BTN = {img:westGUIImg, 	x:GUIx+cw*.25, y:7.25*cw, width:signWidth, height:signHeight, currentFrame:0, selected:0};
 var SIGN_BTNS = [NORTH_BTN, EAST_BTN, SOUTH_BTN, WEST_BTN];
 
 //set menu buttons
@@ -86,7 +86,7 @@ function paintGUI() {
     ctx.drawImage(SOUTH_BTN.img, SOUTH_BTN.x, SOUTH_BTN.y, signWidth, signHeight);
     ctx.drawImage(WEST_BTN.img, WEST_BTN.x, WEST_BTN.y, signWidth, signHeight);*/
 	for(var i=0; i<SIGN_BTNS.length; i++){
-		animateSprite(SIGN_BTNS[i], SIGN_BTNS[i].img, 30, 2, SIGN_BTNS[i].selected, 16, 16, SIGN_BTNS[i].x, SIGN_BTNS[i].y);
+		animateSignButton(SIGN_BTNS[i], SIGN_BTNS[i].img, 30, 2, SIGN_BTNS[i].selected, 24, 24, SIGN_BTNS[i].x, SIGN_BTNS[i].y, signWidth, signHeight);
 	}
 }
 
