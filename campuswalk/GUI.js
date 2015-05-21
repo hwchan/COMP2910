@@ -7,23 +7,23 @@ var guiFont = "normal " + cw/4 + "pt Calibri"
 
 //sets up GUI sign images
 var northGUIImg = new Image();
-northGUIImg.src = "images/up_btn.png";
+northGUIImg.src = "images/gui/up_btn.png";
 var eastGUIImg = new Image();
-eastGUIImg.src = "images/right_btn.png";
+eastGUIImg.src = "images/gui/right_btn.png";
 var southGUIImg = new Image();
-southGUIImg.src = "images/down_btn.png";
+southGUIImg.src = "images/gui/down_btn.png";
 var westGUIImg = new Image();
-westGUIImg.src = "images/left_btn.png";
+westGUIImg.src = "images/gui/left_btn.png";
 
 //sets up GUI options images
 var soundImg = new Image();
-soundImg.src = "images/sound.png";
+soundImg.src = "images/gui/sound.png";
 var noSoundImg = new Image();
-noSoundImg.src = "images/nosound.png";
+noSoundImg.src = "images/gui/nosound.png";
 var pauseImg = new Image();
-pauseImg.src = "images/pause.png";
+pauseImg.src = "images/gui/pause.png";
 var unPauseImg = new Image();
-unPauseImg.src = "images/unpause.png";
+unPauseImg.src = "images/gui/unpause.png";
 
 //x-coordinate of the GUI area
 var GUIx = cw * gameboard[0].length;

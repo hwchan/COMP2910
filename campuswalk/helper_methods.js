@@ -32,19 +32,21 @@ function clickButton(e, button){
 	Animates from column-0 to column-len on a row.  
 		gameObject: the gameObject getting animated (it needs to have a currentFrame var)
 		sprite: the full sprite sheet with each row as a different animation
-		fps: ticks until next sprite (for now)
+		ticks: ticks until next sprite (for now)
 		len: number of sprites per animation
 		row: the row of the sprite sheet for the animation. starts at 0
-		width: sprite width
-		height: sprite height
+		width: sprite source width
+		height: sprite source height
 		destX: the x coordinate to draw to
 		destY: the y coordinate to draw to
+		destWidth: width of the image drawn onto the canvas
+		destHeight: height of the image drawn onto the canvas
 **/
-function animateSprite(gameObject, sprite, fps, len, row, width, height, destX, destY, destWidth, destHeight) {
+function animateSprite(gameObject, sprite, ticks, len, row, width, height, destX, destY, destWidth, destHeight) {
 	//the x coordinate of the source sprite
 	//e.g. moves between x=0, x=16 every 10 seconds
-	//for fps=10, width=16, len=2
-	var srcX = width*((Math.floor(gameObject.currentFrame/fps))%len);
+	//for ticks=10, width=16, len=2
+	var srcX = width*((Math.floor(gameObject.currentFrame/ticks))%len);
 	
 	//the y coordinate of the source sprite
 	var srcY = height*row;

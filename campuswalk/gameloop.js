@@ -9,13 +9,13 @@ var lvl5 = new Image();
 var lvl6 = new Image();
 var lvl7 = new Image();
 var pauseScreen = new Image();
-pauseScreen.src = "images/paused.png";
-lvl2.src = "images/lvl2.png";
-lvl3.src = "images/lvl3.png";
-lvl4.src = "images/lvl4.png";
-lvl5.src = "images/lvl5.png";
-lvl6.src = "images/lvl6.png";
-lvl7.src = "images/lvl7.png";
+pauseScreen.src = "images/overlays/paused.png";
+lvl2.src = "images/overlays/lvl2.png";
+lvl3.src = "images/overlays/lvl3.png";
+lvl4.src = "images/overlays/lvl4.png";
+lvl5.src = "images/overlays/lvl5.png";
+lvl6.src = "images/overlays/lvl6.png";
+lvl7.src = "images/overlays/lvl7.png";
 
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
