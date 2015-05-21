@@ -8,8 +8,10 @@ var lvl4 = new Image();
 var lvl5 = new Image();
 var lvl6 = new Image();
 var lvl7 = new Image();
+
 var pauseScreen = new Image();
 pauseScreen.src = "images/overlays/paused.png";
+
 lvl2.src = "images/overlays/lvl2.png";
 lvl3.src = "images/overlays/lvl3.png";
 lvl4.src = "images/overlays/lvl4.png";
@@ -82,6 +84,27 @@ function nxtLevel() {
     overlay = false;
 }
 
+//Global draw loop
+function paint() {
+    //runs paint every display refresh
+    requestAnimationFrame(paint);
+    //checks current screen and draws it
+    switch (currentScreen) {
+		case "menu":
+			drawMenu();
+			break;
+        case "game":
+			drawGame();
+            if (paused) {
+				drawPaused();
+            }
+			break;
+		case "lose":
+			drawLostGame();
+			break;
+	}
+}
+
 //updates game logic
 function tick() {
     //updates student positions
@@ -106,10 +129,8 @@ function tick() {
     //if time = 0 game failure state
     if (time <= 0) {
         //failure action
-		lose.play();
-		alert("You lose!");
-        paused = true;
         clearInterval(game_loop);
+		currentScreen = "lose";
     } else {
         //decrements the time
         time -= tickPeriod/1000;

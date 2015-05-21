@@ -53,25 +53,6 @@ onload = function(){
     paint();
 }
 
-
-//Global draw loop
-function paint() {
-    //runs paint every display refresh
-    requestAnimationFrame(paint);
-    //checks current screen and draws it
-    switch (currentScreen) {
-		case "menu":
-			drawMenu();
-			break;
-        case "game":
-			drawGame();
-            if (paused) {
-				drawPaused();
-            }
-			break;
-	}
-}
-
 //draws menu background and buttons
 function drawMenu(){
     drawBackground();
