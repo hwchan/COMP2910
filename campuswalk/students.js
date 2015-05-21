@@ -151,7 +151,7 @@ function stepStudent(i) {
         if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
 			despawn.play();
             students.splice(i, 1);
-            score += time;
+            score += time * difficulty * 2;
             //to account for change in index after splicing out student
         }
     } else {
