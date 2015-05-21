@@ -207,7 +207,7 @@ function drawWonGame() {
     ctx.drawImage(wonImg,0,0,w,h);
     ctx.font = scoreFont;
     ctx.fillStyle = "black";
-    ctx.fillText(Math.round(time), w/2 + cw*.5, h/2 + cw*.4);
+    ctx.fillText(Math.round(score), w/2 + cw*.5, h/2 + cw*.4);
 }
 
 $("#canvas").mousedown(function(e) {
