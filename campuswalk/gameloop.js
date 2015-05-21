@@ -22,15 +22,14 @@ lvl7.src = "images/overlays/lvl7.png";
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
     resetGameboard();
+    score = 0
+    paused = false;
+    PAUSE_BTN.img = pauseImg;
+    currentScreen = "game";
+    students = [];
 	switch (difficulty) {
-		//case 0 for debugging
-		case 0:
-			time = 100;
-			studentsToSpawn = 10;
-			setSpeedVariance(10, 10);
-			break;
 		case 1:
-			time = 100;
+			time = 60;
 			studentsToSpawn = 1;
 			setSpeedVariance(10, 10);
 			break;
@@ -62,12 +61,13 @@ function playGame(){
 		case 7:
 			time = 60;
 			studentsToSpawn = 14;
-			setSpeedVariance(20, 2);
+			setSpeedVariance(20, 4);
 			break;
 	}
 	setSpawn(studentsToSpawn, 10);
     game_loop = setInterval(tick, tickPeriod);
 }
+
 
 // shows the overlay screen for 5 seconds then starts the next level
 function showOverlay() {
@@ -77,12 +77,14 @@ function showOverlay() {
     setTimeout(nxtLevel, 5000);  // 5 seconds
 }
 
+
 function nxtLevel() {
     spawnIn = 0;
     difficulty++;
 	playGame();
     overlay = false;
 }
+
 
 //Global draw loop
 function paint() {
@@ -100,10 +102,11 @@ function paint() {
             }
 			break;
 		case "lose":
-			//drawLostGame();
+			drawLostGame();
 			break;
 	}
 }
+
 
 //updates game logic
 function tick() {
@@ -123,15 +126,12 @@ function tick() {
 		drawWonGame();
     } else if (students.length == 0 && spawnNum <= 0) {
 		showOverlay();
-	}
-    
-    
+	}    
     //if time = 0 game failure state
     if (time <= 0) {
         //failure action
         clearInterval(game_loop);
 		currentScreen = "lose";
-		drawLostGame();
     } else {
         //decrements the time
         time -= tickPeriod/1000;
@@ -204,7 +204,6 @@ function drawGame() {
                 break;
         }    
     }
-    
 }
 
 //pause overlay
