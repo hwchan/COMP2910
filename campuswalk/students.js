@@ -70,6 +70,10 @@ student0Img.src = "images/students/student0.png";
 
 //draws the student at index i
 function drawStudent(i) {
+	if(students[i] == null){return;}
+	ctx.fillStyle = doors[students[i].goal].color;
+	ctx.fillRect(students[i].x*cw, students[i].y*cw, cw, cw);
+	
     if (!students[i].blocked && !paused) {
         switch (students[i].direction) {
         case 1:
@@ -89,8 +93,6 @@ function drawStudent(i) {
         students[i].animX = students[i].animX;
         students[i].animY = students[i].animY;
     }  
-    ctx.fillStyle = doors[students[i].goal].color;
-	ctx.fillRect(students[i].animX, students[i].animY, cw, cw);
 	animateSprite(students[i], student0Img, 30, 2, students[i].direction-1, 32, 32, students[i].animX, students[i].animY, cw, cw);
 }
 
