@@ -45,9 +45,10 @@ function paint() {
 			drawGame();
             if (paused) {
             drawPaused();
-            }
-            if (lostGame) {
+            } else if (lostGame) {
                 drawLostGame();
+            } else if (wonGame) {
+                drawWonGame();
             }
 			break;
 	}

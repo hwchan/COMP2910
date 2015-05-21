@@ -1,8 +1,9 @@
 //This sets the difficulty
-var difficulty = 7;
+var difficulty = 1;
 var maxTime;
 var overlay = false;
 var lostGame = false;
+var wonGame = false;
 var lvl2 = new Image();
 var lvl3 = new Image();
 var lvl4 = new Image();
@@ -11,7 +12,10 @@ var lvl6 = new Image();
 var lvl7 = new Image();
 var pauseScreen = new Image();
 var lostImg = new Image();
+var wonImg = new Image();
+var scoreFont = "normal " + cw + "pt Calibri"
 
+wonImg.src = "images/won.png";
 lostImg.src = "images/lose.png";
 pauseScreen.src = "images/paused.png";
 lvl2.src = "images/lvl2.png";
@@ -65,7 +69,7 @@ function playGame(){
 			setSpeedVariance(10, 3);
 			break;
 		case 7:
-			time = 2;
+			time = 30;
 			setSpawn(10, 10);
 			setSpeedVariance(10, 2);
 			break;
@@ -102,8 +106,7 @@ function tick() {
     //if all the students have reached their goals player wins
     if (students.length == 0 && difficulty ==  7) {
         //win action
-		alert("You have defeated this game!");
-		clearInterval(game_loop);
+		wonGame = true;
     } else if (students.length == 0) {
 		showOverlay();
 	}
@@ -111,8 +114,8 @@ function tick() {
     
     //if time = 0 game failure state
     if (time <= 0) {
-        lostGame = true;
         clearInterval(game_loop);
+        lostGame = true;
     } else {
         //decrements the time
         time -= tickPeriod/1000;
@@ -200,17 +203,35 @@ function drawLostGame() {
     ctx.drawImage(lostImg,0,0,w,h);
 }
 
-$("#canvas").mousedown(function (e) {
+function drawWonGame() {
+    ctx.drawImage(wonImg,0,0,w,h);
+    ctx.font = scoreFont;
+    ctx.fillStyle = "black";
+    ctx.fillText(Math.round(time), w/2 + cw*.5, h/2 + cw*.4);
+}
+
+$("#canvas").mousedown(function(e) {
     if (currentScreen == "game" && lostGame == true) {
-        //handle mute/unmute
+        clearInterval(game_loop);
+        //Go to the menu screen
         if(clickButton(e, MENU_BTN)) {
             lostGame = false;
             currentScreen = "menu";
-        //handle pause/unpause
+        //Restart from the same difficulty
         } else if(clickButton(e, RST_BTN)) {
-            //TODO change control logic to check for pause state and not the GUI image
             lostGame = false;
-            currentScreen = "game";
+            playGame();
+        }
+    }
+})
+
+$("#canvas").mousedown(function(e) {
+    if (currentScreen == "game" && wonGame == true) {
+        //Go to the menu screen
+        if(clickButton(e, MENU_BTN)) {
+            wonGame = false;
+            clearInterval(game_loop);
+            currentScreen = "menu";
         }
     }
 })
