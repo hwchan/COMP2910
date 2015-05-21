@@ -98,29 +98,16 @@ function paintDifficultyButton(index){
 //button listeners for main menu
 $("#canvas").mousedown(function(e) {
     if (currentScreen == "menu") {
-        if(clickButton(e, DIFFICULTY1_BTN)) {
-            difficulty = 1;
-        }
-        if(clickButton(e, DIFFICULTY2_BTN)) {
-            difficulty = 2;
-        }
-        if(clickButton(e, DIFFICULTY3_BTN)) {
-            difficulty = 3;
-        }
-        if(clickButton(e, DIFFICULTY4_BTN)) {
-            difficulty = 4;
-        }
-		if(clickButton(e, DIFFICULTY5_BTN)) {
-            difficulty = 5;
-        }
-		if(clickButton(e, DIFFICULTY6_BTN)) {
-            difficulty = 6;
-        }
-		if(clickButton(e, DIFFICULTY7_BTN)) {
-            difficulty = 7;
-        }
+		//handle difficulty button clicking
+        for(var i=1; i<= DIFFICULTY_BTNS.length+1; i++){
+			if(clickButton(e, DIFFICULTY_BTNS[i-1])) {
+				clickSound.play();
+				difficulty = i;
+			}
+		}
         drawMenu();
         if(clickButton(e, PLAY_BTN)) {
+			clickSound.play();
             //tear down menu
             currentScreen = "game";
             menuMusic.pause();

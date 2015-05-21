@@ -44,6 +44,7 @@ $("#canvas").mousedown(function (e) {
     if (currentScreen == "game") {
         //handle mute/unmute
         if(clickButton(e, MUTE_BTN)) {
+			clickSound.play();
             if(!music.paused) {
                 MUTE_BTN.img = noSoundImg;
                 music.pause();
@@ -53,6 +54,7 @@ $("#canvas").mousedown(function (e) {
             }
         //handle pause/unpause
         } else if(clickButton(e, PAUSE_BTN)) {
+			clickSound.play();
             //TODO change control logic to check for pause state and not the GUI image
             if(PAUSE_BTN.img == pauseImg){
                 PAUSE_BTN.img = unPauseImg;

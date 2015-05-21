@@ -63,8 +63,10 @@ var SIGNS = [upImg, rightImg, downImg, leftImg];
 var music = new Audio('music/gameplay.mp3');
 music.loop = true;
 
-//set sign placed sound
+//sign placed sound
 var signplaceSound = new Audio('music/signplace.mp3');
+//button click sound
+var clickSound = new Audio('music/click.mp3');
 
 
 
