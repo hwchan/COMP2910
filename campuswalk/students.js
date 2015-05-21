@@ -66,6 +66,14 @@ function setSpawn(num, con) {
 //student image vars
 var student0Img = new Image();
 student0Img.src = "images/students/student0.png";
+var red = new Image();
+red.src = "images/red.png";
+var green = new Image();
+green.src = "images/green.png";
+var blue = new Image();
+blue.src = "images/blue.png";
+var yellow = new Image();
+yellow.src = "images/yellow.png";
 //var student0 = {img:student0Img, width:32, height:32};
 
 //draws the student at index i
@@ -88,9 +96,21 @@ function drawStudent(i) {
     } else {
         students[i].animX = students[i].animX;
         students[i].animY = students[i].animY;
-    }  
-    ctx.fillStyle = doors[students[i].goal].color;
-	ctx.fillRect(students[i].animX, students[i].animY, cw, cw);
+    }
+    switch (students[i].goal) {
+        case 0:
+            ctx.drawImage(red, students[i].animX - cw/4 - cw/8, students[i].animY , cw, cw);
+            break;
+        case 1:
+            ctx.drawImage(green, students[i].animX - cw/4 - cw/8, students[i].animY , cw, cw);
+            break;
+        case 2:
+            ctx.drawImage(blue, students[i].animX - cw/4 - cw/8, students[i].animY , cw, cw);
+            break;
+        case 3:
+            ctx.drawImage(yellow, students[i].animX - cw/4 - cw/8, students[i].animY , cw, cw);
+            break;
+        }
 	animateSprite(students[i], student0Img, 30, 2, students[i].direction-1, 32, 32, students[i].animX, students[i].animY, cw, cw);
 }
 
