@@ -118,9 +118,9 @@ function tick() {
     //if all the students have reached their goals player wins
     if (students.length == 0 && difficulty ==  7 && spawnNum <= 0) {
         //win action
-		complete.play();
-		alert("You have defeated this game!");
 		clearInterval(game_loop);
+		currentScreen = "win";
+		drawWonGame();
     } else if (students.length == 0 && spawnNum <= 0) {
 		showOverlay();
 	}
