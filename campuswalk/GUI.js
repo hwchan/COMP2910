@@ -53,10 +53,10 @@ $("#canvas").mousedown(function (e) {
                 music.play();
             }
         //handle pause/unpause
-        } else if(clickButton(e, PAUSE_BTN)) {
+        } else if(clickButton(e, PAUSE_BTN) && !overlay) {
 			clickSound.play();
             //TODO change control logic to check for pause state and not the GUI image
-            if(PAUSE_BTN.img == pauseImg){
+            if(!paused){
                 PAUSE_BTN.img = unPauseImg;
                 clearInterval(game_loop);
                 paused = true;
@@ -70,7 +70,7 @@ $("#canvas").mousedown(function (e) {
 })
 
 function paintGUI() {
-    ctx.fillStyle = "dimgray";
+    ctx.fillStyle = 'rgb(49,49,49)';
     ctx.fillRect(GUIx, 0, cw * 2, h);
     //draw pause & mute
     ctx.drawImage(PAUSE_BTN.img, PAUSE_BTN.x, PAUSE_BTN.y, menuButtonWidth, menuButtonHeight);
@@ -95,3 +95,27 @@ function toggleSelectedSign(i, isOn){
 		SIGN_BTNS[i].selected = 0;
 	}
 }
+
+$("#canvas").mousedown(function (e) {
+	if(currentScreen == "game" && paused){
+		if(clickButton(e, RESTART_BTN)){
+			clickSound.play();
+			currentScreen = "game";
+			lose.pause();
+			lose.currentTime = 0;
+			music.currentTime = 0;
+			music.play();
+			playGame();
+		} else if(clickButton(e, MENU_BTN)){
+            clearInterval(game_loop);
+            score = 0;
+            students = [];
+			clickSound.play();
+			currentScreen = "menu";
+			lose.pause();
+            lose.currentTime = 0;
+            music.pause();
+			menuMusic.currentTime = 0;
+		}
+	}
+})

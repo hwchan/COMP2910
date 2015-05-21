@@ -13,10 +13,11 @@ function drawLostGame(){
 
 $("#canvas").mousedown(function (e) {
 	if(currentScreen == "lose"){
+        clearInterval(game_loop);
+        score = 0;
+        students = [];
 		if(clickButton(e, RESTART_BTN)){
 			clickSound.play();
-			score = 0;
-			students = [];
 			currentScreen = "game";
 			lose.pause();
 			lose.currentTime = 0;
@@ -25,11 +26,10 @@ $("#canvas").mousedown(function (e) {
 			playGame();
 		} else if(clickButton(e, MENU_BTN)){
 			clickSound.play();
-			score = 0;
-			students = [];
 			currentScreen = "menu";
 			lose.pause();
-			lose.currentTime = 0;
+            lose.currentTime = 0;
+            music.pause();
 			menuMusic.currentTime = 0;
 		}
 	}
