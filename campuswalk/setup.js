@@ -60,7 +60,12 @@ var SIGNS = [upImg, rightImg, downImg, leftImg];
 *************************/
 
 //set gameboard music
-var music = new Audio('music/gameplay.mp3');
+//Retro Hearts (8th Sense Remix) - Skullbeatz
+//http://www.newgrounds.com/audio/listen/557827
+//var music = new Audio('music/gameplay2.mp3');
+//-Jumper- - Waterflame
+//http://www.newgrounds.com/audio/listen/168734
+var music = new Audio('music/gameplay3.mp3');
 music.loop = true;
 
 //sign placed sound
