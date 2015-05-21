@@ -100,7 +100,7 @@ function paint() {
             }
 			break;
 		case "lose":
-			drawLostGame();
+			//drawLostGame();
 			break;
 	}
 }
@@ -131,6 +131,7 @@ function tick() {
         //failure action
         clearInterval(game_loop);
 		currentScreen = "lose";
+		drawLostGame();
     } else {
         //decrements the time
         time -= tickPeriod/1000;

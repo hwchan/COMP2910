@@ -62,7 +62,7 @@ function drawMenu(){
 	//menu title image
 	ctx.drawImage(titleImg, w/2-4*cw, cw, cw*8, cw*3);
 	//paint difficulty buttons
-	paintDifficultyButton(difficulty-1)    
+	paintDifficultyButton(difficulty-1);
     menuMusic.play();
 }
 
