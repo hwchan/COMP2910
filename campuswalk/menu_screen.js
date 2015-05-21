@@ -76,13 +76,11 @@ function paint() {
 function drawMenu(){
     drawBackground();
     drawButton(PLAY_BTN);
-    //drawButton(DIFFICULTY1_BTN);
-	//drawButton(DIFFICULTY2_BTN);
-    //drawButton(DIFFICULTY3_BTN);
-    //drawButton(DIFFICULTY4_BTN);
-	//console.log(difficulty);
+	//lvl image
 	ctx.drawImage(lvlImg, w/2-4*cw, difficultyY, cw, cw);
+	//menu title image
 	ctx.drawImage(titleImg, w/2-4*cw, cw, cw*8, cw*3);
+	//paint difficulty buttons
 	paintDifficultyButton(difficulty-1)    
     menuMusic.play();
 }
@@ -90,9 +88,9 @@ function drawMenu(){
 function paintDifficultyButton(index){
 	for(var i=0; i<DIFFICULTY_BTNS.length; i++){
 		if(index == i){
-			animateSprite(DIFFICULTY_BTNS[i], DIFFICULTY_BTNS[i].img, 10, 1, 1, 16, 16, DIFFICULTY_BTNS[i].x, DIFFICULTY_BTNS[i].y);
+			animateSprite(DIFFICULTY_BTNS[i], DIFFICULTY_BTNS[i].img, 10, 1, 1, 16, 16, DIFFICULTY_BTNS[i].x, DIFFICULTY_BTNS[i].y, cw, cw);
 		} else {
-			animateSprite(DIFFICULTY_BTNS[i], DIFFICULTY_BTNS[i].img, 10, 1, 0, 16, 16, DIFFICULTY_BTNS[i].x, DIFFICULTY_BTNS[i].y);
+			animateSprite(DIFFICULTY_BTNS[i], DIFFICULTY_BTNS[i].img, 10, 1, 0, 16, 16, DIFFICULTY_BTNS[i].x, DIFFICULTY_BTNS[i].y, cw, cw);
 		}
 	}
 }

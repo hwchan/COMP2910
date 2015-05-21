@@ -93,7 +93,7 @@ function drawStudent(i) {
         students[i].animX = students[i].animX;
         students[i].animY = students[i].animY;
     }  
-	animateSprite(students[i], student0Img, 30, 2, students[i].direction-1, 32, 32, students[i].animX, students[i].animY);
+	animateSprite(students[i], student0Img, 30, 2, students[i].direction-1, 32, 32, students[i].animX, students[i].animY, cw, cw);
 }
 
 

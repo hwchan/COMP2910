@@ -81,12 +81,8 @@ function paintGUI() {
     ctx.fillText("Score: " + Math.round(score), GUIx + cw * .25, cw*1.85);
 	ctx.fillText("Time: " + Math.round(time), GUIx + cw * .25, cw*2.2);
     //draw signs
-    /*ctx.drawImage(NORTH_BTN.img, NORTH_BTN.x, NORTH_BTN.y, signWidth, signHeight);
-    ctx.drawImage(EAST_BTN.img, EAST_BTN.x, EAST_BTN.y, signWidth, signHeight);
-    ctx.drawImage(SOUTH_BTN.img, SOUTH_BTN.x, SOUTH_BTN.y, signWidth, signHeight);
-    ctx.drawImage(WEST_BTN.img, WEST_BTN.x, WEST_BTN.y, signWidth, signHeight);*/
 	for(var i=0; i<SIGN_BTNS.length; i++){
-		animateSignButton(SIGN_BTNS[i], SIGN_BTNS[i].img, 30, 2, SIGN_BTNS[i].selected, 24, 24, SIGN_BTNS[i].x, SIGN_BTNS[i].y, signWidth, signHeight);
+		animateSprite(SIGN_BTNS[i], SIGN_BTNS[i].img, 30, 2, SIGN_BTNS[i].selected, 24, 24, SIGN_BTNS[i].x, SIGN_BTNS[i].y, signWidth, signHeight);
 	}
 }
 

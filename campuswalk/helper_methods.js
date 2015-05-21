@@ -40,7 +40,7 @@ function clickButton(e, button){
 		destX: the x coordinate to draw to
 		destY: the y coordinate to draw to
 **/
-function animateSprite(gameObject, sprite, fps, len, row, width, height, destX, destY) {
+function animateSprite(gameObject, sprite, fps, len, row, width, height, destX, destY, destWidth, destHeight) {
 	//the x coordinate of the source sprite
 	//e.g. moves between x=0, x=16 every 10 seconds
 	//for fps=10, width=16, len=2
@@ -51,27 +51,7 @@ function animateSprite(gameObject, sprite, fps, len, row, width, height, destX, 
 	
 	
 	//draw it
-	ctx.drawImage(sprite, srcX, srcY, width, height, destX, destY, cw, cw);
-	
-	//increment counter to handle srcX (which sprite to render)
-	gameObject.currentFrame++;
-}
-
-/**
-	animateSprite but with width and height scaling
-**/
-function animateSignButton(gameObject, sprite, fps, len, row, width, height, destX, destY, sizeX, sizeY) {
-	//the x coordinate of the source sprite
-	//e.g. moves between x=0, x=16 every 10 seconds
-	//for fps=10, width=16, len=2
-	var srcX = width*((Math.floor(gameObject.currentFrame/fps))%len);
-	
-	//the y coordinate of the source sprite
-	var srcY = height*row;
-	
-	
-	//draw it
-	ctx.drawImage(sprite, srcX, srcY, width, height, destX, destY, sizeX, sizeY);
+	ctx.drawImage(sprite, srcX, srcY, width, height, destX, destY, destWidth, destHeight);
 	
 	//increment counter to handle srcX (which sprite to render)
 	gameObject.currentFrame++;
