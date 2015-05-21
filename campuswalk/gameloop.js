@@ -70,6 +70,7 @@ function playGame(){
 // shows the overlay screen for 5 seconds then starts the next level
 function showOverlay() {
     overlay = true;
+	victory.play();
     clearInterval(game_loop);
     setTimeout(nxtLevel, 5000);  // 5 seconds
 }
@@ -94,7 +95,7 @@ function tick() {
     //if all the students have reached their goals player wins
     if (students.length == 0 && difficulty ==  7) {
         //win action
-		victory.play();
+		complete.play();
 		alert("You have defeated this game!");
 		clearInterval(game_loop);
     } else if (students.length == 0) {

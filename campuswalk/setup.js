@@ -80,6 +80,7 @@ var despawn = new Audio('music/despawn.mp3');
 var victory = new Audio('music/victory.mp3');
 //game over sound
 var lose = new Audio('music/gameover.mp3');
-
+//complete game sound
+var complete = new Audio('music/complete.mp3');
 
 
