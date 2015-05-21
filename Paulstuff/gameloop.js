@@ -83,7 +83,7 @@ function tick() {
 		loseMusic.play();
         paused = true;
         clearInterval(game_loop);
-		document.forms["achievements"].submit();
+		//document.forms["achievements"].submit();
     } else {
         //decrements the time
         time -= tickPeriod/1000;

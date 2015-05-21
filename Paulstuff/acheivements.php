@@ -29,34 +29,105 @@ $cookie_value;
     $cookie_value = $_COOKIE[$cookie_name];
 	}
 	
-	echo $sql = "select 1 from achievements where key = 5535045712951115776";
-	
 	//sets variables to form values true or false
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $achiev1 = $_POST["achievement1"];
-    $achiev2 = $_POST["achievement2"];
-	$achiev3 = $_POST["achievement3"];
+		$achiev1 = $_POST["achievement1"];
+		$achiev2 = $_POST["achievement2"];
+		$achiev3 = $_POST["achievement3"];
 			
 		//sets achievements in table to complete if true
 		If ($achiev1 == 'true'){
-			$sql = "INSERT INTO achievements (userID ,Achievement1)
-			VALUES ('$cookie_value', '$achiev1')";
-			if ($conn->query($sql) === TRUE) {
-				echo "New record created successfully";
+			If($_COOKIE == null) {
+				$sql = "INSERT INTO achievements (userID ,Achievement1)
+				VALUES ('$cookie_value', '$achiev1')";
+				if ($conn->query($sql) === TRUE) {
+					echo "New record created successfully<br>";
 				} else {
-				echo "Error: " . $sql . "<br>" . $conn->error;
+					echo "Error: " . $sql . "<br>" . $conn->error;
+				}
+			} else{
+				$sql = "UPDATE achievements
+				SET Achievement1 = '$achiev1'
+				WHERE userID = '$cookie_value'";
+				if ($conn->query($sql) === TRUE) {
+					echo "<br>New record created successfully<br>";
+				} else {
+					echo "Error: " . $sql . "<br>" . $conn->error;
+				}
 			}
-		} else{
-			echo "not valid";
 		}
-		If ($achiev2 == true){
-			$sql = "INSERT INTO achievements (Achievement2)
-			VALUES ($achiev2)";
+		If ($achiev2 == 'true'){
+			If($_COOKIE == null) {
+				$sql = "INSERT INTO achievements (userID ,Achievement1)
+				VALUES ('$cookie_value', '$achiev2')";
+				if ($conn->query($sql) === TRUE) {
+					echo "<br>New record created successfully<br>";
+				} else {
+					echo "Error: " . $sql . "<br>" . $conn->error;
+				}
+			} else{
+				$sql = "UPDATE achievements
+				SET Achievement2 = '$achiev2'
+				WHERE userID = '$cookie_value'";
+				if ($conn->query($sql) === TRUE) {
+					echo "<br>New record created successfully<br>";
+				} else {
+					echo "Error: " . $sql . "<br>" . $conn->error;
+				}
+			}
 		}
-		If ($achiev3 == true){
-			$sql = "INSERT INTO achievements (Achievement3)
-			VALUES ($achiev2)";
+		If ($achiev3 == 'true'){
+			If($_COOKIE == null) {
+				$sql = "INSERT INTO achievements (userID ,Achievement1)
+				VALUES ('$cookie_value', '$achiev3')";
+				if ($conn->query($sql) === TRUE) {
+					echo "<br>New record created successfully<br>";
+				} else {
+					echo "Error: " . $sql . "<br>" . $conn->error;
+				}
+			} else{
+				$sql = "UPDATE achievements
+				SET Achievement3 = '$achiev3'
+				WHERE userID = '$cookie_value'";
+				if ($conn->query($sql) === TRUE) {
+					echo "<br>New record created successfully<br>";
+				} else {
+					echo "Error: " . $sql . "<br>" . $conn->error;
+				}
+			}
+		}
+		$sql = "SELECT Achievement1
+		FROM achievements
+		WHERE userID = '$cookie_value'";
+		$itemList = $conn->query($sql);
+		while($row = $itemList->fetch_assoc()) {
+			if ($row['Achievement1'] == 'true'){
+				echo '<br>You have unlocked achievement 1: Out of Time.<br>';
+			} else{
+				echo 'achievement 1 not unlocked yet<br>';
+			}
+		}
+		$sql = "SELECT Achievement2
+		FROM achievements
+		WHERE userID = '$cookie_value'";
+		$itemList = $conn->query($sql);
+		while($row = $itemList->fetch_assoc()) {
+			if ($row['Achievement2'] == 'true'){
+				echo 'You have unlocked achievement 2: First steps.<br>';
+			} else{
+				echo 'achievement 2 not unlocked yet<br>';
+			}
+		}
+		$sql = "SELECT Achievement3
+		FROM achievements
+		WHERE userID = '$cookie_value'";
+		$itemList = $conn->query($sql);
+		while($row = $itemList->fetch_assoc()) {
+			if ($row['Achievement3'] == 'true'){
+				echo 'You have unlocked achievement 3: Master of the walk.<br>';
+			} else{
+				echo 'achievement 3 not unlocked yet<br>';
+			}
 		}
 	}
-
 ?>
