@@ -1,6 +1,6 @@
 //This sets the difficulty
 var difficulty = 1;
-var maxTime;
+var studentsToSpawn = 1;
 var overlay = false;
 var lvl2 = new Image();
 var lvl3 = new Image();
@@ -26,46 +26,46 @@ function playGame(){
 		//case 0 for debugging
 		case 0:
 			time = 100;
-			setSpawn(10, 10);
+			studentsToSpawn = 10;
 			setSpeedVariance(10, 10);
 			break;
 		case 1:
 			time = 100;
-			setSpawn(1, 10);
-			setSpeedVariance(10, 5);
+			studentsToSpawn = 1;
+			setSpeedVariance(10, 10);
 			break;
 		case 2:
 			time = 60;
-			setSpawn(2, 10);
-			setSpeedVariance(10, 5);
+			studentsToSpawn = 3;
+			setSpeedVariance(10, 10);
 			break;
 		case 3:
 			time = 60;
-			setSpawn(3, 10);
+			studentsToSpawn = 4;
 			setSpeedVariance(10, 5);
 			break;
 		case 4:
-			time = 50;
-			setSpawn(3, 10);
-			setSpeedVariance(10, 5);
+			time = 60;
+			studentsToSpawn = 6;
+			setSpeedVariance(12, 8);
 			break;
 		case 5:
-			time = 50;
-			setSpawn(4, 10);
-			setSpeedVariance(10, 4);
+			time = 60;
+			studentsToSpawn = 8;
+			setSpeedVariance(15, 8);
 			break;
 		case 6:
-			time = 30;
-			setSpawn(4, 10);
-			setSpeedVariance(10, 3);
+			time = 60;
+			studentsToSpawn = 12;
+			setSpeedVariance(15, 8);
 			break;
 		case 7:
-			time = 30;
-			setSpawn(10, 10);
-			setSpeedVariance(10, 2);
+			time = 60;
+			studentsToSpawn = 14;
+			setSpeedVariance(20, 2);
 			break;
 	}
-	maxTime = time;
+	setSpawn(studentsToSpawn, 10);
     game_loop = setInterval(tick, tickPeriod);
 }
 
@@ -116,12 +116,12 @@ function tick() {
     //spawns a student each tick
     spawnStudents();
     //if all the students have reached their goals player wins
-    if (students.length == 0 && difficulty ==  7) {
+    if (students.length == 0 && difficulty ==  7 && spawnNum <= 0) {
         //win action
 		complete.play();
 		alert("You have defeated this game!");
 		clearInterval(game_loop);
-    } else if (students.length == 0) {
+    } else if (students.length == 0 && spawnNum <= 0) {
 		showOverlay();
 	}
     
