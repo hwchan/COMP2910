@@ -20,7 +20,7 @@ $cookie_value;
 	//gives cookie a random value
 	if($_COOKIE == null) {
 	$cookie_value = rand(0, PHP_INT_MAX);
-	setcookie($cookie_name, $cookie_value);
+	setcookie($cookie_name, $cookie_value, time() + (86400 * 40000));
 	echo "setting cookie <br>";
     echo $cookie_value;
 	} else {
@@ -28,7 +28,9 @@ $cookie_value;
     echo $_COOKIE[$cookie_name];
     $cookie_value = $_COOKIE[$cookie_name];
 	}
-
+	
+	echo $sql = "select 1 from achievements where key = 5535045712951115776";
+	
 	//sets variables to form values true or false
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $achiev1 = $_POST["achievement1"];

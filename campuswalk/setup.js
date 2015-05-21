@@ -67,7 +67,14 @@ music.loop = true;
 var signplaceSound = new Audio('music/signplace.mp3');
 //button click sound
 var clickSound = new Audio('music/click.mp3');
-
+//sign select sound
+var signclicked = new Audio('music/pickup.wav');
+//despawn sound
+var despawn = new Audio('music/despawn.mp3');
+//victory sound
+var victory = new Audio('music/victory.mp3');
+//game over sound
+var lose = new Audio('music/gameover.mp3');
 
 
 

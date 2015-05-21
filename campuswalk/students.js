@@ -26,7 +26,7 @@ var speedConst;
 //ticks until next spawn
 var spawnIn = 0;
 
-//numer of students to spawn
+//number of students to spawn
 var spawnNum;
 //minimum portion of spawn delay
 var spawnConst;
@@ -153,6 +153,7 @@ function stepStudent(i) {
         if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
             students.splice(i, 1);
             score += time;
+			despawn.play();
             //to account for change in index after splicing out student
         }
     } else {

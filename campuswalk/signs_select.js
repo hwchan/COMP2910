@@ -72,7 +72,7 @@ function mouseDown(e) {
         if(signPressed == 0){
             for (var i = 0; i < 4; i++){
                 if(clickButton(e, SIGN_BTNS[i])){
-					clickSound.play();
+					signclicked.play();
                     highlight = true;
                     signPressed = i+1;
                     e.preventDefault();

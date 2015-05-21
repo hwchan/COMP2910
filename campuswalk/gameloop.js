@@ -94,6 +94,7 @@ function tick() {
     //if all the students have reached their goals player wins
     if (students.length == 0 && difficulty ==  7) {
         //win action
+		victory.play();
 		alert("You have defeated this game!");
 		clearInterval(game_loop);
     } else if (students.length == 0) {
@@ -104,6 +105,7 @@ function tick() {
     //if time = 0 game failure state
     if (time <= 0) {
         //failure action
+		lose.play();
 		alert("You lose!");
         paused = true;
         clearInterval(game_loop);
