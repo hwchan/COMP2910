@@ -116,6 +116,9 @@ $("#canvas").mousedown(function (e) {
             lose.currentTime = 0;
             music.pause();
 			menuMusic.currentTime = 0;
+		} else if(clickButton(e, SUBMIT_BTN)) {
+			//todo for submit
+			prompt("Enter your username");
 		}
 	}
 })
