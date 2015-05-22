@@ -161,6 +161,12 @@ function stepStudent(i) {
             students.splice(i, 1);
             score += (time + difficulty * 2);
             //to account for change in index after splicing out student
+			//achievement 2 logic
+			if (score >= 1000){
+				alert('penis');
+				acheiv2 = 'true';
+				document.getElementById("ach2").value = acheiv2;
+			}
         }
     } else {
         students[i].nextStep--;

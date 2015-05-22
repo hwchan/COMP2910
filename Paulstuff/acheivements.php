@@ -30,71 +30,72 @@ $achiev3;
 				//gives cookie a random value
 				$cookie_value = rand(0, PHP_INT_MAX);
 				setcookie($cookie_name, $cookie_value, time() + (86400 * 40000), "/");
-				echo "setting cookie <br>";
-				echo $cookie_value . "<br>";
+				//echo "setting cookie <br>";
+				//echo $cookie_value . "<br>";
+				echo 'please refresh page to see your achievements';
 				//inserts records into table
 				if($achiev1 == 'true'){
 					$sql = "INSERT INTO achievements (userID ,Achievement1)
 					VALUES ('$cookie_value', '$achiev1')";
 					if ($conn->query($sql) === TRUE) {
-						echo "New record created successfully<br>";
+						//echo "New record created successfully<br>";
 					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
+						//echo "Error: " . $sql . "<br>" . $conn->error;
 					}
 				} else if ($achiev2 == 'true'){
 					$sql = "INSERT INTO achievements (userID ,Achievement2)
 					VALUES ('$cookie_value', '$achiev2')";
 					if ($conn->query($sql) === TRUE) {
-						echo "New record created successfully<br>";
+						//echo "New record created successfully<br>";
 					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
+						//echo "Error: " . $sql . "<br>" . $conn->error;
 					}
 				} else if ($achiev3 == 'true'){
 					$sql = "INSERT INTO achievements (userID ,Achievement3)
 					VALUES ('$cookie_value', '$achiev3')";
 					if ($conn->query($sql) === TRUE) {
-						echo "New record created successfully<br>";
+						//echo "New record created successfully<br>";
 					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
+						//echo "Error: " . $sql . "<br>" . $conn->error;
 					}
 				} else {
 					$sql = "INSERT INTO achievements (userID)
 					VALUES ('$cookie_value')";
 					if ($conn->query($sql) === TRUE) {
-						echo "New record created successfully<br>";
+						//echo "New record created successfully<br>";
 					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
+						//echo "Error: " . $sql . "<br>" . $conn->error;
 					}
 				} 
 			} else {
-				echo "cookie is set <br>";
-				echo $_COOKIE[$cookie_name] . "<br>";
+				//echo "cookie is set <br>";
+				//echo $_COOKIE[$cookie_name] . "<br>";
 				if($achiev1 == 'true'){
 					$sql = "UPDATE achievements
 					SET Achievement1 = '$achiev1'
 					WHERE userID = '$_COOKIE[$cookie_name]'";
 					if ($conn->query($sql) === TRUE) {
-						echo "<br>New record created successfully<br>";
+						//echo "<br>New record created successfully<br>";
 					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
+						//echo "Error: " . $sql . "<br>" . $conn->error;
 					}
 				} else if ($achiev2 == 'true'){
 					$sql = "UPDATE achievements
 					SET Achievement2 = '$achiev2'
 					WHERE userID = '$_COOKIE[$cookie_name]'";
 					if ($conn->query($sql) === TRUE) {
-						echo "<br>New record created successfully<br>";
+						//echo "<br>New record created successfully<br>";
 					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
+						//echo "Error: " . $sql . "<br>" . $conn->error;
 					}
 				} else if ($achiev3 == 'true'){
 					$sql = "UPDATE achievements
 					SET Achievement3 = '$achiev3'
 					WHERE userID = '$_COOKIE[$cookie_name]'";
 					if ($conn->query($sql) === TRUE) {
-						echo "<br>New record created successfully<br>";
+						//echo "<br>New record created successfully<br>";
 					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
+						//echo "Error: " . $sql . "<br>" . $conn->error;
 					}
 				} else{
 					// do nothing

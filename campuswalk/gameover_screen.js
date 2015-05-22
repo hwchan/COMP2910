@@ -19,6 +19,8 @@ function drawLostGame(){
 
 //is called every paint frame
 function drawWonGame(){
+	acheiv3 = 'true';
+	document.getElementById("ach3").value = acheiv3;
 	ctx.drawImage(winImg, 0, 0, w, h);
 	//draw score
 	ctx.fillStyle = "white";

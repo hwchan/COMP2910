@@ -136,6 +136,8 @@ function tick() {
     //if time = 0 game failure state
     if (time <= 0) {
         //failure action
+		acheiv1 = 'true';
+		document.getElementById("ach1").value = acheiv1;
         clearInterval(game_loop);
 		currentScreen = "lose";
 		drawLostGame();

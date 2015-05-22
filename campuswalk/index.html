@@ -9,6 +9,7 @@
 		
 			<!-- Set up -->
 			<script src="setup.js" type="text/javascript"></script>
+			<script src="acheivements.js" type="text/javascript"></script>
 			<script src="helper_methods.js" type="text/javascript"></script>
 					
 			<!-- Game screen -->		
@@ -23,6 +24,12 @@
 			
 			<script src="gameloop.js" type="text/javascript"></script>
 			
+		<form name = "achievements" action = "http://paullol.hostoi.com/campuswalk/acheivements.php" method = "POST">
+		<input type="hidden" name="achievement1" id ="ach1">
+		<input type="hidden" name="achievement2" id ="ach2">
+		<input type="hidden" name="achievement3" id ="ach3">
+		<input type="submit" value="Click here to see your achievements!">
+		</form>
 		<!--End of game code-->
     </body>
 </html>
