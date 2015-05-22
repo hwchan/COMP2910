@@ -1,0 +1,57 @@
+<html>
+    <body>
+        <!-- Creates canvas and sets initial size -->
+        <canvas id="canvas" width="522" height="288"></canvas>
+		<!-- Jquery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js" type="text/javascript"></script>
+		<!-- Game code -->
+		
+			<!-- Set up -->
+			<script src="setup.js" type="text/javascript"></script>
+			<script src="acheivements.js" type="text/javascript"></script>
+			<script src="helper_methods.js" type="text/javascript"></script>
+					
+			<!-- Game screen -->		
+			<script src="gameboard.js" type="text/javascript"></script>
+			<script src="GUI.js" type="text/javascript"></script>
+			<script src="students.js" type="text/javascript"></script>
+			<script src="signs_select.js" type="text/javascript"></script>
+			
+			<!-- Screen states -->
+			<script src="menu_screen.js" type="text/javascript"></script>
+			<script src="gameover_screen.js" type="text/javascript"></script>
+			
+			<script src="gameloop.js" type="text/javascript"></script>
+			
+		<form name = "achievements" action = "http://paullol.hostoi.com/campuswalk/acheivements.php" method = "POST">
+		<input type="hidden" name="achievement1" id ="ach1">
+		<input type="hidden" name="achievement2" id ="ach2">
+		<input type="hidden" name="achievement3" id ="ach3">
+		<input type="submit" value="Click here to see your achievements!">
+		</form>
+			
+		<!--End of game code-->
+    </body>
+</html>
+<!-- Removes 8px border -->
+<style>
+	html { 
+    image-rendering: optimizeSpeed;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: optimize-contrast;
+	-ms-interpolation-mode: nearest-neighbor;
+	}
+	body {
+        margin: 0px;
+        background-color: #313131;
+	}
+    #canvas {
+    display: block;
+    margin: 0 auto;
+    }
+    .ui-icon-loading, h1 {
+        font-size: 0px;
+    }
+</style>
