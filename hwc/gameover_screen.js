@@ -18,9 +18,7 @@ function drawLostGame(){
 
 function drawWonGame(){
 	//alert ('You have unlocked achievement 3: Master of the walk.');
-	setAchievement(achvImg2, .85, w/2-cw*2.5, cw*.5, 1500, cw*5, cw*2);
-	acheiv3 = 'true';
-	document.getElementById("ach3").value = acheiv3;
+	achievement3();
 	ctx.drawImage(winImg, 0, 0, w, h);
 	//draw score
 	ctx.fillStyle = "white";

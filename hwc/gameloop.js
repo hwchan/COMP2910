@@ -135,9 +135,7 @@ function tick() {
     if (time <= 0) {
         //failure action
 		//alert('You have unlocked achievement 1: Out of Time');
-		setAchievement(achvImg0, .85, w/2-cw*2.5, cw*.5, 1500, cw*5, cw*2);
-		acheiv1 = 'true';
-		document.getElementById("ach1").value = acheiv1;
+		achievement1();
         clearInterval(game_loop);
 		currentScreen = "lose";
 		drawLostGame();

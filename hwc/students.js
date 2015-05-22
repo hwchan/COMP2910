@@ -164,9 +164,7 @@ function stepStudent(i) {
 			//achievement 2 logic
 			if (score >= 1000){
 				//alert('You have unlocked achievement 2: Points galore');
-				setAchievement(achvImg1, .85, w/2-cw*2.5, cw*.5, 1500, cw*5, cw*2);
-				acheiv2 = 'true';
-				document.getElementById("ach2").value = acheiv2;
+				achievement2();
 			}
         }
     } else {
