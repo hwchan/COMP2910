@@ -29,16 +29,16 @@ var gameboard = [];
 
 //all possible spawn and exit coordinates
 var allDoors = [];
-allDoors.push(new door(0, 6, "rgba(255,0,0,.75)", 3));				//red
-allDoors.push(new door(4, 7, "rgba(0,255,0,.75)", 2));				//green
-allDoors.push(new door(10, 7, "rgba(0,0,255,.75)", 1));				//blue
+allDoors.push(new door(0, 6, "rgb(255,0,0)", 3));				//red
+allDoors.push(new door(4, 7, "rgb(0,255,0)", 2));				//green
+allDoors.push(new door(10, 7, "rgb(0,0,255)", 1));				//blue
 
-allDoors.push(new door(7, 5, "rgba(255,255,0,.75)", 3));			//yellow
-allDoors.push(new door(0, 3, "rgba(255,0,255,.75)", 2));			//purple
-allDoors.push(new door(3, 1, "rgba(0,255,255,.75)", 2));			//cyan
+allDoors.push(new door(7, 5, "rgb(255,255,0)", 3));			//yellow
+allDoors.push(new door(0, 3, "rgb(255,0,255)", 2));			//purple
+allDoors.push(new door(3, 1, "rgb(0,255,255)", 2));			//cyan
 
-allDoors.push(new door(13, 0, "rgba(255,128,0,.75)", 4));			//orange
-allDoors.push(new door(12, 6, "rgba(255, 255, 255, .75)", 1));		//white
+allDoors.push(new door(13, 0, "rgb(255,128,0)", 4));			//orange
+allDoors.push(new door(12, 6, "rgb(255, 255, 255)", 1));		//white
 
 
 //possible current spawn and exit coordinates, and associated color for this level
@@ -111,7 +111,7 @@ function resetGameboard() {
 
 function drawDoor(i) {
     ctx.strokeStyle = doors[i].color;
-	ctx.lineWidth=cw/8;
+	ctx.lineWidth=cw/16;
     ctx.strokeRect(doors[i].x * cw, doors[i].y * cw, cw, cw);
 }
 
