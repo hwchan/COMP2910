@@ -21,8 +21,6 @@ lvl7.src = "images/overlays/lvl7.png";
 
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
-    resetGameboard();
-    score = 0
     paused = false;
     PAUSE_BTN.img = pauseImg;
     currentScreen = "game";
@@ -32,38 +30,46 @@ function playGame(){
 			time = 60;
 			studentsToSpawn = 1;
 			setSpeedVariance(10, 10);
+			numDoors = 2;
 			break;
 		case 2:
 			time = 60;
 			studentsToSpawn = 3;
 			setSpeedVariance(10, 10);
+			numDoors = 4;
 			break;
 		case 3:
 			time = 60;
 			studentsToSpawn = 4;
 			setSpeedVariance(10, 5);
+			numDoors = 5;
 			break;
 		case 4:
 			time = 60;
 			studentsToSpawn = 6;
 			setSpeedVariance(12, 8);
+			numDoors = 5;
 			break;
 		case 5:
 			time = 60;
 			studentsToSpawn = 8;
 			setSpeedVariance(15, 8);
+			numDoors = 6;
 			break;
 		case 6:
 			time = 60;
 			studentsToSpawn = 12;
 			setSpeedVariance(15, 8);
+			numDoors = 7;
 			break;
 		case 7:
 			time = 60;
 			studentsToSpawn = 14;
-			setSpeedVariance(20, 4);
+			setSpeedVariance(18, 8);
+			numDoors = 8;
 			break;
 	}
+	resetGameboard();
 	setSpawn(studentsToSpawn, 10);
     game_loop = setInterval(tick, tickPeriod);
 }

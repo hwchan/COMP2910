@@ -19,7 +19,7 @@ ctx.canvas.width  = w;
 ctx.canvas.height = h;
 ctx.imageSmoothingEnabled = false;
 ctx.mozImageSmoothingEnabled = false;
-ctx.webkitImageSmoothingEnabled = false;
+//ctx.webkitImageSmoothingEnabled = false;
 ctx.msImageSmoothingEnabled = false;
 
 var currentScreen = "menu";
