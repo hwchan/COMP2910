@@ -18,6 +18,12 @@ titleImg.src = "images/menu/title.png";
 
 var difficultyY = h/2+cw*1.5;
 
+//achievements button
+var achieveImg = new Image();
+achieveImg.src = "images/menu/achievements.png";
+var ACHIEVE_BTN = {img:achieveImg, x:cw, y:cw, width:cw, height:cw};
+
+//difficulty buttons
 var difficulty1Img = new Image();
 difficulty1Img.src = "images/menu/difficulty1.png";
 var DIFFICULTY1_BTN = {img:difficulty1Img, x:w/2-3*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
@@ -57,6 +63,7 @@ onload = function(){
 function drawMenu(){
     drawBackground();
     drawButton(PLAY_BTN);
+	drawButton(ACHIEVE_BTN);
 	//lvl image
 	ctx.drawImage(lvlImg, w/2-4*cw, difficultyY, cw, cw);
 	//menu title image
@@ -96,7 +103,9 @@ $("#canvas").mousedown(function(e) {
 			music.currentTime = 0;
 			score = 0;
             playGame();
-        }
+        } else if(clickButton(e, ACHIEVE_BTN)) {
+			document.forms["achievements"].submit();
+		}
     }
 })
 
