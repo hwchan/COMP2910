@@ -97,6 +97,8 @@ function drawStudent(i) {
         students[i].animX = students[i].animX;
         students[i].animY = students[i].animY;
     }
+	ctx.fillStyle = doors[students[i].goal].color;
+	ctx.fillRect(students[i].animX, students[i].animY, cw, cw);
     switch (students[i].goal) {
         case 0:
             ctx.drawImage(red, students[i].animX - cw/4 - cw/8, students[i].animY , cw, cw);
