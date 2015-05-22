@@ -54,7 +54,7 @@ if (window.navigator.msPointerEnabled) {
 
 //select the correct sign pressed or delete a sign
 function mouseDown(e) {
-    if (currentScreen == "game") {
+    if (currentScreen == "game" && !paused) {
         getTileOnHover(e);
 
         //delete sign if clicked
@@ -72,11 +72,12 @@ function mouseDown(e) {
         if(signPressed == 0){
             for (var i = 0; i < 4; i++){
                 if(clickButton(e, SIGN_BTNS[i])){
+					signclicked.play();
                     highlight = true;
-                    //show selected sign
-                    toggleSelectedSign(i,true);
                     signPressed = i+1;
                     e.preventDefault();
+					//show selected sign
+                    toggleSelectedSign(i,true);
                 }
             }
         }
@@ -109,7 +110,7 @@ function mouseDown(e) {
 
 //handle sign highlight
 function mouseMove(e) {
-    if (currentScreen == "game") {
+    if (currentScreen == "game" && !paused) {
 	   getTileOnHover(e);
     }
 }

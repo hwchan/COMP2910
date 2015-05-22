@@ -1,61 +1,116 @@
 //This sets the difficulty
 var difficulty = 1;
-var maxTime;
+var studentsToSpawn = 1;
+var overlay = false;
+var lvl2 = new Image();
+var lvl3 = new Image();
+var lvl4 = new Image();
+var lvl5 = new Image();
+var lvl6 = new Image();
+var lvl7 = new Image();
+
+var pauseScreen = new Image();
+pauseScreen.src = "images/overlays/paused.png";
+
+lvl2.src = "images/overlays/lvl2.png";
+lvl3.src = "images/overlays/lvl3.png";
+lvl4.src = "images/overlays/lvl4.png";
+lvl5.src = "images/overlays/lvl5.png";
+lvl6.src = "images/overlays/lvl6.png";
+lvl7.src = "images/overlays/lvl7.png";
 
 //starts the game: gameboard, gameloop, etc.
 function playGame(){
-	//sets a student to spawn every 10 ticks 10 times
-    //setSpawn(1, 10);
-    //sets student period to be 1 to 5 ticks
-    //setSpeedVariance(1, 1);
-	
+    paused = false;
+    PAUSE_BTN.img = pauseImg;
+    currentScreen = "game";
+    students = [];
 	switch (difficulty) {
-		//case 0 for debugging
-		case 0:
-			time = 100;
-			setSpawn(10, 10);
-			setSpeedVariance(10, 10);
-			break;
 		case 1:
-			time = 100;
-			setSpawn(1, 10);
-			setSpeedVariance(1, 1);
+			time = 60;
+			studentsToSpawn = 1;
+			setSpeedVariance(10, 10);
+			numDoors = 2;
 			break;
 		case 2:
 			time = 60;
-			setSpawn(2, 10);
-			setSpeedVariance(2, 1);
+			studentsToSpawn = 3;
+			setSpeedVariance(10, 10);
+			numDoors = 4;
 			break;
 		case 3:
 			time = 60;
-			setSpawn(3, 10);
-			setSpeedVariance(2, 1);
+			studentsToSpawn = 4;
+			setSpeedVariance(10, 5);
+			numDoors = 5;
 			break;
 		case 4:
-			time = 50;
-			setSpawn(3, 10);
-			setSpeedVariance(2, 1);
+			time = 60;
+			studentsToSpawn = 6;
+			setSpeedVariance(12, 8);
+			numDoors = 5;
 			break;
 		case 5:
-			time = 50;
-			setSpawn(4, 5);
-			setSpeedVariance(3, 1);
+			time = 60;
+			studentsToSpawn = 8;
+			setSpeedVariance(15, 8);
+			numDoors = 6;
 			break;
 		case 6:
-			time = 30;
-			setSpawn(4, 5);
-			setSpeedVariance(3, 1);
+			time = 60;
+			studentsToSpawn = 12;
+			setSpeedVariance(15, 8);
+			numDoors = 7;
 			break;
 		case 7:
-			time = 30;
-			setSpawn(10, 10);
-			setSpeedVariance(20, 5);
+			time = 60;
+			studentsToSpawn = 14;
+			setSpeedVariance(18, 8);
+			numDoors = 8;
 			break;
 	}
-	maxTime = time;
-    score = 0;
+	resetGameboard();
+	setSpawn(studentsToSpawn, 10);
     game_loop = setInterval(tick, tickPeriod);
 }
+
+
+// shows the overlay screen for 5 seconds then starts the next level
+function showOverlay() {
+    overlay = true;
+	victory.play();
+    clearInterval(game_loop);
+    setTimeout(nxtLevel, 5000);  // 5 seconds
+}
+
+
+function nxtLevel() {
+    spawnIn = 0;
+    difficulty++;
+	playGame();
+    overlay = false;
+}
+
+
+//Global draw loop
+function paint() {
+    //runs paint every display refresh
+    requestAnimationFrame(paint);
+    //checks current screen and draws it
+    switch (currentScreen) {
+		case "menu":
+			drawMenu();
+			break;
+        case "game":
+			drawGame();
+            if (paused) {
+				drawPaused();
+            }
+			break;
+	}
+	paintAchievement();
+}
+
 
 //updates game logic
 function tick() {
@@ -68,17 +123,24 @@ function tick() {
     //spawns a student each tick
     spawnStudents();
     //if all the students have reached their goals player wins
-    if (students.length == 0 && Math.round(time) < maxTime-6 ) {
+    if (students.length == 0 && difficulty ==  7 && spawnNum <= 0) {
         //win action
-		alert("You have defeated this level!");
 		clearInterval(game_loop);
-    }
+		currentScreen = "win";
+		drawWonGame();
+    } else if (students.length == 0 && spawnNum <= 0) {
+		showOverlay();
+	}    
     //if time = 0 game failure state
     if (time <= 0) {
         //failure action
-		alert("You lose!");
-        paused = true;
+		//alert('You have unlocked achievement 1: Out of Time');
+		setAchievement(achvImg0, .85, w/2-cw*2.5, cw*.5, 1500, cw*5, cw*2);
+		acheiv1 = 'true';
+		document.getElementById("ach1").value = acheiv1;
         clearInterval(game_loop);
+		currentScreen = "lose";
+		drawLostGame();
     } else {
         //decrements the time
         time -= tickPeriod/1000;
@@ -128,4 +190,32 @@ function drawGame() {
     for(var i = 0; i < students.length; ++i) {
         drawStudent(i);
     }
+    
+    if (overlay) {
+        switch (difficulty) {
+            case 1:
+                ctx.drawImage(lvl2,0,0,cw*14,h);
+                break;
+            case 2:
+                ctx.drawImage(lvl3, 0,0,cw*14,h);
+                break;
+            case 3:
+                ctx.drawImage(lvl4,0,0,cw*14,h);
+                break;
+            case 4:
+                ctx.drawImage(lvl5,0,0,cw*14,h);
+                break;
+            case 5:
+                ctx.drawImage(lvl6,0,0,cw*14,h);
+                break;
+            case 6:
+                ctx.drawImage(lvl7,0,0,cw*14,h);
+                break;
+        }    
+    }
+}
+
+//pause overlay
+function drawPaused() {
+    ctx.drawImage(pauseScreen,0,0,cw*14,h);
 }

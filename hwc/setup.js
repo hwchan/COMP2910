@@ -18,6 +18,9 @@ var ctx = canvas.getContext("2d");
 ctx.canvas.width  = w;
 ctx.canvas.height = h;
 ctx.imageSmoothingEnabled = false;
+ctx.mozImageSmoothingEnabled = false;
+//ctx.webkitImageSmoothingEnabled = false;
+ctx.msImageSmoothingEnabled = false;
 
 var currentScreen = "menu";
 
@@ -52,7 +55,13 @@ leftImg.src = "images/left.png";
 var emptyImg = new Image();
 emptyImg.src = "images/grass0.png";
 var SIGNS = [upImg, rightImg, downImg, leftImg];
-
+//sets up achievment images
+var achvImg0 = new Image();
+achvImg0.src = "images/achievements/achievement0.png";
+var achvImg1 = new Image();
+achvImg1.src = "images/achievements/achievement1.png";
+var achvImg2 = new Image();
+achvImg2.src = "images/achievements/achievement2.png";
 
 
 /*************************
@@ -60,12 +69,27 @@ var SIGNS = [upImg, rightImg, downImg, leftImg];
 *************************/
 
 //set gameboard music
-var music = new Audio('music/gameplay.mp3');
+//Retro Hearts (8th Sense Remix) - Skullbeatz
+//http://www.newgrounds.com/audio/listen/557827
+//var music = new Audio('music/gameplay2.mp3');
+//-Jumper- - Waterflame
+//http://www.newgrounds.com/audio/listen/168734
+var music = new Audio('music/gameplay3.mp3');
 music.loop = true;
 
-//set sign placed sound
+//sign placed sound
 var signplaceSound = new Audio('music/signplace.mp3');
-
-
+//button click sound
+var clickSound = new Audio('music/click.mp3');
+//sign select sound
+var signclicked = new Audio('music/pickup.wav');
+//despawn sound
+var despawn = new Audio('music/despawn.mp3');
+//victory sound
+var victory = new Audio('music/victory.mp3');
+//game over sound
+var lose = new Audio('music/gameover.mp3');
+//complete game sound
+var complete = new Audio('music/complete.mp3');
 
 

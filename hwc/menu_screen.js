@@ -2,48 +2,54 @@ var menuMusic = new Audio('music/menu.mp3');
 menuMusic.loop = true;
 
 var backgroundImg = new Image();
-backgroundImg.src = "images/background.png";
+backgroundImg.src = "images/menu/background.png";
 
 
 //Defines the play button
 var playImg = new Image();
-playImg.src = "images/play.png";
+playImg.src = "images/menu/play.png";
 var PLAY_BTN = {img:playImg, x:w/2-cw*2, y:h/2+cw/2, width:cw*4, height:cw*1};
 
 var lvlImg = new Image();
-lvlImg.src = "images/lvl.png";
+lvlImg.src = "images/menu/lvl.png";
 
 var titleImg = new Image();
-titleImg.src = "images/title.png";
+titleImg.src = "images/menu/title.png";
 
 var difficultyY = h/2+cw*1.5;
 
+//achievements button
+var achieveImg = new Image();
+achieveImg.src = "images/menu/achievements.png";
+var ACHIEVE_BTN = {img:achieveImg, x:cw, y:cw, width:cw, height:cw};
+
+//difficulty buttons
 var difficulty1Img = new Image();
-difficulty1Img.src = "images/difficulty1.png";
+difficulty1Img.src = "images/menu/difficulty1.png";
 var DIFFICULTY1_BTN = {img:difficulty1Img, x:w/2-3*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
 
 var difficulty2Img = new Image();
-difficulty2Img.src = "images/difficulty2.png";
+difficulty2Img.src = "images/menu/difficulty2.png";
 var DIFFICULTY2_BTN = {img:difficulty2Img, x:w/2-2*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
 
 var difficulty3Img = new Image();
-difficulty3Img.src = "images/difficulty3.png";
+difficulty3Img.src = "images/menu/difficulty3.png";
 var DIFFICULTY3_BTN = {img:difficulty3Img, x:w/2-1*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
 
 var difficulty4Img = new Image();
-difficulty4Img.src = "images/difficulty4.png";
+difficulty4Img.src = "images/menu/difficulty4.png";
 var DIFFICULTY4_BTN = {img:difficulty4Img, x:w/2+0*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
 
 var difficulty5Img = new Image();
-difficulty5Img.src = "images/difficulty5.png";
+difficulty5Img.src = "images/menu/difficulty5.png";
 var DIFFICULTY5_BTN = {img:difficulty5Img, x:w/2+1*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
 
 var difficulty6Img = new Image();
-difficulty6Img.src = "images/difficulty6.png";
+difficulty6Img.src = "images/menu/difficulty6.png";
 var DIFFICULTY6_BTN = {img:difficulty6Img, x:w/2+2*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
 
 var difficulty7Img = new Image();
-difficulty7Img.src = "images/difficulty7.png";
+difficulty7Img.src = "images/menu/difficulty7.png";
 var DIFFICULTY7_BTN = {img:difficulty7Img, x:w/2+3*cw, y:difficultyY, width:cw, height:cw, currentFrame:0};
 
 var DIFFICULTY_BTNS = [DIFFICULTY1_BTN, DIFFICULTY2_BTN, DIFFICULTY3_BTN, DIFFICULTY4_BTN, DIFFICULTY5_BTN, DIFFICULTY6_BTN, DIFFICULTY7_BTN]
@@ -53,43 +59,26 @@ onload = function(){
     paint();
 }
 
-
-//Global draw loop
-function paint() {
-    //runs paint every display refresh
-    requestAnimationFrame(paint);
-    //checks current screen and draws it
-    switch (currentScreen) {
-		case "menu":
-			drawMenu();
-			break;
-        case "game":
-			drawGame();
-			break;
-	}
-}
-
 //draws menu background and buttons
 function drawMenu(){
     drawBackground();
     drawButton(PLAY_BTN);
-    //drawButton(DIFFICULTY1_BTN);
-	//drawButton(DIFFICULTY2_BTN);
-    //drawButton(DIFFICULTY3_BTN);
-    //drawButton(DIFFICULTY4_BTN);
-	//console.log(difficulty);
+	drawButton(ACHIEVE_BTN);
+	//lvl image
 	ctx.drawImage(lvlImg, w/2-4*cw, difficultyY, cw, cw);
+	//menu title image
 	ctx.drawImage(titleImg, w/2-4*cw, cw, cw*8, cw*3);
-	paintDifficultyButton(difficulty-1)    
+	//paint difficulty buttons
+	paintDifficultyButton(difficulty-1);
     menuMusic.play();
 }
 
 function paintDifficultyButton(index){
 	for(var i=0; i<DIFFICULTY_BTNS.length; i++){
 		if(index == i){
-			animateSprite(DIFFICULTY_BTNS[i], DIFFICULTY_BTNS[i].img, 10, 1, 1, 16, 16, DIFFICULTY_BTNS[i].x, DIFFICULTY_BTNS[i].y);
+			animateSprite(DIFFICULTY_BTNS[i], DIFFICULTY_BTNS[i].img, 10, 1, 1, 16, 16, DIFFICULTY_BTNS[i].x, DIFFICULTY_BTNS[i].y, cw, cw);
 		} else {
-			animateSprite(DIFFICULTY_BTNS[i], DIFFICULTY_BTNS[i].img, 10, 1, 0, 16, 16, DIFFICULTY_BTNS[i].x, DIFFICULTY_BTNS[i].y);
+			animateSprite(DIFFICULTY_BTNS[i], DIFFICULTY_BTNS[i].img, 10, 1, 0, 16, 16, DIFFICULTY_BTNS[i].x, DIFFICULTY_BTNS[i].y, cw, cw);
 		}
 	}
 }
@@ -97,36 +86,26 @@ function paintDifficultyButton(index){
 //button listeners for main menu
 $("#canvas").mousedown(function(e) {
     if (currentScreen == "menu") {
-        if(clickButton(e, DIFFICULTY1_BTN)) {
-            difficulty = 1;
-        }
-        if(clickButton(e, DIFFICULTY2_BTN)) {
-            difficulty = 2;
-        }
-        if(clickButton(e, DIFFICULTY3_BTN)) {
-            difficulty = 3;
-        }
-        if(clickButton(e, DIFFICULTY4_BTN)) {
-            difficulty = 4;
-        }
-		if(clickButton(e, DIFFICULTY5_BTN)) {
-            difficulty = 5;
-        }
-		if(clickButton(e, DIFFICULTY6_BTN)) {
-            difficulty = 6;
-        }
-		if(clickButton(e, DIFFICULTY7_BTN)) {
-            difficulty = 7;
-        }
+		//handle difficulty button clicking
+        for(var i=1; i<= DIFFICULTY_BTNS.length+1; i++){
+			if(clickButton(e, DIFFICULTY_BTNS[i-1])) {
+				clickSound.play();
+				difficulty = i;
+			}
+		}
         drawMenu();
         if(clickButton(e, PLAY_BTN)) {
+			clickSound.play();
             //tear down menu
             currentScreen = "game";
             menuMusic.pause();
             music.play();
+			music.currentTime = 0;
 			score = 0;
             playGame();
-        }
+        } else if(clickButton(e, ACHIEVE_BTN)) {
+			document.forms["achievements"].submit();
+		}
     }
 })
 

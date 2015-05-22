@@ -24,9 +24,9 @@ var speedRand;
 //minimum portion of student period
 var speedConst;
 //ticks until next spawn
-var spawnIn = 10;
+var spawnIn = 0;
 
-//numer of students to spawn
+//number of students to spawn
 var spawnNum;
 //minimum portion of spawn delay
 var spawnConst;
@@ -66,14 +66,12 @@ function setSpawn(num, con) {
 //student image vars
 var student0Img = new Image();
 student0Img.src = "images/students/student0.png";
+var goalIndicator = new Image();
+goalIndicator.src = "images/goalIndicator.png";
 //var student0 = {img:student0Img, width:32, height:32};
 
 //draws the student at index i
 function drawStudent(i) {
-	if(students[i] == null){return;}
-	ctx.fillStyle = doors[students[i].goal].color;
-	ctx.fillRect(students[i].x*cw, students[i].y*cw, cw, cw);
-	
     if (!students[i].blocked && !paused) {
         switch (students[i].direction) {
         case 1:
@@ -92,8 +90,16 @@ function drawStudent(i) {
     } else {
         students[i].animX = students[i].animX;
         students[i].animY = students[i].animY;
-    }  
-	animateSprite(students[i], student0Img, 30, 2, students[i].direction-1, 32, 32, students[i].animX, students[i].animY);
+    }
+    ctx.fillStyle = doors[students[i].goal].color;
+    if (students[i].animX != 0) {
+        ctx.drawImage(goalIndicator, students[i].animX - cw/4 - cw/8, students[i].animY , cw, cw);
+        ctx.fillRect(students[i].animX - cw*.3125, students[i].animY + cw/16, cw/4, cw/4);
+    } else {
+    ctx.drawImage(goalIndicator, students[i].animX+cw, students[i].animY , cw, cw);
+    ctx.fillRect(students[i].animX+cw*1.0625, students[i].animY + cw/16, cw/4, cw/4);
+    }
+	animateSprite(students[i], student0Img, 30, 2, students[i].direction-1, 32, 32, students[i].animX, students[i].animY, cw, cw);
 }
 
 
@@ -151,9 +157,17 @@ function stepStudent(i) {
         }
         //if new position is the same as goal deletes the student and adds the current time to the score, if not decrements time until next step
         if (xNew === doors[students[i].goal].x && yNew === doors[students[i].goal].y) {
+			despawn.play();
             students.splice(i, 1);
-            score += time;
+            score += (time + difficulty * 2);
             //to account for change in index after splicing out student
+			//achievement 2 logic
+			if (score >= 1000){
+				//alert('You have unlocked achievement 2: Points galore');
+				setAchievement(achvImg1, .85, w/2-cw*2.5, cw*.5, 1500, cw*5, cw*2);
+				acheiv2 = 'true';
+				document.getElementById("ach2").value = acheiv2;
+			}
         }
     } else {
         students[i].nextStep--;

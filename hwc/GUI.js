@@ -7,23 +7,23 @@ var guiFont = "normal " + cw/4 + "pt Calibri"
 
 //sets up GUI sign images
 var northGUIImg = new Image();
-northGUIImg.src = "images/up_btn.png";
+northGUIImg.src = "images/gui/up_btn.png";
 var eastGUIImg = new Image();
-eastGUIImg.src = "images/right_btn.png";
+eastGUIImg.src = "images/gui/right_btn.png";
 var southGUIImg = new Image();
-southGUIImg.src = "images/down_btn.png";
+southGUIImg.src = "images/gui/down_btn.png";
 var westGUIImg = new Image();
-westGUIImg.src = "images/left_btn.png";
+westGUIImg.src = "images/gui/left_btn.png";
 
 //sets up GUI options images
 var soundImg = new Image();
-soundImg.src = "images/sound.png";
+soundImg.src = "images/gui/sound.png";
 var noSoundImg = new Image();
-noSoundImg.src = "images/nosound.png";
+noSoundImg.src = "images/gui/nosound.png";
 var pauseImg = new Image();
-pauseImg.src = "images/pause.png";
+pauseImg.src = "images/gui/pause.png";
 var unPauseImg = new Image();
-unPauseImg.src = "images/unpause.png";
+unPauseImg.src = "images/gui/unpause.png";
 
 //x-coordinate of the GUI area
 var GUIx = cw * gameboard[0].length;
@@ -44,17 +44,29 @@ $("#canvas").mousedown(function (e) {
     if (currentScreen == "game") {
         //handle mute/unmute
         if(clickButton(e, MUTE_BTN)) {
+			clickSound.play();
             if(!music.paused) {
                 MUTE_BTN.img = noSoundImg;
                 music.pause();
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
             } else {
                 MUTE_BTN.img = soundImg;
                 music.play();
             }
         //handle pause/unpause
-        } else if(clickButton(e, PAUSE_BTN)) {
+        } else if(clickButton(e, PAUSE_BTN) && !overlay) {
+			clickSound.play();
             //TODO change control logic to check for pause state and not the GUI image
-            if(PAUSE_BTN.img == pauseImg){
+            if(!paused){
                 PAUSE_BTN.img = unPauseImg;
                 clearInterval(game_loop);
                 paused = true;
@@ -68,7 +80,7 @@ $("#canvas").mousedown(function (e) {
 })
 
 function paintGUI() {
-    ctx.fillStyle = "dimgray";
+    ctx.fillStyle = 'rgb(49,49,49)';
     ctx.fillRect(GUIx, 0, cw * 2, h);
     //draw pause & mute
     ctx.drawImage(PAUSE_BTN.img, PAUSE_BTN.x, PAUSE_BTN.y, menuButtonWidth, menuButtonHeight);
@@ -81,12 +93,8 @@ function paintGUI() {
     ctx.fillText("Score: " + Math.round(score), GUIx + cw * .25, cw*1.85);
 	ctx.fillText("Time: " + Math.round(time), GUIx + cw * .25, cw*2.2);
     //draw signs
-    /*ctx.drawImage(NORTH_BTN.img, NORTH_BTN.x, NORTH_BTN.y, signWidth, signHeight);
-    ctx.drawImage(EAST_BTN.img, EAST_BTN.x, EAST_BTN.y, signWidth, signHeight);
-    ctx.drawImage(SOUTH_BTN.img, SOUTH_BTN.x, SOUTH_BTN.y, signWidth, signHeight);
-    ctx.drawImage(WEST_BTN.img, WEST_BTN.x, WEST_BTN.y, signWidth, signHeight);*/
 	for(var i=0; i<SIGN_BTNS.length; i++){
-		animateSignButton(SIGN_BTNS[i], SIGN_BTNS[i].img, 30, 2, SIGN_BTNS[i].selected, 24, 24, SIGN_BTNS[i].x, SIGN_BTNS[i].y, signWidth, signHeight);
+		animateSprite(SIGN_BTNS[i], SIGN_BTNS[i].img, 30, 2, SIGN_BTNS[i].selected, 24, 24, SIGN_BTNS[i].x, SIGN_BTNS[i].y, signWidth, signHeight);
 	}
 }
 
@@ -97,3 +105,30 @@ function toggleSelectedSign(i, isOn){
 		SIGN_BTNS[i].selected = 0;
 	}
 }
+
+$("#canvas").mousedown(function (e) {
+	if(currentScreen == "game" && paused){
+		if(clickButton(e, RESTART_BTN)){
+			clickSound.play();
+			currentScreen = "game";
+			lose.pause();
+			lose.currentTime = 0;
+			music.currentTime = 0;
+			music.play();
+			playGame();
+		} else if(clickButton(e, MENU_BTN)){
+            clearInterval(game_loop);
+            score = 0;
+            students = [];
+			clickSound.play();
+			currentScreen = "menu";
+			lose.pause();
+            lose.currentTime = 0;
+            music.pause();
+			menuMusic.currentTime = 0;
+		} else if(clickButton(e, SUBMIT_BTN)) {
+			//todo for submit
+			prompt("Enter your username");
+		}
+	}
+})

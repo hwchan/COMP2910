@@ -26,27 +26,34 @@ function tile(contents) {
 
 //sets gameboard array
 var gameboard = [];
-for (var y = 0; y < tiles.length; y++){
-    gameboard[y] = [];
-    for (var x = 0; x < tiles[0].length; x++){
-        gameboard[y][x] = new tile(tiles[y][x]);    
-    }
-}
 
-//possible spawn and exit coordinates, and associated color
+//all possible spawn and exit coordinates
+var allDoors = [];
+allDoors.push(new door(0, 6, "rgb(255,0,0)", 3));				//red
+allDoors.push(new door(4, 7, "rgb(0,255,0)", 2));				//green
+allDoors.push(new door(10, 7, "rgb(0,0,255)", 1));				//blue
+
+allDoors.push(new door(7, 5, "rgb(255,255,0)", 3));			//yellow
+allDoors.push(new door(0, 3, "rgb(255,0,255)", 2));			//purple
+allDoors.push(new door(3, 1, "rgb(0,255,255)", 2));			//cyan
+
+allDoors.push(new door(13, 0, "rgb(255,128,0)", 4));			//orange
+allDoors.push(new door(12, 6, "rgb(255, 255, 255)", 1));		//white
+
+
+//possible current spawn and exit coordinates, and associated color for this level
 //[xDoor,yDoor,color,direction]
 var doors = [];
-doors.push(new door(0, 8, "rgba(255,0,0,.5)", 2));
-doors.push(new door(12, 0, "rgba(0,255,0,.5)", 4));
-doors.push(new door(12, 8, "rgba(0,0,255,.5)", 1));
-doors.push(new door(5, 5, "rgba(255,255,0,.5)", 3));
+//number of doors to have open
+var numDoors = 2;
 
 //constructs a door object
-function door(x, y, color, direction) {
+function door(x, y, color, direction, active) {
     this.x = x;
     this.y = y;
     this.color = color;
     this.direction = direction;
+	this.active = active;
 }
 
 function drawTile(x, y) {
@@ -77,8 +84,35 @@ function drawTile(x, y) {
     }
 }
 
+function resetGameboard() {
+
+	//reset doors
+	for(var i=0; i<doors.length; i++){
+		allDoors.push(doors[i]);
+	}
+	doors = [];
+	
+	//reset tiles
+    for (var y = 0; y < tiles.length; y++){
+        gameboard[y] = [];
+        for (var x = 0; x < tiles[0].length; x++){
+            gameboard[y][x] = new tile(tiles[y][x]);    
+        }
+    }
+	//set doors
+	if (numDoors > 8) numDoors = 8;
+	for(var i=0; i<numDoors; i++){
+		var index = Math.floor(Math.random()*allDoors.length);
+		doors.push(allDoors[index]);
+		allDoors.splice(index, 1);
+	}
+
+}
+
 function drawDoor(i) {
     ctx.strokeStyle = doors[i].color;
-	ctx.lineWidth=5;
+	ctx.lineWidth=cw/16;
     ctx.strokeRect(doors[i].x * cw, doors[i].y * cw, cw, cw);
 }
+
+resetGameboard();
