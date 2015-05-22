@@ -163,7 +163,7 @@ function stepStudent(i) {
             //to account for change in index after splicing out student
 			//achievement 2 logic
 			if (score >= 1000){
-				alert('penis');
+				alert('You have unlocked achievement 2: Points galore');
 				acheiv2 = 'true';
 				document.getElementById("ach2").value = acheiv2;
 			}

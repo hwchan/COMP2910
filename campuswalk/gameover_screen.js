@@ -19,6 +19,7 @@ function drawLostGame(){
 
 //is called every paint frame
 function drawWonGame(){
+	alert ('You have unlocked achievement 3: Master of the walk.');
 	acheiv3 = 'true';
 	document.getElementById("ach3").value = acheiv3;
 	ctx.drawImage(winImg, 0, 0, w, h);

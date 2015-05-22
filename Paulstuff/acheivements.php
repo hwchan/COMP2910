@@ -110,7 +110,7 @@ $achiev3;
 			if ($row['Achievement1'] == 'true'){
 				echo '<br>You have unlocked achievement 1: Out of Time.<br>';
 			} else{
-				echo 'achievement 1 not unlocked yet<br>';
+				echo 'achievement 1: Out of Time not unlocked yet<br>';
 			}
 		}
 		$sql = "SELECT Achievement2
@@ -119,9 +119,9 @@ $achiev3;
 		$itemList = $conn->query($sql);
 		if($row = $itemList->fetch_assoc()) {
 			if ($row['Achievement2'] == 'true'){
-				echo 'You have unlocked achievement 2: First steps.<br>';
+				echo 'You have unlocked achievement 2: Points galore.<br>';
 			} else{
-				echo 'achievement 2 not unlocked yet<br>';
+				echo 'achievement 2: Points galore not unlocked yet<br>';
 			}
 		}
 		$sql = "SELECT Achievement3
@@ -132,7 +132,7 @@ $achiev3;
 			if ($row['Achievement3'] == 'true'){
 				echo 'You have unlocked achievement 3: Master of the walk.<br>';
 			} else{
-				echo 'achievement 3 not unlocked yet<br>';
+				echo 'achievement 3: Master of the walk not unlocked yet<br>';
 			}
 		}
 
